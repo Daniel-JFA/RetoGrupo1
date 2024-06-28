@@ -1,11 +1,11 @@
 let indexPregunta = 0;
 
 function cargarPregunta(index) {
-  document
-    .querySelectorAll(".contenedor-respuestas input[type='radio']")
-    .forEach((radio) => {
-      radio.checked = false;
-    });
+  // document
+  //   .querySelectorAll(".contenedor-respuestas input[type='radio']")
+  //   .forEach((radio) => {
+  //     radio.checked = false;
+  //   });
 
   objetoPregunta = basePreguntas[index];
   opciones = objetoPregunta.opciones;
@@ -26,25 +26,42 @@ function seleccionarOpcion(index) {
 
   if (validezRespuesta) {
     indexPregunta++;
-    if (indexPregunta >= basePreguntas.length) {
-      indexPregunta = 0;
-      // Swal.fire({
-      //   title: "Haz terminado la primera sección 😁,",
-      //   width: 600,
-      //   padding: "3em",
-      //   color: "#000066",
-      // });
+    if (indexPregunta == 5) {
       Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Haz terminado la primera sección 😁",
-        showConfirmButton: false,
-        timer: 1500
+        title: "¡Bien hecho, has terminado la sección '¿Por qué?'! 👏",
+        customClass: "my-custom-class",
+      }).then(() => {
+        // Cuando el modal se cierre, activa la pestaña ¿Cómo? y carga la pregunta 6
+        indexPregunta = 5;
+        document.getElementById("como").checked = true;
+        cargarPregunta(indexPregunta);
       });
     }
-
-    cargarPregunta(indexPregunta);
+    if (indexPregunta == 10) {
+      Swal.fire({
+        title: "¡Bien hecho, has terminado la sección '¿Cómo?!' 👏",
+        customClass: "my-custom-class",
+      }).then(() => {
+        // Cuando el modal se cierre, activa la pestaña ¿Cómo? y carga la pregunta 6
+        indexPregunta = 10;
+        document.getElementById("que").checked = true;
+        cargarPregunta(indexPregunta);
+      });
+    }
+    if (indexPregunta == 15) {
+      Swal.fire({
+        title: "¡Bien hecho, has finalizado todas las secciones' 👏",
+        text: "¡Modelo Círculo Dorado completado!🎉",
+        customClass: "my-custom-class",
+      }).then(() => {
+        // Cuando el modal se cierre, activa la pestaña ¿Cómo? y carga la pregunta 6
+        indexPregunta = 0;
+        document.getElementById("porque").checked = true;
+        cargarPregunta(indexPregunta);
+      });
+    }
   }
+  cargarPregunta(indexPregunta);
 }
 
 cargarPregunta(indexPregunta);
