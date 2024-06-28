@@ -100,7 +100,7 @@ footer {
 .contenedor__seccion__preguntas__descripcion h3 {
   justify-content: center;
   text-align: center;
-  font-weight:700;
+  font-weight: 700;
   margin: 0;
 }
 
@@ -153,7 +153,6 @@ footer {
   justify-content: center;
   text-align: center;
   line-height: 3em;
-  cursor: pointer;
   font-size: 1.1em;
   font-weight: 600;
   transition: all 0.3s ease;
@@ -173,21 +172,32 @@ input[type="radio"] {
 
 input[name="respuesta"] + label {
   position: relative;
-  border: 1px solid #000066;
+  border: 2px solid #000066;
   border-radius: 0.5em;
   padding: 2px 8px;
   display: flex;
   align-items: center;
 }
 
+input[name="respuesta"] + label:hover {
+  position: relative;
+  border: 3px solid #020282;
+  border-radius: 0.5em;
+  padding: 2px 8px;
+  display: flex;
+  align-items: center;
+  transition: all 0.25s;
+}
+
 input[name="respuesta"] + label:before {
-  content:" ";
+  content: " ";
   height: 1em;
   width: 1em;
-  border: 1px solid #000066;
+  border: 2px solid #000066;
   border-radius: 50%;
   margin-right: 0.5em;
 }
+
 
 input[name="respuesta"]:checked + label {
   background-color: white;
@@ -213,13 +223,12 @@ input[name="respuesta"]:checked + label:before {
   filter: blur(0, 4px);
 }
 
-
 #porque:checked ~ nav .slider {
   left: 0%;
 }
 
 #como:checked ~ nav .slider {
-  left: 35%;
+  left: 33%;
 }
 #que:checked ~ nav .slider {
   left: 65%;
@@ -228,7 +237,7 @@ input[name="respuesta"]:checked + label:before {
 #porque:checked ~ nav .porque,
 #como:checked ~ nav .como,
 #que:checked ~ nav .que {
-  color: rgb(95, 95, 95);
+  color: #000066;
 }
 
 .contenedor-preguntas {
@@ -241,24 +250,19 @@ input[name="respuesta"]:checked + label:before {
   margin-bottom: 1em;
 }
 
-.div:last-child {
-  justify-content: flex-end;
-}
-
 .contenedor-preguntas .contenedor {
   display: none;
   margin-bottom: 1em;
 }
 
-.contenedor-preguntas .contenedor .contenedor__titulo {
+.contenedor-preguntas .contenedor {
   font-weight: 600;
   margin: 0px 0 10px 0;
 }
 
-
-#porque:checked ~ .contenedor-preguntas .contenedor-porque,
-#como:checked ~ .contenedor-preguntas .contenedor-como,
-#que:checked ~ .contenedor-preguntas .contenedor-que {
+#porque:checked ~ .contenedor-preguntas .contenedor-tabs,
+#como:checked ~ .contenedor-preguntas .contenedor-tabs,
+#que:checked ~ .contenedor-preguntas .contenedor-tabs {
   display: block;
 }
 
@@ -268,6 +272,10 @@ input[name="respuesta"]:checked + label:before {
   justify-content: space-around;
   flex-wrap: wrap;
   margin-top: 2em;
+}
+
+.contenedor-respuestas label {
+  cursor: pointer;
 }
 
 .contenedor-preguntas div {
@@ -282,18 +290,6 @@ input[name="respuesta"]:checked + label:before {
   height: 2.5em;
 }
 
-.contenedor__boton {
-  display: flex;
-  justify-content: end;
-}
-
-.siguiente {
-  border: none;
-  border-radius: 5px;
-  padding: 16px 24px 16px 24px;
-  cursor: pointer;
-  background-color: #000066;
-  color: #ffffff;
-  font-family: "Montserrat", sans-serif;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+.my-custom-class .swal2-title{
+  line-height: 40px; /* Ajusta el interlineado según tus necesidades */
 }
