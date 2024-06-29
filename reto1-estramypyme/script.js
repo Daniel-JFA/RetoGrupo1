@@ -36,8 +36,7 @@ function seleccionarOpcion(index) {
         document.getElementById("como").checked = true;
         cargarPregunta(indexPregunta);
       });
-    }
-    if (indexPregunta == 10) {
+    } else if (indexPregunta == 10) {
       Swal.fire({
         title: "¡Bien hecho, has terminado la sección '¿Cómo?!' 👏",
         customClass: "my-custom-class",
@@ -47,8 +46,7 @@ function seleccionarOpcion(index) {
         document.getElementById("que").checked = true;
         cargarPregunta(indexPregunta);
       });
-    }
-    if (indexPregunta == 15) {
+    } else if (indexPregunta == 15) {
       Swal.fire({
         title: "¡Bien hecho, has finalizado todas las secciones' 👏",
         text: "¡Modelo Círculo Dorado completado!🎉",
