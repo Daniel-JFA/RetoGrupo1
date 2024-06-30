@@ -1,7 +1,7 @@
 let basePreguntas = [
   // // Sección "¿Por qué?"
   {
-    id: 1,
+    id: 0,
     pregunta:
       "En una escala del 1 al 3, ¿qué tan claro está el propósito fundamental de su empresa para todos los empleados?",
     opciones: {
@@ -11,7 +11,7 @@ let basePreguntas = [
     },
   },
   {
-    id: 2,
+    id: 1,
     pregunta:
       "En una escala del 1 al 3, ¿Qué tan comprometidos se sienten los empleados con la misión de la empresa?",
     opciones: {
@@ -21,7 +21,7 @@ let basePreguntas = [
     },
   },
   {
-    id: 3,
+    id: 2,
     pregunta:
       "En una escala del 1 al 3, ¿Con qué frecuencia se comunica el propósito de la empresa a los empleados?",
     opciones: {
@@ -31,7 +31,7 @@ let basePreguntas = [
     },
   },
   {
-    id: 4,
+    id: 3,
     pregunta:
       "En una escala del 1 al 3, ¿Qué tan alineadas están las decisiones estratégicas de la empresa con su propósito fundamental?",
     opciones: {
@@ -41,7 +41,7 @@ let basePreguntas = [
     },
   },
   {
-    id: 5,
+    id: 4,
     pregunta:
       "En una escala del 1 al 3, ¿Qué tan influyente es el propósito de la empresa en la cultura organizacional?",
     opciones: {
@@ -51,10 +51,9 @@ let basePreguntas = [
     },
   },
 
-  
   // Sección "¿Cómo?"
   {
-    id: 6,
+    id: 5,
     pregunta:
       "En una escala del 1 al 3, ¿Qué tan claro están los valores y principios de la empresa para todos los empleados?",
     opciones: {
@@ -64,7 +63,7 @@ let basePreguntas = [
     },
   },
   {
-    id: 7,
+    id: 6,
     pregunta:
       "En una escala del 1 al 3, ¿Qué tan bien se implementan los valores y principios en las operaciones diarias?",
     opciones: {
@@ -74,7 +73,7 @@ let basePreguntas = [
     },
   },
   {
-    id: 8,
+    id: 7,
     pregunta:
       "En una escala del 1 al 3, ¿Qué tan diferenciadores son sus métodos y prácticas frente a la competencia?",
     opciones: {
@@ -84,7 +83,7 @@ let basePreguntas = [
     },
   },
   {
-    id: 9,
+    id: 8,
     pregunta:
       "En una escala del 1 al 3, ¿Qué tan consistentes son los procesos de la empresa con sus valores y principios?",
     opciones: {
@@ -94,10 +93,9 @@ let basePreguntas = [
     },
   },
 
-
   // Sección "¿Qué?"
   {
-    id: 10,
+    id: 9,
     pregunta:
       "En una escala del 1 al 3, ¿Qué tan innovadores son los métodos y procesos utilizados por la empresa?",
     opciones: {
@@ -107,7 +105,7 @@ let basePreguntas = [
     },
   },
   {
-    id: 11,
+    id: 10,
     pregunta:
       "En una escala del 1 al 3, ¿Qué tan alta es la calidad de los productos/servicios ofrecidos por la empresa?",
     opciones: {
@@ -117,7 +115,7 @@ let basePreguntas = [
     },
   },
   {
-    id: 12,
+    id: 11,
     pregunta:
       "En una escala del 1 al 3, ¿Qué tan bien se alinean los productos/servicios con el propósito de la empresa?",
     opciones: {
@@ -127,7 +125,7 @@ let basePreguntas = [
     },
   },
   {
-    id: 13,
+    id: 12,
     pregunta:
       "En una escala del 1 al 3, ¿Qué tan satisfechos están los clientes con los productos/servicios de la empresa?",
     opciones: {
@@ -137,7 +135,7 @@ let basePreguntas = [
     },
   },
   {
-    id: 14,
+    id: 13,
     pregunta:
       "En una escala del 1 al 3, ¿Qué tan innovadores son los productos/servicios de la empresa?",
     opciones: {
@@ -147,7 +145,7 @@ let basePreguntas = [
     },
   },
   {
-    id: 15,
+    id: 14,
     pregunta:
       "En una escala del 1 al 3, ¿Qué tan amplia es la variedad de productos/servicios que ofrece la empresa?",
     opciones: {

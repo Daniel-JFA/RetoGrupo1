@@ -1,13 +1,13 @@
 let indexPregunta = 0;
 
-function cargarPregunta(index) {
+function cargarPregunta(id) {
   // document
   //   .querySelectorAll(".contenedor-respuestas input[type='radio']")
   //   .forEach((radio) => {
   //     radio.checked = false;
   //   });
 
-  objetoPregunta = basePreguntas[index];
+  objetoPregunta = basePreguntas[id];
   opciones = objetoPregunta.opciones;
   document.getElementById("progreso").innerHTML = `Pregunta ${
     indexPregunta + 1
@@ -20,13 +20,13 @@ function cargarPregunta(index) {
   document.querySelector("label#opcion3").innerHTML = opciones.opcion3;
 }
 
-function seleccionarOpcion(index) {
+function seleccionarOpcion(id) {
   let validezRespuesta =
-    (opciones[index] == objetoPregunta.opcion1) | opcion2 | opcion3;
+    (opciones[id] == objetoPregunta.opcion1) | opcion2 | opcion3;
 
   if (validezRespuesta) {
     indexPregunta++;
-    if (indexPregunta == 5) {
+    if (indexPregunta == objetoPregunta.id){
       Swal.fire({
         title: "¡Bien hecho, has terminado la sección '¿Por qué?'! 👏",
         customClass: "my-custom-class",
