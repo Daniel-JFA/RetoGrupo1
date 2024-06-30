@@ -53,7 +53,7 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: #9ac274;
+
     align-items: center;
 }
 
@@ -66,7 +66,7 @@ header {
     justify-content: space-between;
     text-align: center;
     align-items: center;
-    background-color: rgb(67, 68, 107);
+ 
 }
 
 .porque {
@@ -90,7 +90,7 @@ header {
     justify-content: space-between;
     text-align: center;
     align-items: center;
-    background-color: rgb(134, 48, 62);
+
 }
 
 /*estilo para la seccion de imagen del circulo*/
