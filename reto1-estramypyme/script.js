@@ -26,7 +26,7 @@ function seleccionarOpcion(id) {
 
   if (validezRespuesta) {
     indexPregunta++;
-    if (indexPregunta == objetoPregunta.id){
+    if (indexPregunta == 5) {
       Swal.fire({
         title: "¡Bien hecho, has terminado la sección '¿Por qué?'! 👏",
         customClass: "my-custom-class",
