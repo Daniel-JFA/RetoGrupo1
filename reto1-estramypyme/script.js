@@ -212,19 +212,22 @@ function graficoRespuestas(indexPregunta) {
       type: "category",
       data: ["¿POR QUE?", "¿COMO?", "¿QUÉ?"],
       show: false, // Ocultar las etiquetas y las líneas del eje radial
+
     },
     tooltip: {},
     series: {
       type: "bar",
       data: [
-        { value: porQue, itemStyle: { color: "#000066" } },
-        { value: como, itemStyle: { color: "#000066E5" } },
-        { value: que, itemStyle: { color: "#000066CC" } },
+        {
+          value: porQue, itemStyle: { color: "#91702A" },},
+        { value: como, itemStyle: { color: "#B89A66" } },
+        { value: que, itemStyle: { color: "#B7A386" } },
       ],
       coordinateSystem: "polar",
       barWidth: 110, // Ancho de las barras
       barGap: "0%", // Espacio entre las barras
       label: {
+        rotate: 0,
         show: true,
         position: "middle",
         formatter: "{b}",
