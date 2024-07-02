@@ -32,7 +32,6 @@ function seleccionarOpcion(id) {
         customClass: "my-custom-class",
       }).then(() => {
         // Cuando el modal se cierre, activa la pestaña ¿Cómo? y carga la pregunta 6
-
         indexPregunta = 5;
         document.getElementById("como").checked = true;
         cargarPregunta(indexPregunta);
