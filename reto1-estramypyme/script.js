@@ -16,8 +16,11 @@ function cargarPregunta(id) {
 
   objetoPregunta = basePreguntas[id];
   opciones = objetoPregunta.opciones;
-  document.getElementById("progreso").innerHTML = `Pregunta ${indexPregunta + 1
-    } de ${basePreguntas.length}`;
+
+  document.getElementById("progreso").innerHTML = `Pregunta ${
+    indexPregunta + 1
+  } de ${basePreguntas.length}`;
+
   document.getElementById("contenedor-parrafo").innerHTML =
     objetoPregunta.pregunta;
 
@@ -29,13 +32,17 @@ function cargarPregunta(id) {
 function seleccionarOpcion(id) {
   let validezRespuesta =
     (opciones[id] == objetoPregunta.opcion1) | opcion2 | opcion3;
-  if (validezRespuesta) {
+
+  /*if (validezRespuesta) {
     indexPregunta++;
     //llamada a la función de progreso que crea el gráfico
     progreso(indexPregunta)
     //llamada a la función que crea el gráfico de respuestas
     graficoRespuestas(indexPregunta)
-    
+
+ */
+ if (validezRespuesta) {
+    indexPregunta++;
     if (indexPregunta == 5) {
       Swal.fire({
         title: "¡Bien hecho, has terminado la sección '¿Por qué?'! 👏",
@@ -71,6 +78,7 @@ function seleccionarOpcion(id) {
   }
   cargarPregunta(indexPregunta);
 }
+
 //esta fución se encarga de crear el gráfico de progreso
 function progreso(indexPregunta) {
   valorProgreso = indexPregunta * 7;
@@ -247,3 +255,7 @@ function graficoRespuestas(indexPregunta) {
 
 cargarPregunta(indexPregunta);
 graficoRespuestas()
+
+
+cargarPregunta(indexPregunta);
+

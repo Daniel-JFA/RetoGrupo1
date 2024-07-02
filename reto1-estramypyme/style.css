@@ -74,7 +74,9 @@ footer {
   padding: 3em 1em 3em 1em;
   display: flex;
   flex-direction: row;
+
   justify-content: space-between;
+
   flex-wrap: wrap;
   align-items: center;
   gap: 2em;
@@ -103,6 +105,7 @@ footer {
   font-weight: 700;
   margin: 0;
 }
+
 
 #mainRespuestas {
   display: flex;
