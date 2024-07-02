@@ -71,7 +71,7 @@ function seleccionarOpcion(id) {
   }
   cargarPregunta(indexPregunta);
 }
-//esta fución se encarga de crear el gráfico de progreso
+//esta función se encarga de crear el gráfico de progreso
 function progreso(indexPregunta) {
   valorProgreso = indexPregunta * 7;
   if (valorProgreso > 100) {
@@ -213,16 +213,17 @@ function graficoRespuestas(indexPregunta) {
     },
     radiusAxis: {
       type: 'category',
-      data: ['¿POR QUE?', '¿COMO?', '¿QUÉ?'],
+      data: ['¿POR QUÉ?', '¿COMO?', '¿QUÉ?'],
       show: false // Ocultar las etiquetas y las líneas del eje radial
     },
     tooltip: {},
+
     series: {
       type: 'bar',
       data: [
-        { value: porQue, itemStyle: { color: '#11d18e' } },
-        { value: como, itemStyle: { color: '#d1113e' } },
-        { value: que, itemStyle: { color: '#741278' } },
+        { value: porQue, itemStyle: { color: '#000066'} },
+        { value: como, itemStyle: { color: '#000066E5' } },
+        { value: que, itemStyle: { color: '#000066CC' } },
       ],
       coordinateSystem: 'polar',
       barWidth: 110, // Ancho de las barras
@@ -232,7 +233,9 @@ function graficoRespuestas(indexPregunta) {
         position: 'middle',
         formatter: '{b}',
         color: '#fff', // Color de la etiqueta
-        fontSize: 18 // Tamaño de la fuente de la etiqueta
+        fontSize: 18, // Tamaño de la fuente de la etiqueta
+        fontFamily: 'Montserrat',
+        fontWeight: '500'
       }
     }
   };
