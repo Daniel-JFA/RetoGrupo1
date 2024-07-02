@@ -1,126 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Estramypyme</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <header>
-      <!-- <nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estramypyme</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <!-- <nav>
         <ul>
           <li>Inicio</li>
           <li>Diagnóstico</li>
           <li>Contacto</li>
         </ul>
       </nav> -->
-    </header>
-    <main>
-      <section class="informacion">
-        <h2>Círculo Dorado</h2>
-        <div class="informacion__cards">
-          <div class="card">
-            <div class="card__titulo">
-              <img src="./assets/porque.svg" alt="icono corazón" />
-              <h3>¿Por qué?</h3>
-            </div>
-            <p class="card_parrafo">
-              La razón fundamental de existencia de tu negocio (Propósito)
-            </p>
+  </header>
+  <main>
+    <section class="informacion">
+      <h2>Círculo Dorado</h2>
+      <div class="informacion__cards">
+        <div class="card">
+          <div class="card__titulo">
+            <img src="./assets/porque.svg" alt="icono corazón" />
+            <h3>¿Por qué?</h3>
           </div>
-          <div class="card">
-            <div class="card__titulo">
-              <img src="./assets/como.svg" alt="icono lupa" />
-              <h3>¿Cómo?</h3>
-            </div>
-            <p class="card_parrafo">
-              El método o proceso mediante el cual tu negocio cumple su
-              propósito (Propuesta de valor)
-            </p>
-          </div>
-          <div class="card">
-            <div class="card__titulo">
-              <img src="./assets/que.svg" alt="icono caja" />
-              <h3>¿Qué?</h3>
-            </div>
-            <p class="card_parrafo">
-              Aquí se describe lo que la organización o persona hace
-              concretamente (Productos y servicios)
-            </p>
-          </div>
+          <p class="card_parrafo">
+            La razón fundamental de existencia de tu negocio (Propósito)
+          </p>
         </div>
-      </section>
-      <section class="contenedor">
-        <div class="imagen-circulo">
-          <img src="./assets/image.png" alt="circulo dorado" />
-        </div>
-        <section class="contenedor__seccion__preguntas">
-          <div class="contenedor__seccion__preguntas__descripcion">
-            <p>
-              En esta sección, encontrarás una serie de preguntas diseñadas para
-              evaluar tu PYME a través del 'Círculo Dorado'. Este modelo te
-              ayudará a reflexionar sobre aspectos fundamentales de tu negocio:
-              ¿por qué existe?, ¿cómo lo haces?, y ¿qué es lo que haces?.
-              <h3>¡Comienza a evaluar! 😁 </h3> 
-            </p>
+        <div class="card">
+          <div class="card__titulo">
+            <img src="./assets/como.svg" alt="icono lupa" />
+            <h3>¿Cómo?</h3>
           </div>
-          <div class="contenedor-tabla">
-            <input type="radio" name="slider" id="porque" checked />
-            <input type="radio" name="slider" id="como" />
-            <input type="radio" name="slider" id="que" />
-            <nav>
-              <label class="porque">¿Por qué?</label>
-              <label class="como">¿Cómo?</label>
-              <label class="que">¿Qué?</label>
-              <div class="slider"></div>
-            </nav>
-            <section class="contenedor-preguntas">
-              <div class="contenedor contenedor-tabs">
-                <p class="progreso" id="progreso"></p>
-                <p class="contenedor__parrafo" id="contenedor-parrafo"></p>
-                <div class="contenedor-respuestas" id="contenedor-respuestas">
-                  <div>
-                    <input type="radio" id="opcion1" name="respuesta" />
-                    <label
-                      for="opcion1"
-                      id="opcion1"
-                      onclick="seleccionarOpcion(0)"
-                    ></label>
-                  </div>
-                  <div>
-                    <input type="radio" id="opcion2" name="respuesta" />
-                    <label
-                      for="opcion2"
-                      id="opcion2"
-                      onclick="seleccionarOpcion(1)"
-                    ></label>
-                  </div>
-                  <div>
-                    <input type="radio" id="opcion3" name="respuesta" />
-                    <label
-                      for="opcion3"
-                      id="opcion3"
-                      onclick="seleccionarOpcion(3)"
-                    ></label>
-                  </div>
+          <p class="card_parrafo">
+            El método o proceso mediante el cual tu negocio cumple su
+            propósito (Propuesta de valor)
+          </p>
+        </div>
+        <div class="card">
+          <div class="card__titulo">
+            <img src="./assets/que.svg" alt="icono caja" />
+            <h3>¿Qué?</h3>
+          </div>
+          <p class="card_parrafo">
+            Aquí se describe lo que la organización o persona hace
+            concretamente (Productos y servicios)
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="contenedor">
+      <div id="mainRespuestas"></div>
+      <section class="contenedor__seccion__preguntas">
+        <div class="contenedor__seccion__preguntas__descripcion">
+          <p>
+            En esta sección, encontrarás una serie de preguntas diseñadas para
+            evaluar tu PYME a través del 'Círculo Dorado'. Este modelo te
+            ayudará a reflexionar sobre aspectos fundamentales de tu negocio:
+            ¿por qué existe?, ¿cómo lo haces?, y ¿qué es lo que haces?.
+          <h3>¡Comienza a evaluar! 😁 </h3>
+          </p>
+        </div>
+        <div class="contenedor-tabla">
+          <input type="radio" name="slider" id="porque" checked />
+          <input type="radio" name="slider" id="como" />
+          <input type="radio" name="slider" id="que" />
+          <nav>
+            <label class="porque">¿Por qué?</label>
+            <label class="como">¿Cómo?</label>
+            <label class="que">¿Qué?</label>
+            <div class="slider"></div>
+          </nav>
+          <section class="contenedor-preguntas">
+            <div class="contenedor contenedor-tabs">
+              <p class="progreso" id="progreso"></p>
+              <p class="contenedor__parrafo" id="contenedor-parrafo"></p>
+              <div class="contenedor-respuestas" id="contenedor-respuestas">
+                <div>
+                  <input type="radio" id="opcion1" name="respuesta" />
+                  <label for="opcion1" id="opcion1" onclick="seleccionarOpcion(0)"></label>
+                </div>
+                <div>
+                  <input type="radio" id="opcion2" name="respuesta" />
+                  <label for="opcion2" id="opcion2" onclick="seleccionarOpcion(1)"></label>
+                </div>
+                <div>
+                  <input type="radio" id="opcion3" name="respuesta" />
+                  <label for="opcion3" id="opcion3" onclick="seleccionarOpcion(3)"></label>
                 </div>
               </div>
-            </section>
-          </div>
-        </section>
+            </div>
+            <div id="main" style="width: 600px;height:200px;"></div>
+          </section>
+        </div>
       </section>
-    </main>
-    <footer></footer>
+    </section>
+  
+    </div>
+    <div id="mainRespuestas" style="width: 600px;height:200px;"></div>
+    </section>
     <script src="./base-preguntas.js"></script>
     <script defer src="./script.js"></script>
-  </body>
+  </main>
+  <footer></footer>
+  </main>
+  <footer></footer>
+  <script src="./base-preguntas.js"></script>
+  <script defer src="./script.js"></script>
+  
+
+</body>
+
 </html>
