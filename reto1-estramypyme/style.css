@@ -305,3 +305,7 @@ input[name="respuesta"]:checked + label:before {
 .my-custom-class .swal2-title{
   line-height: 40px; /* Ajusta el interlineado según tus necesidades */
 }
+
+button.swal2-styled.swal2-confirm {
+  background-color: #000066;
+}
