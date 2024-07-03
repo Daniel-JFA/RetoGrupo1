@@ -61,7 +61,9 @@
       </div>
     </section>
     <section class="contenedor">
+      <div class="contenedor__circulo">
       <div id="mainRespuestas"></div>
+    </div>
       <section class="contenedor__seccion__preguntas">
         <div class="contenedor__seccion__preguntas__descripcion">
           <p>
@@ -97,18 +99,20 @@
                 </div>
                 <div>
                   <input type="radio" id="opcion3" name="respuesta" />
-                  <label for="opcion3" id="opcion3" onclick="seleccionarOpcion(3)"></label>
+                  <label for="opcion3" id="opcion3" onclick="seleccionarOpcion(2)"></label>
                 </div>
               </div>
             </div>
-            <div id="main" style="width: 600px;height:200px;"></div>
+            <div class="contenedor-echart">
+
+              <div id="main"></div>
+            </div>
           </section>
         </div>
       </section>
     </section>
   
     </div>
-    <div id="mainRespuestas" style="width: 600px;height:200px;"></div>
     </section>
     <script src="./base-preguntas.js"></script>
     <script defer src="./script.js"></script>

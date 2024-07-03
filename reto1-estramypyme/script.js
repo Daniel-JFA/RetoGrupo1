@@ -7,14 +7,13 @@ progreso(indexPregunta);
 //invocación de la función que crea el gráfico de circulo dorado para que se muestre al cargar la página
 graficoRespuestas(indexPregunta);
 
-function cargarPregunta(id) {
-  // document
-  //   .querySelectorAll(".contenedor-respuestas input[type='radio']")
-  //   .forEach((radio) => {
-  //     radio.checked = false;
-  //   });
-
-  objetoPregunta = basePreguntas[id];
+function cargarPregunta(index) {
+  checkedRadio = document
+    .querySelectorAll(".contenedor-respuestas input[type='radio']")
+    .forEach((radio) => {
+      radio.checked = false;
+    });
+  objetoPregunta = basePreguntas[index];
   opciones = objetoPregunta.opciones;
   document.getElementById("progreso").innerHTML = `Pregunta ${
     indexPregunta + 1
@@ -27,11 +26,10 @@ function cargarPregunta(id) {
   document.querySelector("label#opcion3").innerHTML = opciones.opcion3;
 }
 
-function seleccionarOpcion(id) {
-  let validezRespuesta =
-    (opciones[id] == objetoPregunta.opcion1) | opcion2 | opcion3;
-  if (validezRespuesta) {
+function seleccionarOpcion(index) {
+  if ((opciones[index] == objetoPregunta.opcion1) | opcion2 | opcion3) {
     indexPregunta++;
+
     //llamada a la función de progreso que crea el gráfico
     progreso(indexPregunta);
     //llamada a la función que crea el gráfico de respuestas
@@ -52,7 +50,7 @@ function seleccionarOpcion(id) {
         title: "¡Bien hecho, has terminado la sección '¿Cómo?!' 👏",
         customClass: "my-custom-class",
       }).then(() => {
-        // Cuando el modal se cierre, activa la pestaña ¿Cómo? y carga la pregunta 6
+        // Cuando el modal se cierre, activa la pestaña ¿Cómo? y carga la pregunta 11
         indexPregunta = 10;
         document.getElementById("que").checked = true;
         cargarPregunta(indexPregunta);
@@ -63,7 +61,7 @@ function seleccionarOpcion(id) {
         text: "¡Modelo Círculo Dorado completado!🎉",
         customClass: "my-custom-class",
       }).then(() => {
-        // Cuando el modal se cierre, activa la pestaña ¿Cómo? y carga la pregunta 6
+        // Cuando el modal se cierre, vuelve al inicio
         indexPregunta = 0;
         document.getElementById("porque").checked = true;
         cargarPregunta(indexPregunta);
@@ -160,6 +158,9 @@ function progreso(indexPregunta) {
     ],
   };
 
+  window.addEventListener("resize", function () {
+    myChart.resize();
+  });
   chart.setOption(option);
 }
 
@@ -212,16 +213,17 @@ function graficoRespuestas(indexPregunta) {
       type: "category",
       data: ["¿POR QUE?", "¿COMO?", "¿QUÉ?"],
       show: false, // Ocultar las etiquetas y las líneas del eje radial
-
     },
     tooltip: {},
     series: {
       type: "bar",
       data: [
         {
-          value: porQue, itemStyle: { color: "#91702A" },},
-        { value: como, itemStyle: { color: "#B89A66" } },
-        { value: que, itemStyle: { color: "#B7A386" } },
+          value: porQue,
+          itemStyle: { color: "#b78700" },
+        },
+        { value: como, itemStyle: { color: "#d9ad26" } },
+        { value: que, itemStyle: { color: "#f7d547" } },
       ],
       coordinateSystem: "polar",
       barWidth: 110, // Ancho de las barras
@@ -233,6 +235,7 @@ function graficoRespuestas(indexPregunta) {
         formatter: "{b}",
         color: "#fff", // Color de la etiqueta
         fontSize: 18, // Tamaño de la fuente de la etiqueta
+        fontWeight: '600'
       },
     },
   };
