@@ -8,16 +8,16 @@ progreso(indexPregunta);
 graficoRespuestas(indexPregunta);
 
 function cargarPregunta(index) {
-  checkedRadio = document
+  document
     .querySelectorAll(".contenedor-respuestas input[type='radio']")
     .forEach((radio) => {
       radio.checked = false;
     });
+
   objetoPregunta = basePreguntas[index];
   opciones = objetoPregunta.opciones;
-  document.getElementById("progreso").innerHTML = `Pregunta ${
-    indexPregunta + 1
-  } de ${basePreguntas.length}`;
+  document.getElementById("progreso").innerHTML = `Pregunta ${indexPregunta + 1
+    } de ${basePreguntas.length}`;
   document.getElementById("contenedor-parrafo").innerHTML =
     objetoPregunta.pregunta;
 
@@ -26,50 +26,59 @@ function cargarPregunta(index) {
   document.querySelector("label#opcion3").innerHTML = opciones.opcion3;
 }
 
-function seleccionarOpcion(index) {
-  if ((opciones[index] == objetoPregunta.opcion1) | opcion2 | opcion3) {
-    indexPregunta++;
+function manejarSiguiente() {
+  indexPregunta++; // Incrementa el índice de la pregunta para avanzar a la siguiente.
 
-    //llamada a la función de progreso que crea el gráfico
-    progreso(indexPregunta);
-    //llamada a la función que crea el gráfico de respuestas
-    graficoRespuestas(indexPregunta);
-
-    if (indexPregunta == 5) {
-      Swal.fire({
-        title: "¡Bien hecho, has terminado la sección '¿Por qué?'! 👏",
-        customClass: "my-custom-class",
-      }).then(() => {
-        // Cuando el modal se cierre, activa la pestaña ¿Cómo? y carga la pregunta 6
-        indexPregunta = 5;
-        document.getElementById("como").checked = true;
-        cargarPregunta(indexPregunta);
-      });
-    } else if (indexPregunta == 10) {
-      Swal.fire({
-        title: "¡Bien hecho, has terminado la sección '¿Cómo?!' 👏",
-        customClass: "my-custom-class",
-      }).then(() => {
-        // Cuando el modal se cierre, activa la pestaña ¿Cómo? y carga la pregunta 11
-        indexPregunta = 10;
-        document.getElementById("que").checked = true;
-        cargarPregunta(indexPregunta);
-      });
-    } else if (indexPregunta == 15) {
-      Swal.fire({
-        title: "¡Bien hecho, has finalizado todas las secciones' 👏",
-        text: "¡Modelo Círculo Dorado completado!🎉",
-        customClass: "my-custom-class",
-      }).then(() => {
-        // Cuando el modal se cierre, vuelve al inicio
-        indexPregunta = 0;
-        document.getElementById("porque").checked = true;
-        cargarPregunta(indexPregunta);
-      });
-    }
+  if (indexPregunta >= 15) {
+    indexPregunta = 0;
+    graficoRespuestas(indexPregunta) //Reinicia cuestionario y gráfico
   }
-  cargarPregunta(indexPregunta);
+  if (indexPregunta == 5) {
+    Swal.fire({
+      title: "¡Bien hecho, has terminado la sección '¿Por qué?'! 👏",
+      customClass: "my-custom-class",
+    }).then(() => {
+      // indexPregunta = 5; // Eliminado
+      document.getElementById("como").checked = true;
+      cargarPregunta(indexPregunta);
+    });
+  } else if (indexPregunta == 10) {
+    Swal.fire({
+      title: "¡Bien hecho, has terminado la sección '¿Cómo?!' 👏",
+      customClass: "my-custom-class",
+    }).then(() => {
+      // indexPregunta = 10; // Eliminado
+      document.getElementById("que").checked = true;
+      cargarPregunta(indexPregunta);
+    });
+  } else if (indexPregunta == 0) {
+    Swal.fire({
+      title: "¡Bien hecho, has finalizado todas las secciones' 👏",
+      text: "¡Modelo Círculo Dorado completado!🎉",
+      customClass: "my-custom-class",
+    }).then(() => {
+      // indexPregunta = 0; // Eliminado
+      document.getElementById("porque").checked = true;
+      cargarPregunta(indexPregunta);
+    });
+  }
+
+  cargarPregunta(indexPregunta); // Carga la nueva pregunta.
+  progreso(indexPregunta); // Actualiza el progreso.
+  graficoRespuestas(indexPregunta); // Actualiza el gráfico de respuestas.
+
+
 }
+function manejarAnterior() {
+  indexPregunta--; // Disminuye el índice de la pregunta para retroceder a la anterior.
+
+  cargarPregunta(indexPregunta); // Carga la nueva pregunta.
+  progreso(indexPregunta); // Actualiza el progreso.
+  graficoRespuestas(indexPregunta); // Actualiza el gráfico de respuestas.
+
+}
+
+
 //esta fución se encarga de crear el gráfico de progreso
 function progreso(indexPregunta) {
   valorProgreso = indexPregunta * 7;
@@ -171,8 +180,11 @@ function graficoRespuestas(indexPregunta) {
   let porQue = 5;
   let como = 5;
   let que = 5;
-
-  if (indexPregunta <= 5) {
+  if (indexPregunta == 0) {
+    porQue = 5;
+    como = 5;
+    que = 5;
+  } else if (indexPregunta <= 5) {
     porQue = indexPregunta;
     como = 0;
     que = 0;
@@ -180,15 +192,10 @@ function graficoRespuestas(indexPregunta) {
     como = indexPregunta - 5;
     porQue = 5;
     que = 0;
-  } else if (indexPregunta <= 15) {
+  } else if (indexPregunta <= 14) {
     que = indexPregunta - 10;
     porQue = 5;
     como = 5;
-    //este codigo sobra pero lo dejo para luesgo ver como solucionar el problema de la variable 'que'  que no se actualiza
-  } else if (indexPregunta == 15) {
-    porQue = 5;
-    como = 5;
-    que = 5;
   }
 
   var option;
