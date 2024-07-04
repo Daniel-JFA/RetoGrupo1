@@ -1,4 +1,4 @@
-let basePreguntas = [
+var basePreguntas = [
   // // Sección "¿Por qué?"
   {
     id: 0,

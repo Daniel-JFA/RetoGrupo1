@@ -35,7 +35,7 @@ function seleccionarOpcion(id) {
     progreso(indexPregunta)
     //llamada a la función que crea el gráfico de respuestas
     graficoRespuestas(indexPregunta)
-    //reporteCirculo()
+    //reporteCirculo(indexPregunta)
     
     if (indexPregunta == 5) {
       Swal.fire({
@@ -69,9 +69,11 @@ function seleccionarOpcion(id) {
         cargarPregunta(indexPregunta);
       });
     }
+    reporteCirculo()
   }
   cargarPregunta(indexPregunta);
 }
+
 //esta fución se encarga de crear el gráfico de progreso
 function progreso(indexPregunta) {
   valorProgreso = indexPregunta * 7;
@@ -246,14 +248,47 @@ function graficoRespuestas(indexPregunta) {
 }
 
 function reporteCirculo() {
-  let porQue1 = 0;
+  let nadaporque = 0;
+  let pocoPorque = 0;
+  let muchoPorue = 0;
+  let nadaComo = 0;
+  let pocoComo = 0;
+  let muchoComo = 0;
+  let nadaQue = 0;
+  let pocoQue = 0;
+  let muchoQue = 0;
+
   while (indexPregunta <= 5) {
-    if(opciones[0] == objetoPregunta.opcion1){
-      porQue1 = 1;
-      alert(porQue1)
+    if (opciones[0] == objetoPregunta.opcion1) {
+      nadaporque += 1;
+    } else if (opciones[0] == objetoPregunta.opcion2) {
+      pocoPorque += 1;
+    } else if (opciones[0] == objetoPregunta.opcion3) {
+      muchoPorue += 1;
+    }
+    
+  }
+  console.log(nadaporque, pocoPorque, muchoPorue);
+  while (indexPregunta > 5 && indexPregunta <= 10) {
+    if (opciones[1] == objetoPregunta.opcion1) {
+      nadaComo += 1;
+    } else if (opciones[0] == objetoPregunta.opcion2) {
+      pocoComo += 1;
+    } else if (opciones[0] == objetoPregunta.opcion3) {
+      muchoComo += 1;
     }
   }
+  console.log(nadaComo, pocoComo, muchoComo);
+  while (indexPregunta > 10 && indexPregunta <= 15) {
+    if (opciones[2] == objetoPregunta.opcion1) {
+      nadaQue += 1;
+    } else if (opciones[0] == objetoPregunta.opcion2) {
+      pocoQue += 1;
+    } else if (opciones[0] == objetoPregunta.opcion3) {
+      muchoQue += 1;
+    }
+  }
+  console.log(nadaQue, pocoQue, muchoQue);
 }
-
 cargarPregunta(indexPregunta);
 graficoRespuestas()
