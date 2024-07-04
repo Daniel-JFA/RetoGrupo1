@@ -35,6 +35,7 @@ function seleccionarOpcion(id) {
     progreso(indexPregunta)
     //llamada a la función que crea el gráfico de respuestas
     graficoRespuestas(indexPregunta)
+    //reporteCirculo()
     
     if (indexPregunta == 5) {
       Swal.fire({
@@ -244,6 +245,15 @@ function graficoRespuestas(indexPregunta) {
   });
 }
 
+function reporteCirculo() {
+  let porQue1 = 0;
+  while (indexPregunta <= 5) {
+    if(opciones[0] == objetoPregunta.opcion1){
+      porQue1 = 1;
+      alert(porQue1)
+    }
+  }
+}
 
 cargarPregunta(indexPregunta);
 graficoRespuestas()
