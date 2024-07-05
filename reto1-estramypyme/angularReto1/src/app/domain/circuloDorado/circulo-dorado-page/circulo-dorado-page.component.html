@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Estramypyme</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
-</head>
-
-<body>
-  <header>
+<header>
     <!-- <nav>
         <ul>
           <li>Inicio</li>
@@ -71,8 +53,9 @@
             evaluar tu PYME a través del 'Círculo Dorado'. Este modelo te
             ayudará a reflexionar sobre aspectos fundamentales de tu negocio:
             ¿por qué existe?, ¿cómo lo haces?, y ¿qué es lo que haces?.
-          <h3>¡Comienza a evaluar! 😁 </h3>
           </p>
+          <h3>¡Comienza a evaluar! 😁 </h3>
+          
         </div>
         <div class="contenedor-tabla">
           <input type="radio" name="slider" id="porque" checked />
@@ -91,15 +74,23 @@
               <div class="contenedor-respuestas" id="contenedor-respuestas">
                 <div>
                   <input type="radio" id="opcion1" name="respuesta" />
-                  <label for="opcion1" id="opcion1" onclick="seleccionarOpcion(0)"></label>
+                  <label for="opcion1" id="opcion1"></label>
                 </div>
                 <div>
                   <input type="radio" id="opcion2" name="respuesta" />
-                  <label for="opcion2" id="opcion2" onclick="seleccionarOpcion(1)"></label>
+                  <label for="opcion2" id="opcion2"></label>
                 </div>
                 <div>
                   <input type="radio" id="opcion3" name="respuesta" />
-                  <label for="opcion3" id="opcion3" onclick="seleccionarOpcion(2)"></label>
+                  <label for="opcion3" id="opcion3"></label>
+                </div>
+              </div>
+              <div class="contenedor-anterior-siguiente" id="contenedor-anterior-siguiente">
+                <div>
+                  <button id="botonAnterior" onclick="manejarAnterior()">Anterior</button>
+                </div>
+                <div>
+                  <button id="botonSiguiente" onclick="manejarSiguiente()">Siguiente</button>
                 </div>
               </div>
             </div>
@@ -112,18 +103,11 @@
       </section>
     </section>
   
-    </div>
-    </section>
-    <script src="./base-preguntas.js"></script>
-    <script defer src="./script.js"></script>
-  </main>
-  <footer></footer>
+    
+   
   </main>
   <footer></footer>
   <script src="./base-preguntas.js"></script>
   <script defer src="./script.js"></script>
   
 
-</body>
-
-</html>
