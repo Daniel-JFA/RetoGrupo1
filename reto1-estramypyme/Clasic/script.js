@@ -28,6 +28,25 @@ function cargarPregunta(index) {
 }
 
 function manejarSiguiente() {
+  let inputRadio = document.getElementsByName("respuesta");
+  let seleccionado = false;
+
+  for (let i = 0; i < inputRadio.length; i++) {
+    if (inputRadio[i].checked) {
+      seleccionado = true;
+      indexPregunta++;
+      break;
+    }
+  }
+
+  if (!seleccionado) {
+    Swal.fire({
+      icon: "error",
+      title: "Selecciona una opción 😒",
+    });
+    return;
+  }
+
   // if (
   //   (opciones[index] == objetoPregunta.opcion1) |
   //   (opciones[index] == objetoPregunta.opcion2) |
@@ -35,7 +54,8 @@ function manejarSiguiente() {
   // );
   // {
   // }
-  indexPregunta++; // Incrementa el índice de la pregunta para avanzar a la siguiente.
+
+  // Incrementa el índice de la pregunta para avanzar a la siguiente.
 
   if (indexPregunta >= 15) {
     indexPregunta = 0;
@@ -171,9 +191,9 @@ function progreso(indexPregunta) {
     ],
   };
 
-  window.addEventListener("resize", function () {
-    myChart.resize();
-  });
+  // window.addEventListener("resize", function () {
+  //   myChart.resize();
+  // });
   chart.setOption(option);
 }
 
@@ -254,9 +274,9 @@ function graficoRespuestas(indexPregunta) {
 
   option && myChart.setOption(option);
 
-  window.addEventListener("resize", function () {
-    myChart.resize();
-  });
+  // window.addEventListener("resize", function () {
+  //   myChart.resize();
+  // });
 }
 
 cargarPregunta(indexPregunta);
