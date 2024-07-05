@@ -222,6 +222,7 @@ function graficoRespuestas(indexPregunta) {
       show: false, // Ocultar las etiquetas y las líneas del eje radial
     },
     tooltip: {},
+
     series: {
       type: "bar",
       data: [
@@ -238,9 +239,9 @@ function graficoRespuestas(indexPregunta) {
       label: {
         rotate: 0,
         show: true,
-        position: "middle",
-        formatter: "{b}",
-        color: "#fff", // Color de la etiqueta
+        position: 'middle',
+        formatter: '{b}',
+        color: '#fff', // Color de la etiqueta
         fontSize: 18, // Tamaño de la fuente de la etiqueta
         fontWeight: '600'
       },
