@@ -16,8 +16,9 @@ function cargarPregunta(index) {
 
   objetoPregunta = basePreguntas[index];
   opciones = objetoPregunta.opciones;
-  document.getElementById("progreso").innerHTML = `Pregunta ${indexPregunta + 1
-    } de ${basePreguntas.length}`;
+  document.getElementById("progreso").innerHTML = `Pregunta ${
+    indexPregunta + 1
+  } de ${basePreguntas.length}`;
   document.getElementById("contenedor-parrafo").innerHTML =
     objetoPregunta.pregunta;
 
@@ -27,11 +28,38 @@ function cargarPregunta(index) {
 }
 
 function manejarSiguiente() {
-  indexPregunta++; // Incrementa el índice de la pregunta para avanzar a la siguiente.
+  let inputRadio = document.getElementsByName("respuesta");
+  let seleccionado = false;
+
+  for (let i = 0; i < inputRadio.length; i++) {
+    if (inputRadio[i].checked) {
+      seleccionado = true;
+      indexPregunta++;
+      break;
+    }
+  }
+
+  if (!seleccionado) {
+    Swal.fire({
+      icon: "error",
+      title: "Selecciona una opción 😒",
+    });
+    return;
+  }
+
+  // if (
+  //   (opciones[index] == objetoPregunta.opcion1) |
+  //   (opciones[index] == objetoPregunta.opcion2) |
+  //   (opciones[index] == objetoPregunta.opcion3)
+  // );
+  // {
+  // }
+
+  // Incrementa el índice de la pregunta para avanzar a la siguiente.
 
   if (indexPregunta >= 15) {
     indexPregunta = 0;
-    graficoRespuestas(indexPregunta) //Reinicia cuestionario y gráfico
+    graficoRespuestas(indexPregunta); //Reinicia cuestionario y gráfico
   }
   if (indexPregunta == 5) {
     Swal.fire({
@@ -66,8 +94,6 @@ function manejarSiguiente() {
   cargarPregunta(indexPregunta); // Carga la nueva pregunta.
   progreso(indexPregunta); // Actualiza el progreso.
   graficoRespuestas(indexPregunta); // Actualiza el gráfico de respuestas.
-
-
 }
 function manejarAnterior() {
   indexPregunta--; // Disminuye el índice de la pregunta para retroceder a la anterior.
@@ -75,9 +101,7 @@ function manejarAnterior() {
   cargarPregunta(indexPregunta); // Carga la nueva pregunta.
   progreso(indexPregunta); // Actualiza el progreso.
   graficoRespuestas(indexPregunta); // Actualiza el gráfico de respuestas.
-
 }
-
 
 //esta fución se encarga de crear el gráfico de progreso
 function progreso(indexPregunta) {
@@ -167,9 +191,9 @@ function progreso(indexPregunta) {
     ],
   };
 
-  window.addEventListener("resize", function () {
-    myChart.resize();
-  });
+  // window.addEventListener("resize", function () {
+  //   myChart.resize();
+  // });
   chart.setOption(option);
 }
 
@@ -239,20 +263,20 @@ function graficoRespuestas(indexPregunta) {
       label: {
         rotate: 0,
         show: true,
-        position: 'middle',
-        formatter: '{b}',
-        color: '#fff', // Color de la etiqueta
+        position: "middle",
+        formatter: "{b}",
+        color: "#fff", // Color de la etiqueta
         fontSize: 18, // Tamaño de la fuente de la etiqueta
-        fontWeight: '600'
+        fontWeight: "600",
       },
     },
   };
 
   option && myChart.setOption(option);
 
-  window.addEventListener("resize", function () {
-    myChart.resize();
-  });
+  // window.addEventListener("resize", function () {
+  //   myChart.resize();
+  // });
 }
 
 cargarPregunta(indexPregunta);
