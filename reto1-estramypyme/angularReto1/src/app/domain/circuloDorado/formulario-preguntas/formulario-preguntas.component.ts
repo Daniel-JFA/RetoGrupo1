@@ -97,6 +97,7 @@ export class FormularioPreguntasComponent implements OnInit {
   }
 
   progreso(_index: number) {
+    
     this.valorProgreso = this.indexPregunta * 7;
     if (this.valorProgreso > 100) {
       this.valorProgreso = 100;
