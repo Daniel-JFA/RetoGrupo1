@@ -1,113 +1,37 @@
-<header>
-    <!-- <nav>
-        <ul>
-          <li>Inicio</li>
-          <li>Diagnóstico</li>
-          <li>Contacto</li>
-        </ul>
-      </nav> -->
-  </header>
-  <main>
-    <section class="informacion">
-      <h2>Círculo Dorado</h2>
-      <div class="informacion__cards">
-        <div class="card">
-          <div class="card__titulo">
-            <img src="./assets/porque.svg" alt="icono corazón" />
-            <h3>¿Por qué?</h3>
-          </div>
-          <p class="card_parrafo">
-            La razón fundamental de existencia de tu negocio (Propósito)
-          </p>
+<main>
+  <section class="informacion">
+    <h2>Círculo Dorado</h2>
+    <div class="informacion__cards">
+      <div class="card">
+        <div class="card__titulo">
+          <img src="assets/images/porque.svg" alt="icono corazón" />
+          <h3>¿Por qué?</h3>
         </div>
-        <div class="card">
-          <div class="card__titulo">
-            <img src="./assets/como.svg" alt="icono lupa" />
-            <h3>¿Cómo?</h3>
-          </div>
-          <p class="card_parrafo">
-            El método o proceso mediante el cual tu negocio cumple su
-            propósito (Propuesta de valor)
-          </p>
-        </div>
-        <div class="card">
-          <div class="card__titulo">
-            <img src="./assets/que.svg" alt="icono caja" />
-            <h3>¿Qué?</h3>
-          </div>
-          <p class="card_parrafo">
-            Aquí se describe lo que la organización o persona hace
-            concretamente (Productos y servicios)
-          </p>
-        </div>
+        <p class="card_parrafo">
+          La razón fundamental de existencia de tu negocio (Propósito)
+        </p>
       </div>
-    </section>
-    <section class="contenedor">
-      <div class="contenedor__circulo">
-      <div id="mainRespuestas"></div>
+      <div class="card">
+        <div class="card__titulo">
+          <img src="../../../../assets/como.svg" alt="icono lupa" />
+          <h3>¿Cómo?</h3>
+        </div>
+        <p class="card_parrafo">
+          El método o proceso mediante el cual tu negocio cumple su propósito
+          (Propuesta de valor)
+        </p>
+      </div>
+      <div class="card">
+        <div class="card__titulo">
+          <img src="../../../../assets/que.svg" alt="icono caja" />
+          <h3>¿Qué?</h3>
+        </div>
+        <p class="card_parrafo">
+          Aquí se describe lo que la organización o persona hace concretamente
+          (Productos y servicios)
+        </p>
+      </div>
     </div>
-      <section class="contenedor__seccion__preguntas">
-        <div class="contenedor__seccion__preguntas__descripcion">
-          <p>
-            En esta sección, encontrarás una serie de preguntas diseñadas para
-            evaluar tu PYME a través del 'Círculo Dorado'. Este modelo te
-            ayudará a reflexionar sobre aspectos fundamentales de tu negocio:
-            ¿por qué existe?, ¿cómo lo haces?, y ¿qué es lo que haces?.
-          </p>
-          <h3>¡Comienza a evaluar! 😁 </h3>
-          
-        </div>
-        <div class="contenedor-tabla">
-          <input type="radio" name="slider" id="porque" checked />
-          <input type="radio" name="slider" id="como" />
-          <input type="radio" name="slider" id="que" />
-          <nav>
-            <label class="porque">¿Por qué?</label>
-            <label class="como">¿Cómo?</label>
-            <label class="que">¿Qué?</label>
-            <div class="slider"></div>
-          </nav>
-          <section class="contenedor-preguntas">
-            <div class="contenedor contenedor-tabs">
-              <p class="progreso" id="progreso"></p>
-              <p class="contenedor__parrafo" id="contenedor-parrafo"></p>
-              <div class="contenedor-respuestas" id="contenedor-respuestas">
-                <div>
-                  <input type="radio" id="opcion1" name="respuesta" />
-                  <label for="opcion1" id="opcion1"></label>
-                </div>
-                <div>
-                  <input type="radio" id="opcion2" name="respuesta" />
-                  <label for="opcion2" id="opcion2"></label>
-                </div>
-                <div>
-                  <input type="radio" id="opcion3" name="respuesta" />
-                  <label for="opcion3" id="opcion3"></label>
-                </div>
-              </div>
-              <div class="contenedor-anterior-siguiente" id="contenedor-anterior-siguiente">
-                <div>
-                  <button id="botonAnterior" onclick="manejarAnterior()">Anterior</button>
-                </div>
-                <div>
-                  <button id="botonSiguiente" onclick="manejarSiguiente()">Siguiente</button>
-                </div>
-              </div>
-            </div>
-            <div class="contenedor-echart">
-
-              <div id="main"></div>
-            </div>
-          </section>
-        </div>
-      </section>
-    </section>
-  
-    
-   
-  </main>
-  <footer></footer>
-  <script src="./base-preguntas.js"></script>
-  <script defer src="./script.js"></script>
-  
-
+  </section>
+  <app-formulario-preguntas></app-formulario-preguntas>
+</main>
