@@ -1,14 +1,14 @@
 .contenedor {
   width: 100%;
-  padding: 3em 1em 3em 1em;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 2em;
+  gap: 1em;
+  justify-content: space-between;
 }
 
 .contenedor__circulo {
-  width: 40%;
+  width: 45%;
 }
 
 #mainRespuestas {
@@ -30,10 +30,10 @@
 .contenedor__seccion__preguntas__descripcion {
   display: flex;
   flex-direction: column;
-  width: 97%;
-  background-color: #ebebeb;
+  background-color: #e9eef2;
   padding: 1em;
   border-radius: 0.5em;
+  text-align: center;
 }
 
 .contenedor__seccion__preguntas__descripcion h3 {
@@ -47,7 +47,7 @@
   width: 100%;
   height: 100%;
   background-color: #ffffff;
-  border-radius: 0.5em;
+  border-radius: 1em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,18 +103,17 @@ input[type="radio"] {
 
 input[name="respuesta"] + label {
   position: relative;
-  border: 2px solid #000066;
-  border-radius: 0.5em;
-  padding: 2px 24px;
+  border-radius: 1em;
+  padding: 1px 1em;
   display: flex;
   align-items: center;
 }
 
 input[name="respuesta"] + label:hover {
   position: relative;
-  border: 3px solid #020282;
-  border-radius: 0.5em;
-  padding: 2px 24px;
+  background-color: #f4f4f4;
+  border-radius: 1em;
+  padding: 1px 1em;
   display: flex;
   align-items: center;
   transition: all 0.25s;
@@ -124,26 +123,26 @@ input[name="respuesta"] + label:before {
   content: " ";
   height: 1em;
   width: 1em;
-  border: 2px solid #000066;
+  border: 2px solid #0060df;
   border-radius: 50%;
-  margin-right: 1em;
+  margin-right: 0.5em;
 }
 
 input[name="respuesta"]:checked + label {
   background-color: white;
-  color: #000066;
+  color: #0060df;
 }
 
 input[name="respuesta"]:checked + label:before {
-  height: 0.5em;
-  width: 0.5em;
-  border: 5px solid #000066;
+  height: 0.4em;
+  width: 0.4em;
+  border: 6px solid #0060df;
 }
 
 .contenedor-tabla nav .slider {
   position: absolute;
   height: 0.2em;
-  background-color: #000066;
+  background-color: #0060df;
   border-radius: 1rem;
   width: 35%;
   z-index: 1;
@@ -167,17 +166,16 @@ input[name="respuesta"]:checked + label:before {
 #porque:checked ~ nav .porque,
 #como:checked ~ nav .como,
 #que:checked ~ nav .que {
-  color: #000066;
+  color: 006D0F;
 }
 
 .contenedor-preguntas {
+  margin: 2em;
   filter: blur(0.3px);
-  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1em;
 }
 
 .contenedor-preguntas .contenedor {
@@ -188,6 +186,10 @@ input[name="respuesta"]:checked + label:before {
 .contenedor-preguntas .contenedor {
   font-weight: 600;
   margin: 0px 0 10px 0;
+}
+
+.progreso {
+  font-weight: 500;
 }
 
 #porque:checked ~ .contenedor-preguntas .contenedor-tabs,
@@ -201,7 +203,6 @@ input[name="respuesta"]:checked + label:before {
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
-  margin-top: 2em;
 }
 
 .contenedor-respuestas label {
@@ -225,7 +226,7 @@ input[name="respuesta"]:checked + label:before {
 }
 
 button.swal2-styled.swal2-confirm {
-  background-color: #000066;
+  background-color: #0060df;
 }
 
 .contenedor-echart {
@@ -244,28 +245,30 @@ button.swal2-styled.swal2-confirm {
 .contenedor-anterior-siguiente {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
-#botonAnterior,
-#botonSiguiente {
+.botonPrimario {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-top: 4em;
   align-items: center;
-  gap: 0.4em;
-  border: 2px solid #000066;
-  padding: 0.8em 1.6em;
-  border-radius: 0.5em;
-  background-color: transparent;
+  background-color: #0060df;
+  padding: 1em 2.3em;
+  border-radius: 0.8em;
+  border: none;
   cursor: pointer;
+  color: #fff;
   transition: all 0.3s ease;
+  box-shadow: 0px 4px 49px 0px rgba(0, 0, 0, 0.15);
+  font-size: 14px;
 }
 
-#botonAnterior:hover,
-#botonSiguiente:hover {
-  background-color: blue;
+.botonPrimario:hover {
+  background-color: #1a6fde;
   color: white;
+  box-shadow: 0px 4px 49px 0px rgba(0, 0, 0, 0.15);
 }
 
 .contenedor__paginador,
@@ -277,9 +280,9 @@ button.swal2-styled.swal2-confirm {
   justify-content: center;
 }
 
-.contenedor__paginador {
-  padding: 1em;
-  column-gap: 12px;
+.links {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .button {
@@ -306,7 +309,6 @@ button.swal2-styled.swal2-confirm {
   color: #fff;
   background-color: #4070f4;
 }
-
 
 .link.active {
   color: #fff;
