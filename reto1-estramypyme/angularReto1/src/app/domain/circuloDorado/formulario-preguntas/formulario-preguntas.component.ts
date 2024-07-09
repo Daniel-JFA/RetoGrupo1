@@ -6,6 +6,7 @@ import {
   SimpleChange,
   ViewChild,
   ViewEncapsulation,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { PreguntasService } from '../preguntas.service';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +19,6 @@ import Swal from 'sweetalert2';
   imports: [FormsModule],
   templateUrl: './formulario-preguntas.component.html',
   styleUrl: './formulario-preguntas.component.css',
-
 })
 export class FormularioPreguntasComponent implements OnInit {
   preguntas: any[] = [];
@@ -32,7 +32,10 @@ export class FormularioPreguntasComponent implements OnInit {
   isQueChecked: boolean = false;
   isActive: boolean = true;
 
-  constructor(private preguntaService: PreguntasService) {}
+  constructor(
+    private preguntaService: PreguntasService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.preguntas = this.preguntaService.getPreguntas();
@@ -86,7 +89,10 @@ export class FormularioPreguntasComponent implements OnInit {
         // customClass: 'my-custom-class',
       }).then(() => {
         this.indexPregunta = 0;
+        this.isQueChecked = false;
+        this.isPorQueChecked = true;
         this.cargarPregunta(this.indexPregunta);
+        this.cdr.detectChanges();
         // this.graficoRespuestas(this.indexPregunta);
       });
     }
