@@ -1,107 +1,119 @@
-<div class="contenedor__seccion__preguntas__descripcion">
-  <p>
-    En esta sección, encontrarás una serie de preguntas diseñadas para evaluar
-    tu PYME a través del 'Círculo Dorado'.<br />
-    <span style="color: #0060df; font-weight: 600"
-      >¡Comienza a evaluar! 🔎</span
-    >
-  </p>
-</div>
-<div class="contenedor-tabla">
-  <input type="radio" name="slider" id="porque" [checked]="isPorQueChecked" />
-  <input type="radio" name="slider" id="como" [checked]="isComoChecked" />
-  <input type="radio" name="slider" id="que" [checked]="isQueChecked" />
-  <nav>
-    <label class="porque">¿Por qué?</label>
-    <label class="como">¿Cómo?</label>
-    <label class="que">¿Qué?</label>
-    <div class="slider"></div>
-  </nav>
-  <section class="contenedor-preguntas">
-    <div class="contenedor contenedor-tabs">
-      <p class="progreso" id="progreso">
-        Pregunta {{ indexPregunta + 1 }} de {{ preguntas.length }}
-      </p>
-      <p class="contenedor__parrafo__preguntas" id="contenedor-parrafo">
-        <span>En una escala del 1 al 3</span><br />
-        {{ objetoPregunta?.pregunta }}
-      </p>
-      <div class="contenedor-respuestas" id="contenedor-respuestas">
-        <div>
-          <input
-            type="radio"
-            id="opcion1"
-            name="respuesta"
-            [(ngModel)]="seleccionada"
-            value="opcion1"
-          />
-          <label for="opcion1" id="opcion1">{{ opciones?.opcion1 }}</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="opcion2"
-            name="respuesta"
-            [(ngModel)]="seleccionada"
-            value="opcion2"
-          />
-          <label for="opcion2" id="opcion2">{{ opciones?.opcion2 }}</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="opcion3"
-            name="respuesta"
-            [(ngModel)]="seleccionada"
-            value="opcion3"
-          />
-          <label for="opcion3" id="opcion3">{{ opciones?.opcion3 }}</label>
-        </div>
-      </div>
-      <div class="contenedor-echart">
-        <div id="main"></div>
-      </div>
-      <div
-        class="contenedor-anterior-siguiente"
-        id="contenedor-anterior-siguiente"
-      >
-        <button
-          class="botonPrimario"
-          id="botonPrimario"
-          (click)="manejarAnterior()"
+<section class="contenedor">
+  <div class="contenedor__circulo">
+    <div id="mainRespuestas" #mainRespuestas></div>
+  </div>
+  <section class="contenedor__seccion__preguntas">
+    <div class="contenedor__seccion__preguntas__descripcion">
+      <p>
+        En esta sección, encontrarás una serie de preguntas diseñadas para
+        evaluar tu PYME a través del 'Círculo Dorado'.<br />
+        <span style="color: #0060df; font-weight: 600"
+          >¡Comienza a evaluar! 🔎</span
         >
-          Anterior
-        </button>
-
-        <div class="contenedor__paginador">
-          <div>
-            <!-- <button class="button">
-              <i class="bx bx-chevron-left"></i>
-            </button> -->
-            <div class="links">
-              <a href="" class="link" [class.active]="isActive">1</a
-              ><a href="" class="link">2</a><a href="" class="link">3</a
-              ><a href="" class="link">4</a><a href="" class="link">5</a
-              ><a href="" class="link">6</a><a href="" class="link">7</a
-              ><a href="" class="link">8</a><a href="" class="link">9</a
-              ><a href="" class="link">10</a><a href="" class="link">11</a
-              ><a href="" class="link">12</a><a href="" class="link">13</a
-              ><a href="" class="link">14</a><a href="" class="link">15</a>
+      </p>
+    </div>
+    <div class="contenedor-tabla">
+      <input
+        type="radio"
+        name="slider"
+        id="porque"
+        [checked]="isPorQueChecked"
+      />
+      <input type="radio" name="slider" id="como" [checked]="isComoChecked" />
+      <input type="radio" name="slider" id="que" [checked]="isQueChecked" />
+      <nav>
+        <label class="porque">¿Por qué?</label>
+        <label class="como">¿Cómo?</label>
+        <label class="que">¿Qué?</label>
+        <div class="slider"></div>
+      </nav>
+      <section class="contenedor-preguntas">
+        <div class="contenedor contenedor-tabs">
+          <p class="progreso" id="progreso">
+            Pregunta {{ indexPregunta + 1 }} de {{ preguntas.length }}
+          </p>
+          <p class="contenedor__parrafo__preguntas" id="contenedor-parrafo">
+            <span>En una escala del 1 al 3</span><br />
+            {{ objetoPregunta?.pregunta }}
+          </p>
+          <div class="contenedor-respuestas" id="contenedor-respuestas">
+            <div>
+              <input
+                type="radio"
+                id="opcion1"
+                name="respuesta"
+                [(ngModel)]="seleccionada"
+                value="opcion1"
+              />
+              <label for="opcion1" id="opcion1">{{ opciones?.opcion1 }}</label>
             </div>
-            <!-- <button class="button">
-              <i class="bx bx-chevron-right"></i>
-            </button> -->
+            <div>
+              <input
+                type="radio"
+                id="opcion2"
+                name="respuesta"
+                [(ngModel)]="seleccionada"
+                value="opcion2"
+              />
+              <label for="opcion2" id="opcion2">{{ opciones?.opcion2 }}</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="opcion3"
+                name="respuesta"
+                [(ngModel)]="seleccionada"
+                value="opcion3"
+              />
+              <label for="opcion3" id="opcion3">{{ opciones?.opcion3 }}</label>
+            </div>
+          </div>
+          <div class="contenedor-echart">
+            <div id="main"></div>
+          </div>
+          <div
+            class="contenedor-anterior-siguiente"
+            id="contenedor-anterior-siguiente"
+          >
+            <button
+              class="botonPrimario"
+              id="botonPrimario"
+              (click)="manejarAnterior()"
+            >
+              Anterior
+            </button>
+
+            <div class="contenedor__paginador">
+              <div>
+                <!-- <button class="button">
+                <i class="bx bx-chevron-left"></i>
+              </button> -->
+                <div class="links">
+                  <a href="" class="link" [class.active]="isActive">1</a
+                  ><a href="" class="link">2</a><a href="" class="link">3</a
+                  ><a href="" class="link">4</a><a href="" class="link">5</a
+                  ><a href="" class="link">6</a><a href="" class="link">7</a
+                  ><a href="" class="link">8</a><a href="" class="link">9</a
+                  ><a href="" class="link">10</a><a href="" class="link">11</a
+                  ><a href="" class="link">12</a><a href="" class="link">13</a
+                  ><a href="" class="link">14</a><a href="" class="link">15</a>
+                </div>
+                <!-- <button class="button">
+                <i class="bx bx-chevron-right"></i>
+              </button> -->
+              </div>
+            </div>
+
+            <button
+              class="botonPrimario"
+              id="botonPrimario"
+              (click)="manejarSiguiente()"
+            >
+              Siguiente
+            </button>
           </div>
         </div>
-
-        <button
-          class="botonPrimario"
-          id="botonPrimario"
-          (click)="manejarSiguiente()"
-        >
-          Siguiente
-        </button>
-      </div>
+      </section>
     </div>
   </section>
-</div>
+</section>

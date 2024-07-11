@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { HeaderComponent } from '../../header/header.component';
 import { FormularioPreguntasRadarComponent } from '../formulario-preguntas-radar/formulario-preguntas-radar.component';
 
@@ -9,4 +9,6 @@ import { FormularioPreguntasRadarComponent } from '../formulario-preguntas-radar
   templateUrl: './radar-estrategico-page.component.html',
   styleUrl: './radar-estrategico-page.component.css',
 })
-export class RadarEstrategicoPageComponent {}
+export class RadarEstrategicoPageComponent{
+
+}
