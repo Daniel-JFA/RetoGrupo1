@@ -1,37 +1,54 @@
-<main>
+<app-header></app-header>
   <section class="informacion">
-    <h2>Círculo Dorado</h2>
+    <div class="contenedor__descripcion">
+      <h2>Círculo Dorado</h2>
+      <p class="parrafo__descripcion">
+        El círculo dorado es un modelo creado por Simon Sinek y sirve para
+        definir la manera en la que una empresa se va a comunicar. <br>
+        Parte desde el "Porqué" después al "cómo" y por último al "qué".
+      </p>
+    </div>
     <div class="informacion__cards">
       <div class="card">
         <div class="card__titulo">
-          <img src="../../../../assets/images/porque.svg" alt="icono corazón" />
+          <img src="../../../../assets/icons/porque.svg" alt="icono corazón" />
           <h3>¿Por qué?</h3>
         </div>
-        <p class="card_parrafo">
-          La razón fundamental de existencia de tu negocio (Propósito)
+        <p class="parrafo">
+          Son los motivos por los cuales hacemos lo que hacemos.<br />
+          Es un propósito con la intención de inspirar y conectar
+          emocionalmente.
         </p>
       </div>
       <div class="card">
         <div class="card__titulo">
-          <img src="../../../../assets/como.svg" alt="icono lupa" />
+          <img src="../../../../assets/icons/como.svg" alt="icono lupa" />
           <h3>¿Cómo?</h3>
         </div>
-        <p class="card_parrafo">
-          El método o proceso mediante el cual tu negocio cumple su propósito
-          (Propuesta de valor)
+        <p class="parrafo">
+          Es el proceso que va a satisfacer la necesidad principal a nuestro
+          consumidor.<br />
+          Son acciones específicas con las que realizaremos el ¿Por qué?
         </p>
       </div>
       <div class="card">
         <div class="card__titulo">
-          <img src="../../../../assets/que.svg" alt="icono caja" />
+          <img src="../../../../assets/icons/que.svg" alt="icono caja" />
           <h3>¿Qué?</h3>
         </div>
-        <p class="card_parrafo">
-          Aquí se describe lo que la organización o persona hace concretamente
-          (Productos y servicios)
+        <p class="parrafo">
+          Es el resultado de todo el proceso anterior en un producto o servicio.
+          <br />Básicamente es lo que vendemos, a lo que nos dedicamos o el
+          servicio que ofrecemos.
         </p>
       </div>
     </div>
   </section>
-  <app-formulario-preguntas></app-formulario-preguntas>
-</main>
+  <section class="contenedor">
+    <div class="contenedor__circulo">
+      <div id="mainRespuestas" #mainRespuestas></div>
+    </div>
+    <section class="contenedor__seccion__preguntas">
+      <app-formulario-preguntas></app-formulario-preguntas>
+    </section>
+  </section>
