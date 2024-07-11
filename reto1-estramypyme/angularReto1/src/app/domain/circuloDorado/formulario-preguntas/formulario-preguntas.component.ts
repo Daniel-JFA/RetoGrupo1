@@ -21,6 +21,7 @@ import Swal from 'sweetalert2';
   styleUrl: './formulario-preguntas.component.css',
 })
 export class FormularioPreguntasComponent implements OnInit {
+  //Propiedades de la clase o variables que se declaran dentro de una clase)
   preguntas: any[] = [];
   indexPregunta: number = 0;
   valorProgreso: number = 0;
@@ -31,17 +32,24 @@ export class FormularioPreguntasComponent implements OnInit {
   isComoChecked: boolean = false;
   isQueChecked: boolean = false;
   isActive: boolean = true;
+  nadaporque: number = 0;
+  pocoPorque: number = 0;
+  muchoPorue: number = 0;
 
+  /*"Inyecta el servicio PreguntasService en la clase y crea una propiedad privada preguntaService
+  para acceder a sus métodos y propiedades."*/
   constructor(
     private preguntaService: PreguntasService,
     private cdr: ChangeDetectorRef
   ) {}
 
+  //Cuando el componente se inicializa
   ngOnInit(): void {
     this.preguntas = this.preguntaService.getPreguntas();
-    console.log(this.cargarPregunta(this.indexPregunta));
+    this.cargarPregunta(this.indexPregunta);
   }
 
+  //Cargar cada pregunta del servicio
   cargarPregunta(index: number) {
     if (index < this.preguntas.length) {
       this.seleccionada = false;
@@ -53,6 +61,7 @@ export class FormularioPreguntasComponent implements OnInit {
     }
   }
 
+  //Método para validar que alguna opción sea seleccionada y así avanzar a la siguiente pregunta
   manejarSiguiente() {
     if (!this.seleccionada) {
       Swal.fire({
@@ -62,9 +71,8 @@ export class FormularioPreguntasComponent implements OnInit {
       return;
     }
 
-    this.indexPregunta++;
-
     // Incrementa el índice de la pregunta para avanzar a la siguiente.
+    this.indexPregunta++;
 
     if (this.indexPregunta == 5) {
       Swal.fire({

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class PreguntasService {
+  //Array de objetos que contiene cada pregunta y opciones
   basePreguntas = [
     // // Sección "¿Por qué?"
     {
@@ -162,8 +163,10 @@ export class PreguntasService {
     },
   ];
 
+  //El constructor de la clase no hace nada en este caso, pero se utiliza para inicializar la clase.
   constructor() {}
 
+  //Este método devuelve el array basePreguntas que contiene todas las preguntas y opciones del cuestionario.
   getPreguntas() {
     return this.basePreguntas;
   }
