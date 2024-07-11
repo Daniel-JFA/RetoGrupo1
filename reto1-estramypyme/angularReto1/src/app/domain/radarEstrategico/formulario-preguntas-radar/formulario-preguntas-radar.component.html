@@ -12,10 +12,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr 
+      <tr
         class="fila__uno"
         [class.seleccion]="preguntaSeleccionada === niveles?.nivel1"
-        (click)="seleccionarOpcion(niveles?.nivel1, descripciones?.descripcion1)"
+        (click)="
+          seleccionarOpcion(niveles?.nivel1, descripciones?.descripcion1)
+        "
       >
         <td class="numeros">{{ niveles?.nivel1 }}</td>
         <td>{{ descripciones?.descripcion1 }}</td>
@@ -23,7 +25,9 @@
       <tr
         class="fila__dos"
         [class.seleccion]="preguntaSeleccionada === niveles?.nivel2"
-        (click)="seleccionarOpcion(niveles?.nivel2 , descripciones?.descripcion2)"
+        (click)="
+          seleccionarOpcion(niveles?.nivel2, descripciones?.descripcion2)
+        "
       >
         <td class="numeros">{{ niveles?.nivel2 }}</td>
         <td>
@@ -33,7 +37,9 @@
       <tr
         class="fila__tres"
         [class.seleccion]="preguntaSeleccionada === niveles?.nivel3"
-        (click)="seleccionarOpcion(niveles?.nivel3, descripciones?.descripcion3)"
+        (click)="
+          seleccionarOpcion(niveles?.nivel3, descripciones?.descripcion3)
+        "
       >
         <td class="numeros">{{ niveles?.nivel3 }}</td>
         <td>
@@ -43,7 +49,9 @@
       <tr
         class="fila_cuatro"
         [class.seleccion]="preguntaSeleccionada === niveles?.nivel4"
-        (click)="seleccionarOpcion(niveles?.nivel4, descripciones?.descripcion4)"
+        (click)="
+          seleccionarOpcion(niveles?.nivel4, descripciones?.descripcion4)
+        "
       >
         <td class="numeros">{{ niveles?.nivel4 }}</td>
         <td>
@@ -55,6 +63,7 @@
 </div>
 <div class="contenedor-anterior-siguiente" id="contenedor-anterior-siguiente">
   <button class="botonPrimario" id="botonPrimario">Anterior</button>
+  <div>Sección {{ indexPregunta }} de {{ preguntasRadar.length }}</div>
 
   <button class="botonPrimario" id="botonPrimario" (click)="manejarSiguiente()">
     Siguiente
