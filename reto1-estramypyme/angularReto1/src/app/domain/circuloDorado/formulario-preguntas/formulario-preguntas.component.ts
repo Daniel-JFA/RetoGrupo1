@@ -8,7 +8,7 @@ import {
   ViewEncapsulation,
   ChangeDetectorRef,
 } from '@angular/core';
-import { PreguntasService } from '../preguntas.service';
+import { PreguntasService } from '../services/preguntas.service';
 import { FormsModule } from '@angular/forms';
 import * as echarts from 'echarts';
 import Swal from 'sweetalert2';
