@@ -1,8 +1,16 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { PreguntasRadarService } from '../services/preguntas-radar.service';
 import Swal from 'sweetalert2';
-import { number } from 'echarts';
 import { CommonModule } from '@angular/common';
+import * as echarts from 'echarts';
+
 
 @Component({
   selector: 'app-formulario-preguntas-radar',
@@ -11,7 +19,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './formulario-preguntas-radar.component.html',
   styleUrl: './formulario-preguntas-radar.component.css',
 })
-export class FormularioPreguntasRadarComponent implements OnInit {
+export class FormularioPreguntasRadarComponent implements OnInit, AfterViewInit {
   //Propiedades de la clase o variables que se declaran dentro de una clase)
   preguntasRadar: any[] = [];
   niveles: any;
@@ -19,6 +27,7 @@ export class FormularioPreguntasRadarComponent implements OnInit {
   indexPregunta: number = 0;
   preguntaSeleccionada: any;
   objetoPregunta: any;
+  contenedorGrafica: any;
 
   /*"Inyecta el servicio PreguntasRadarService en la clase y crea una propiedad privada preguntaRadarService
   para acceder a sus métodos y propiedades."*/
@@ -69,5 +78,39 @@ export class FormularioPreguntasRadarComponent implements OnInit {
 
     this.indexPregunta++;
     this.cargarPreguntaRadar(this.indexPregunta);
+  }
+
+  @ViewChild('graficaRadar') contenedor!: ElementRef;
+
+  ngAfterViewInit() {
+    this.contenedorGrafica = echarts.init(this.contenedor.nativeElement);
+    const opciones = {
+      radar: {
+        // shape: 'circle',
+        indicator: [
+          { name: 'CONOCIMIENTO DEL CLIENTE', max: 6500 },
+          { name: 'CONOCIMIENTO DEL NEGOCIO', max: 16000 },
+          { name: 'ALINEACIÓN EN LA COMUNICACIÓN INTERNA', max: 30000 },
+          { name: 'SALUD FINANCIERA', max: 38000 },
+        ],
+      },
+      series: [
+        {
+          name: 'Budget vs spending',
+          type: 'radar',
+          data: [
+            {
+              value: [4200, 3000, 20000, 35000, 50000, 18000],
+              name: 'Allocated Budget',
+            },
+            {
+              value: [5000, 14000, 28000, 26000, 42000, 21000],
+              name: 'Actual Spending',
+            },
+          ],
+        },
+      ],
+    };
+    this.contenedorGrafica.setOption(opciones);
   }
 }
