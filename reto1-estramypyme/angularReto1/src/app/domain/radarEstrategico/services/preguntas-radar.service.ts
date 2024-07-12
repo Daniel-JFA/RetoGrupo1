@@ -37,6 +37,21 @@ export class PreguntasRadarService {
     },
     {
       id: 2,
+      titulo: 'Coherencia del modelo de negocio',
+      niveles: { nivel1: 1, nivel2: 2, nivel3: 3, nivel4: 4 },
+      descripciones: {
+        descripcion1:
+          'La propuesta de valor no es clara y se limita a la descripción del producto',
+        descripcion2:
+          'Existe una propuesta de valor definida y clara, pero ésta no es plenamente coherente con el perfil del cliente.',
+        descripcion3:
+          'Existe coherencia entre la propuesta de valor y el perfil del cliente, pero no con los demás elementos del modelo de negocio.',
+        descripcion4:
+          'Existe coherencia entre la definición del cliente, la propuesta de valor y los demás elementos del modelo de negocio.',
+      },
+    },
+    {
+      id: 3,
       titulo: 'Alineación en la comunicación interna',
       niveles: { nivel1: 1, nivel2: 2, nivel3: 3, nivel4: 4 },
       descripciones: {
@@ -50,7 +65,7 @@ export class PreguntasRadarService {
       },
     },
     {
-      id: 3,
+      id: 4,
       titulo: 'Salud Financiera',
       niveles: { nivel1: 1, nivel2: 2, nivel3: 3, nivel4: 4 },
       descripciones: {
