@@ -15,7 +15,7 @@
 
 .logo {
   font-size: 1.5rem;
-  color: #0060df;
+  color: #155FE7;
   text-decoration: none;
   font-weight: 700;
 }
@@ -40,7 +40,7 @@
 
 .nav-bar a:hover {
   font-size: 1rem;
-  color: #0060df;
+  color: #155FE7;
   text-decoration: none;
   font-weight: 500;
 }
@@ -56,5 +56,5 @@
 
 .bxs-user-circle::before {
   font-size: 1.5em;
-  color: #0060df;
+  color: #155FE7;
 }

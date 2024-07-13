@@ -1,9 +1,7 @@
-#mainRespuestas {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: 90vh;
+.graficaCirculo {
+    width: 600px;
+    height: 600px;
 }
+
 
 

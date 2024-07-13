@@ -17,6 +17,7 @@
 
 .seccion__preguntas {
   width: 100%;
+  height: auto;
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 1em;
@@ -25,13 +26,14 @@
   width: 50%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .contenedor__preguntas {
   width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  flex-wrap: wrap;
   gap: 1em;
 }
 
@@ -40,6 +42,21 @@
   flex-direction: column;
   justify-content: center;
   gap: 0.5em;
+}
+.contenedor__seccion__preguntas__descripcion {
+  display: flex;
+  flex-direction: column;
+  background-color: #e9eef2;
+  padding: 1em;
+  border-radius: 0.5em;
+  text-align: center;
+}
+
+.contenedor__seccion__preguntas__descripcion h3 {
+  justify-content: center;
+  text-align: center;
+  font-weight: 700;
+  margin: 0;
 }
 
 .parrafo__descripcion {
@@ -61,7 +78,7 @@
 .card {
   width: 18.5em;
   background-color: white;
-  border-bottom: 4px solid #0060df;
+  border-bottom: 4px solid #155FE7;
   border-radius: 0.5em;
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.15);
   padding: 1.5em;

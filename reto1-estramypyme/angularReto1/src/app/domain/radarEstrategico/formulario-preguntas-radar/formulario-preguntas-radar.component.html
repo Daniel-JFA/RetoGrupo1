@@ -65,7 +65,8 @@
     class="contenedor-anterior-siguiente"
     id="contenedor-anterior-siguiente"
   >
-    <button class="botonPrimario" id="botonPrimario">Anterior</button>
+    <button class="botonPrimario" id="botonPrimario" (click)="manejarAnterior()"
+    >Anterior</button>
     <div>Sección {{ indexPregunta }} de {{ preguntasRadar.length }}</div>
 
     <button

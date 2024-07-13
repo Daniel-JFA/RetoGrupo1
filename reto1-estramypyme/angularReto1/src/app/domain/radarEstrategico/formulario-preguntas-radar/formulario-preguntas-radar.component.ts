@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PreguntasRadarService } from '../services/preguntas-radar.service';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
-
 @Component({
   selector: 'app-formulario-preguntas-radar',
   standalone: true,
@@ -10,9 +9,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './formulario-preguntas-radar.component.html',
   styleUrl: './formulario-preguntas-radar.component.css',
 })
-export class FormularioPreguntasRadarComponent
-  implements OnInit
-{
+export class FormularioPreguntasRadarComponent implements OnInit {
   //Propiedades de la clase o variables que se declaran dentro de una clase)
   preguntasRadar: any[] = [];
   niveles: any;
@@ -70,5 +67,13 @@ export class FormularioPreguntasRadarComponent
 
     this.indexPregunta++;
     this.cargarPreguntaRadar(this.indexPregunta);
+  }
+
+  manejarAnterior() {
+    if (this.indexPregunta > 0) {
+      this.indexPregunta--; // Disminuye el índice de la pregunta para retroceder a la anterior.
+    }
+
+    this.cargarPreguntaRadar(this.indexPregunta); // Carga la nueva pregunta.
   }
 }
