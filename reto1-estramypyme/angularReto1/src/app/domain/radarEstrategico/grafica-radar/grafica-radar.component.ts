@@ -36,6 +36,7 @@ export class GraficaRadarComponent implements AfterViewInit, OnChanges {
           this.updateGrafica();
     }
   }
+  
   initGrafica() {
     this.contenedorGrafica = echarts.init(this.contenedor.nativeElement);
     this.setOptions();
