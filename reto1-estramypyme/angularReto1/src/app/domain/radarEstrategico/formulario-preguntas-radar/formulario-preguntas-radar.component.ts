@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PreguntasRadarService } from '../services/preguntas-radar.service';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
@@ -7,9 +7,10 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './formulario-preguntas-radar.component.html',
-  styleUrl: './formulario-preguntas-radar.component.css',
+  styleUrls: ['./formulario-preguntas-radar.component.css'],
 })
 export class FormularioPreguntasRadarComponent implements OnInit {
+  @Output() nivelSeleccionado = new EventEmitter<{ nivel: number, index: number }>();
   //Propiedades de la clase o variables que se declaran dentro de una clase)
   preguntasRadar: any[] = [];
   niveles: any;
@@ -52,6 +53,7 @@ export class FormularioPreguntasRadarComponent implements OnInit {
   /*"Establece la opción seleccionada en la propiedad preguntaSeleccionada y la muestra en la consola.*/
   seleccionarOpcion(nivel: any, descripcion: any) {
     this.preguntaSeleccionada = { nivel, descripcion };
+    this.nivelSeleccionado.emit({ nivel, index: this.indexPregunta });
     console.log(this.preguntaSeleccionada);
   }
 
