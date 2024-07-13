@@ -45,9 +45,23 @@
 </section>
 <div class="seccion__preguntas">
   <div class="contenedor__grafica">
-  <app-grafica-circulo></app-grafica-circulo>
-</div>
-<section class="contenedor__preguntas">
-  <app-formulario-preguntas></app-formulario-preguntas>
-</section>
+    <!-- Paso el índice de la pregunta actual como entrada al componente
+     `app-grafica-circulo` para que pueda actualizar la gráfica según la pregunta actual -->
+    <app-grafica-circulo [indexPregunta]="indexPregunta"></app-grafica-circulo>
+  </div>
+  <section class="contenedor__preguntas">
+    <div class="contenedor__seccion__preguntas__descripcion">
+      <p>
+        En esta sección, encontrarás una serie de preguntas diseñadas para
+        evaluar tu PYME a través del 'Círculo Dorado'.<br />
+        <span style="color: #0060df; font-weight: 600"
+          >¡Comienza a evaluar! 🔎</span
+        >
+      </p>
+    </div>
+
+    <!-- Cuando el formulario de preguntas cambia, llama a la función `actualizarProgreso`
+     para reflejar el progreso actual -->
+    <app-formulario-preguntas (cambioPregunta)="actualizarProgreso($event)"></app-formulario-preguntas>
+  </section>
 </div>

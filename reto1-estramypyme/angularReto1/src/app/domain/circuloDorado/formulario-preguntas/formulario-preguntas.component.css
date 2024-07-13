@@ -1,19 +1,3 @@
-.contenedor__seccion__preguntas__descripcion {
-  display: flex;
-  flex-direction: column;
-  background-color: #e9eef2;
-  padding: 1em;
-  border-radius: 0.5em;
-  text-align: center;
-}
-
-.contenedor__seccion__preguntas__descripcion h3 {
-  justify-content: center;
-  text-align: center;
-  font-weight: 700;
-  margin: 0;
-}
-
 .contenedor-tabla {
   width: 100%;
   height: 100%;
@@ -94,26 +78,26 @@ input[name="respuesta"] + label:before {
   content: " ";
   height: 1em;
   width: 1em;
-  border: 2px solid #0060df;
+  border: 2px solid #155FE7;
   border-radius: 50%;
   margin-right: 0.5em;
 }
 
 input[name="respuesta"]:checked + label {
   background-color: white;
-  color: #0060df;
+  color: #155FE7;
 }
 
 input[name="respuesta"]:checked + label:before {
   height: 0.4em;
   width: 0.4em;
-  border: 6px solid #0060df;
+  border: 6px solid #155FE7;
 }
 
 .contenedor-tabla nav .slider {
   position: absolute;
   height: 0.2em;
-  background-color: #0060df;
+  background-color: #155FE7;
   border-radius: 1rem;
   width: 35%;
   z-index: 1;
@@ -137,7 +121,7 @@ input[name="respuesta"]:checked + label:before {
 #porque:checked ~ nav .porque,
 #como:checked ~ nav .como,
 #que:checked ~ nav .que {
-  color: #0060df;
+  color: #155FE7;
 }
 
 .contenedor-preguntas {
@@ -197,30 +181,26 @@ input[name="respuesta"]:checked + label:before {
 }
 
 button.swal2-styled.swal2-confirm {
-  background-color: #0060df;
+  background-color: #155FE7;
 }
 
-.contenedor-echart {
+.grafica__progreso {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 100%;
 }
 
-#main {
+.graficaProgreso {
   width: 100%;
   height: 25vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .contenedor-anterior-siguiente {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
+  margin-top: 3em;
 }
 
 .botonPrimario {
@@ -228,7 +208,7 @@ button.swal2-styled.swal2-confirm {
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  background-color: #0060df;
+  background-color: #155FE7;
   padding: 1em 2.3em;
   border-radius: 0.8em;
   border: none;

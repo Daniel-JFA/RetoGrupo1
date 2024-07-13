@@ -11,5 +11,9 @@ import { GraficaCirculoComponent } from '../grafica-circulo/grafica-circulo.comp
   styleUrl: './circulo-dorado-page.component.css'
 })
 export class CirculoDoradoPageComponent {
+  indexPregunta: number = 0;
 
+  actualizarProgreso(nuevoProgreso: number) {
+    this.indexPregunta = nuevoProgreso;
+  }
 }

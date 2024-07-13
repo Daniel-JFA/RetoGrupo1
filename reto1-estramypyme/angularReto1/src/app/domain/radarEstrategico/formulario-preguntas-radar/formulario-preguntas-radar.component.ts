@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PreguntasRadarService } from '../services/preguntas-radar.service';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
-
 @Component({
   selector: 'app-formulario-preguntas-radar',
   standalone: true,
@@ -70,5 +69,13 @@ export class FormularioPreguntasRadarComponent implements OnInit {
 
     this.indexPregunta++;
     this.cargarPreguntaRadar(this.indexPregunta);
+  }
+
+  manejarAnterior() {
+    if (this.indexPregunta > 0) {
+      this.indexPregunta--; // Disminuye el índice de la pregunta para retroceder a la anterior.
+    }
+
+    this.cargarPreguntaRadar(this.indexPregunta); // Carga la nueva pregunta.
   }
 }
