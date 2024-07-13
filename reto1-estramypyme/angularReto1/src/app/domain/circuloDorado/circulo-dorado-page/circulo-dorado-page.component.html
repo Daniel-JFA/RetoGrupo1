@@ -1,48 +1,53 @@
 <app-header></app-header>
-  <section class="informacion">
-    <div class="contenedor__descripcion">
-      <h2>Círculo Dorado</h2>
-      <p class="parrafo__descripcion">
-        El círculo dorado es un modelo creado por Simon Sinek y sirve para
-        definir la manera en la que una empresa se va a comunicar. <br>
-        Parte desde el "Porqué" después al "cómo" y por último al "qué".
+<section class="informacion">
+  <div class="contenedor__descripcion">
+    <h2>Círculo Dorado</h2>
+    <p class="parrafo__descripcion">
+      El círculo dorado es un modelo creado por Simon Sinek y sirve para definir
+      la manera en la que una empresa se va a comunicar. <br />
+      Parte desde el "Porqué" después al "cómo" y por último al "qué".
+    </p>
+  </div>
+  <div class="informacion__cards">
+    <div class="card">
+      <div class="card__titulo">
+        <img src="../../../../assets/icons/porque.svg" alt="icono corazón" />
+        <h3>¿Por qué?</h3>
+      </div>
+      <p class="parrafo">
+        Son los motivos por los cuales hacemos lo que hacemos.<br />
+        Es un propósito con la intención de inspirar y conectar emocionalmente.
       </p>
     </div>
-    <div class="informacion__cards">
-      <div class="card">
-        <div class="card__titulo">
-          <img src="../../../../assets/icons/porque.svg" alt="icono corazón" />
-          <h3>¿Por qué?</h3>
-        </div>
-        <p class="parrafo">
-          Son los motivos por los cuales hacemos lo que hacemos.<br />
-          Es un propósito con la intención de inspirar y conectar
-          emocionalmente.
-        </p>
+    <div class="card">
+      <div class="card__titulo">
+        <img src="../../../../assets/icons/como.svg" alt="icono lupa" />
+        <h3>¿Cómo?</h3>
       </div>
-      <div class="card">
-        <div class="card__titulo">
-          <img src="../../../../assets/icons/como.svg" alt="icono lupa" />
-          <h3>¿Cómo?</h3>
-        </div>
-        <p class="parrafo">
-          Es el proceso que va a satisfacer la necesidad principal a nuestro
-          consumidor.<br />
-          Son acciones específicas con las que realizaremos el ¿Por qué?
-        </p>
-      </div>
-      <div class="card">
-        <div class="card__titulo">
-          <img src="../../../../assets/icons/que.svg" alt="icono caja" />
-          <h3>¿Qué?</h3>
-        </div>
-        <p class="parrafo">
-          Es el resultado de todo el proceso anterior en un producto o servicio.
-          <br />Básicamente es lo que vendemos, a lo que nos dedicamos o el
-          servicio que ofrecemos.
-        </p>
-      </div>
+      <p class="parrafo">
+        Es el proceso que va a satisfacer la necesidad principal a nuestro
+        consumidor.<br />
+        Son acciones específicas con las que realizaremos el ¿Por qué?
+      </p>
     </div>
-  </section>
+    <div class="card">
+      <div class="card__titulo">
+        <img src="../../../../assets/icons/que.svg" alt="icono caja" />
+        <h3>¿Qué?</h3>
+      </div>
+      <p class="parrafo">
+        Es el resultado de todo el proceso anterior en un producto o servicio.
+        <br />Básicamente es lo que vendemos, a lo que nos dedicamos o el
+        servicio que ofrecemos.
+      </p>
+    </div>
+  </div>
+</section>
+<div class="seccion__preguntas">
+  <div class="contenedor__grafica">
+  <app-grafica-circulo></app-grafica-circulo>
+</div>
+<section class="contenedor__preguntas">
   <app-formulario-preguntas></app-formulario-preguntas>
-
+</section>
+</div>

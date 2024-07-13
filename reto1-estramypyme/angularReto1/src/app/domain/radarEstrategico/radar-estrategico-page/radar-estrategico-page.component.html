@@ -1,5 +1,4 @@
 <app-header></app-header>
-
 <section class="radar__estrategico">
   <div class="contenedor__descripcion">
     <h2>Radar Estratégico</h2>
@@ -17,5 +16,11 @@
     </div>
   </div>
 </section>
-<app-formulario-preguntas-radar></app-formulario-preguntas-radar>
-
+<section class="seccion__preguntas">
+  <div class="contenedor__grafica">
+    <app-grafica-radar [nivel1]="nivel1" [nivel2]="nivel2" [nivel3]="nivel3" [nivel4]="nivel4" [nivel5]="nivel5"></app-grafica-radar>
+  </div>
+  <div class="contenedor__preguntas">
+    <app-formulario-preguntas-radar (nivelSeleccionado)="actualizarNivel($event)"></app-formulario-preguntas-radar>
+  </div>
+</section>
