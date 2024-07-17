@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../../header/header.component';
 import { FormularioPreguntasRadarComponent } from '../formulario-preguntas-radar/formulario-preguntas-radar.component';
 import { GraficaRadarComponent } from '../grafica-radar/grafica-radar.component';
 
@@ -7,7 +6,6 @@ import { GraficaRadarComponent } from '../grafica-radar/grafica-radar.component'
   selector: 'app-radar-estrategico-page',
   standalone: true,
   imports: [
-    HeaderComponent,
     FormularioPreguntasRadarComponent,
     GraficaRadarComponent,
   ],
