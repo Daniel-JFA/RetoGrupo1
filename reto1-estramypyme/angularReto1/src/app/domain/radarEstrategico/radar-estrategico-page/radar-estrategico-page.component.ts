@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormularioPreguntasRadarComponent } from '../formulario-preguntas-radar/formulario-preguntas-radar.component';
 import { GraficaRadarComponent } from '../grafica-radar/grafica-radar.component';
+import { HeaderComponent } from '../../header/header.component';
 
 @Component({
   selector: 'app-radar-estrategico-page',
@@ -8,6 +9,7 @@ import { GraficaRadarComponent } from '../grafica-radar/grafica-radar.component'
   imports: [
     FormularioPreguntasRadarComponent,
     GraficaRadarComponent,
+    HeaderComponent
   ],
   templateUrl: './radar-estrategico-page.component.html',
   styleUrl: './radar-estrategico-page.component.css',

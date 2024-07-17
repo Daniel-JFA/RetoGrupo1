@@ -7,7 +7,7 @@ import { HeaderComponent } from './domain/header/header.component';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, CirculoDoradoPageComponent, RadarEstrategicoPageComponent, HeaderComponent],
-  template: '<app-header></app-header> <router-outlet/>',
+  template: '<router-outlet/>',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
