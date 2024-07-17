@@ -1,6 +1,9 @@
 <app-header></app-header>
+
+  
 <section class="informacion">
   <div class="contenedor__descripcion">
+    <div class="row content-center">
     <h2>Círculo Dorado</h2>
     <p class="parrafo__descripcion">
       El círculo dorado es un modelo creado por Simon Sinek y sirve para definir
@@ -8,60 +11,71 @@
       Parte desde el "Porqué" después al "cómo" y por último al "qué".
     </p>
   </div>
+  </div>
   <div class="informacion__cards">
-    <div class="card">
-      <div class="card__titulo">
-        <img src="../../../../assets/icons/porque.svg" alt="icono corazón" />
-        <h3>¿Por qué?</h3>
+    <div class="row content-center">
+      <div class="col-sm-4">
+              <div class="card">
+                <div class="card__titulo">
+                  <img src="../../../../assets/icons/porque.svg" alt="icono corazón" />
+                  <h3>¿Por qué?</h3>
+                </div>
+                <p class="parrafo">
+                  Son los motivos por los cuales hacemos lo que hacemos.<br />
+                  Es un propósito con la intención de inspirar y conectar emocionalmente.
+                </p>
+              </div>
       </div>
-      <p class="parrafo">
-        Son los motivos por los cuales hacemos lo que hacemos.<br />
-        Es un propósito con la intención de inspirar y conectar emocionalmente.
-      </p>
-    </div>
-    <div class="card">
-      <div class="card__titulo">
-        <img src="../../../../assets/icons/como.svg" alt="icono lupa" />
-        <h3>¿Cómo?</h3>
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card__titulo">
+            <img src="../../../../assets/icons/como.svg" alt="icono lupa" />
+            <h3>¿Cómo?</h3>
+          </div>
+          <p class="parrafo">
+            Es el proceso que va a satisfacer la necesidad principal a nuestro
+            consumidor.<br />
+            Son acciones específicas con las que realizaremos el ¿Por qué?
+          </p>
+        </div>
       </div>
-      <p class="parrafo">
-        Es el proceso que va a satisfacer la necesidad principal a nuestro
-        consumidor.<br />
-        Son acciones específicas con las que realizaremos el ¿Por qué?
-      </p>
-    </div>
-    <div class="card">
-      <div class="card__titulo">
-        <img src="../../../../assets/icons/que.svg" alt="icono caja" />
-        <h3>¿Qué?</h3>
-      </div>
-      <p class="parrafo">
-        Es el resultado de todo el proceso anterior en un producto o servicio.
-        <br />Básicamente es lo que vendemos, a lo que nos dedicamos o el
-        servicio que ofrecemos.
-      </p>
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card__titulo">
+            <img src="../../../../assets/icons/que.svg" alt="icono caja" />
+            <h3>¿Qué?</h3>
+          </div>
+          <p class="parrafo">
+            Es el resultado de todo el proceso anterior en un producto o servicio.
+            <br />Básicamente es lo que vendemos, a lo que nos dedicamos o el
+            servicio que ofrecemos.
+          </p>
+        </div>
+      </div>     
+              
     </div>
   </div>
 </section>
-<div class="seccion__preguntas">
-  <div class="contenedor__grafica">
-    <!-- Paso el índice de la pregunta actual como entrada al componente
-     `app-grafica-circulo` para que pueda actualizar la gráfica según la pregunta actual -->
-    <app-grafica-circulo [indexPregunta]="indexPregunta"></app-grafica-circulo>
+<div class="row content-center">
+   <!-- <div class="seccion__preguntas"> -->
+  
+        <div class="col-sm-5">
+          <div class="contenedor__grafica">
+            <!-- Paso el índice de la pregunta actual como entrada al componente
+            `app-grafica-circulo` para que pueda actualizar la gráfica según la pregunta actual -->
+            <app-grafica-circulo [indexPregunta]="indexPregunta"></app-grafica-circulo>
+          </div>
+        </div>
+        <div class="col-sm-7">
+    
+      
+  
+      <!-- Cuando el formulario de preguntas cambia, llama a la función `actualizarProgreso`
+       para reflejar el progreso actual -->
+      <app-formulario-preguntas (cambioPregunta)="actualizarProgreso($event)"></app-formulario-preguntas>
+    
+    
   </div>
-  <section class="contenedor__preguntas">
-    <div class="contenedor__seccion__preguntas__descripcion">
-      <p>
-        En esta sección, encontrarás una serie de preguntas diseñadas para
-        evaluar tu PYME a través del 'Círculo Dorado'.<br />
-        <span style="color: #0060df; font-weight: 600"
-          >¡Comienza a evaluar! 🔎</span
-        >
-      </p>
-    </div>
+  
+<!-- </div> -->
 
-    <!-- Cuando el formulario de preguntas cambia, llama a la función `actualizarProgreso`
-     para reflejar el progreso actual -->
-    <app-formulario-preguntas (cambioPregunta)="actualizarProgreso($event)"></app-formulario-preguntas>
-  </section>
-</div>
