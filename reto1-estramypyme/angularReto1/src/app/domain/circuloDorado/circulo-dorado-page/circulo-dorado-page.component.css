@@ -23,14 +23,14 @@
   margin-bottom: 1em;
 }
 .contenedor__grafica {
-  width: 50%;
+  /*width: 50%;*/
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .contenedor__preguntas {
-  width: 50%;
+  /*width: 50%;*/
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -75,8 +75,13 @@
   gap: 6em;
 }
 
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px; /* Ajusta el espacio entre las cards */
+}
 .card {
-  width: 18.5em;
+  width: 14.5em;
   background-color: white;
   border-bottom: 4px solid #155FE7;
   border-radius: 0.5em;
@@ -85,6 +90,9 @@
   display: flex;
   flex-direction: column;
   gap: 1em;
+  
+ 
+  
 }
 
 .card__titulo {
