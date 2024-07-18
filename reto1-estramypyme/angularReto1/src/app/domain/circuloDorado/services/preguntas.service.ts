@@ -4,7 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class PreguntasService {
+  // Array para almacenar las respuestas seleccionadas
   private respuestas: number[] = [];
+
   //Array de objetos que contiene cada pregunta y opciones
   basePreguntas = [
     // // Sección "¿Por qué?"
@@ -164,19 +166,17 @@ export class PreguntasService {
     },
   ];
 
-  // Array para almacenar las respuestas seleccionadas
   //El constructor de la clase no hace nada en este caso, pero se utiliza para inicializar la clase.
   constructor() {}
 
   //Este método devuelve el array basePreguntas que contiene todas las preguntas y opciones del cuestionario.
-  getPreguntas(): any[] {
+  getPreguntas(): any {
     return this.basePreguntas;
   }
 
   // Método para guardar una respuesta
   guardarRespuesta(index: number, respuesta: number): void {
     this.respuestas[index] = respuesta;
-    // this.respuestasSeleccionadas[index] = respuesta;
   }
 
   // Método para obtener las respuestas seleccionadas
