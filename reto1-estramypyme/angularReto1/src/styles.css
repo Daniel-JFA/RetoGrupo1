@@ -29,9 +29,16 @@ header{
 }
 
 
-h2,
+h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
 h3 {
   margin: 0;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 ul {

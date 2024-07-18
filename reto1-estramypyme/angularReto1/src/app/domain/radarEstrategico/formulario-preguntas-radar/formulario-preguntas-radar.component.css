@@ -1,3 +1,4 @@
+
 .contenedor__tabla {
   border: solid 1px #155FE7;
   border-radius: 5px 5px 0 0;
@@ -36,6 +37,7 @@ th {
   font-weight: 700;
   text-transform: uppercase;
   border-left: solid 1px #155FE7;
+  text-align: center;
 }
 
 td {

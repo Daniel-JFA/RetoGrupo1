@@ -1,34 +1,26 @@
 <app-header></app-header>
-  <div class="row content-center"> 
-    <div class="col-sm-12">
-      <section class="radar__estrategico">
-        <div class="contenedor__descripcion">
-          <h2>Radar Estratégico</h2>
-          <div class="instrucciones">
-            <h3>Instrucciones</h3>
-            <p class="parrafo__descripcion">
-              En el Radar estratégico se calificara el micronegocio sujeto de
-              análisis, en cada uno de los elementos claves del negocio sugerido por
-              Estramipyme, Conocimiento del cliente, Conocimiento del negocio,
-              Coherencia del modelo de negocio, Alineación en la comunicación interna
-              y Salud financiera; cada elemento clave posee 4 niveles de calificación,
-              se debe seleccionar en la lista desplegable la calificacion elegida en
-              la columna "Calificación".
-            </p>
-          </div>
-        </div>
-      </section>
+<section class="radar__estrategico">
+  <div class="contenedor__descripcion">
+    <h2>Radar Estratégico</h2>
+    <div class="instrucciones">
+      <h3>Instrucciones</h3>
+      <p class="parrafo__descripcion">
+        En el Radar estratégico se calificara el micronegocio sujeto de
+        análisis, en cada uno de los elementos claves del negocio sugerido por
+        Estramipyme, Conocimiento del cliente, Conocimiento del negocio,
+        Coherencia del modelo de negocio, Alineación en la comunicación interna
+        y Salud financiera; cada elemento clave posee 4 niveles de calificación,
+        se debe seleccionar en la lista desplegable la calificacion elegida en
+        la columna "Calificación".
+      </p>
     </div>
-      <section class="seccion__preguntas">
-            <div class="col-sm-6">
-              <div class="contenedor__grafica">
-                <app-grafica-radar [nivel1]="nivel1" [nivel2]="nivel2" [nivel3]="nivel3" [nivel4]="nivel4" [nivel5]="nivel5"></app-grafica-radar>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="contenedor__preguntas">
-                <app-formulario-preguntas-radar (nivelSeleccionado)="actualizarNivel($event)"></app-formulario-preguntas-radar>
-              </div>
-            </div>
-      </section>
   </div>
+</section>
+<section class="seccion__preguntas">
+  <div class="contenedor__grafica">
+    <app-grafica-radar [nivel1]="nivel1" [nivel2]="nivel2" [nivel3]="nivel3" [nivel4]="nivel4" [nivel5]="nivel5"></app-grafica-radar>
+  </div>
+  <div class="contenedor__preguntas">
+    <app-formulario-preguntas-radar (nivelSeleccionado)="actualizarNivel($event)"></app-formulario-preguntas-radar>
+  </div>
+</section>
