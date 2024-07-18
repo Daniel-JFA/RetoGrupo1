@@ -177,3 +177,28 @@
     gap: 1em;
   }
 }
+
+@media (min-width: 1440) and (max-width: 1620px) {
+  .seccion__preguntas {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+  }
+  .contenedor__grafica {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .contenedor__preguntas {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+  
+}

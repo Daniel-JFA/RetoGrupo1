@@ -278,10 +278,21 @@ button.swal2-styled.swal2-confirm {
     align-items: center;
     margin-top: 3em;
   }
+
+  .contenedor-preguntas .contenedor-anterior-siguiente {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+  }
 }
 
 @media (min-width: 1280px) and (max-width: 1440px) {
   .contenedor-preguntas div {
+    display: flex;
+    gap: 0.4em;
+  }
+
+  .contenedor-preguntas .contenedor-anterior-siguiente {
     display: flex;
     flex-direction: column;
     gap: 0.4em;
