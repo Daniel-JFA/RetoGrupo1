@@ -36,6 +36,10 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   pocoPorque: number = 0;
   muchoPorue: number = 0;
   contenedorGrafica: any;
+  respuestasSeleccionadas: number[] = [];
+  nada: number = 0;
+  poco: number = 0;
+  mucho: number = 0;
 
   //Comunica cambios en el estado del componente a otros componentes
   @Output() cambioPregunta = new EventEmitter<number>();
@@ -171,8 +175,10 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    // Incrementa el índice de la pregunta para avanzar a la siguiente.
+    // this.respuestasCirculo()
     this.indexPregunta++;
+
+    // Incrementa el índice de la pregunta para avanzar a la siguiente.
 
     //emite un evento cambioPregunta con el valor actual de this.indexPregunta como parámetro.
     this.cambioPregunta.emit(this.indexPregunta);
@@ -216,4 +222,23 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
     this.cargarPregunta(this.indexPregunta); // Carga la nueva pregunta.
     this.actualizarProgreso(this.indexPregunta); // Actualiza el progreso.
   }
+
+  // respuestasCirculo(index: number) {
+  //   //Guardando respuestas
+  //   if (this.indexPregunta == opciones.opcion1) {
+  //     alert('Seleccionaste nada');
+  //     this.nada ++;
+  //     console.log(this.nada);
+  //   } 
+  //   // else if(this.opciones.opcion2){
+  //   //   alert('Seleccionaste poco');
+  //   //   this.poco ++;
+  //   //   console.log(this.poco);
+  //   // }
+  //   // else if(this.opciones.opcion3){
+  //   //   alert('Seleccionaste poco');
+  //   //   this.mucho ++;
+  //   //   console.log(this.mucho);
+  //   // }
+  // }
 }

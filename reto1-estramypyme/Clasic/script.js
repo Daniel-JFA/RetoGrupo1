@@ -47,13 +47,6 @@ function manejarSiguiente() {
     return;
   }
 
-  // if (
-  //   (opciones[index] == objetoPregunta.opcion1) |
-  //   (opciones[index] == objetoPregunta.opcion2) |
-  //   (opciones[index] == objetoPregunta.opcion3)
-  // );
-  // {
-  // }
 
   // Incrementa el índice de la pregunta para avanzar a la siguiente.
 
@@ -199,8 +192,7 @@ function progreso(indexPregunta) {
 
 //esta función se encarga de crear el gráfico de circulo dorado
 function graficoRespuestas(indexPregunta) {
-  var chartDom = document.getElementById("mainRespuestas");
-  var myChart = echarts.init(chartDom);
+  var chartDom = echarts.init(document.getElementById("mainRespuestas"));
   let porQue = 5;
   let como = 5;
   let que = 5;
@@ -209,6 +201,7 @@ function graficoRespuestas(indexPregunta) {
     como = 5;
     que = 5;
   } else if (indexPregunta <= 5) {
+    console.log("Estoy funcionando");
     porQue = indexPregunta;
     como = 0;
     que = 0;
@@ -272,7 +265,7 @@ function graficoRespuestas(indexPregunta) {
     },
   };
 
-  option && myChart.setOption(option);
+  option && chartDom.setOption(option);
 
   // window.addEventListener("resize", function () {
   //   myChart.resize();

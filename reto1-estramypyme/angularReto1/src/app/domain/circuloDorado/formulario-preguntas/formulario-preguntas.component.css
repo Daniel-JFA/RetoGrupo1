@@ -234,6 +234,7 @@ button.swal2-styled.swal2-confirm {
   justify-content: center;
 }
 
+
 .links {
   display: flex;
   flex-wrap: wrap;
@@ -267,4 +268,30 @@ button.swal2-styled.swal2-confirm {
 .link.active {
   color: #fff;
   background-color: #4070f4;
+}
+
+@media (max-width: 896px) {
+  .contenedor-anterior-siguiente {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 3em;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1440px) {
+  .contenedor-preguntas div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+  }  
+  .contenedor-anterior-siguiente {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 3em;
+  }
 }

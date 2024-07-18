@@ -39,14 +39,9 @@ export class GraficaCirculoComponent implements AfterViewInit {
     this.actualizarProgreso(this.indexPregunta);
   }
 
-
   /*Actualiza el progreso en la gráfica circular según el índice de la pregunta actual,
   modificando los valores de las series y las opciones de la gráfica.*/
   actualizarProgreso(index: number) {
-    console.log(
-      'Esta actualizando el progreso en pregunta y estoy en la gráfica',
-      this.indexPregunta
-    );
 
     //Lógica para actualizar el progreso en la gráfica
     if (this.indexPregunta == 0) {
@@ -54,7 +49,6 @@ export class GraficaCirculoComponent implements AfterViewInit {
       this.como = 5;
       this.que = 5;
     } else if (this.indexPregunta <= 5) {
-      console.log('Estoy funcionando');
       this.porQue = this.indexPregunta;
       this.como = 0;
       this.que = 0;
@@ -119,6 +113,5 @@ export class GraficaCirculoComponent implements AfterViewInit {
     if (this.contenedorGrafica) {
       this.contenedorGrafica.setOption(opciones);
     }
-
   }
 }
