@@ -26,7 +26,7 @@
             [(ngModel)]="seleccionada"
             value="opcion1"
           />
-          <label for="opcion1" id="opcion1">{{ opciones?.opcion1 }}</label>
+          <label for="opcion1" id="opcion1">{{ opciones[0].texto }}</label>
         </div>
         <div>
           <input
@@ -36,7 +36,7 @@
             [(ngModel)]="seleccionada"
             value="opcion2"
           />
-          <label for="opcion2" id="opcion2">{{ opciones?.opcion2 }}</label>
+          <label for="opcion2" id="opcion2">{{ opciones[1].texto}}</label>
         </div>
         <div>
           <input
@@ -46,7 +46,7 @@
             [(ngModel)]="seleccionada"
             value="opcion3"
           />
-          <label for="opcion3" id="opcion3">{{ opciones?.opcion3 }}</label>
+          <label for="opcion3" id="opcion3">{{ opciones[2].texto }}</label>
         </div>
       </div>
       <div
@@ -90,12 +90,13 @@
         <button
           class="botonPrimario"
           id="botonPrimario"
-          (click)="manejarSiguiente()"
+          (click)="manejarSiguiente(0)"
         >
           Siguiente
         </button>
       </div>
       </div>
     </div>
+    <app-resultados-circulo [respuestaGuardada]="respuestaGuardada"></app-resultados-circulo>
   </section>
 </div>
