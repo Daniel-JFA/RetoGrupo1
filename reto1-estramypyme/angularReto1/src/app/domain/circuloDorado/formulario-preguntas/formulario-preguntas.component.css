@@ -285,7 +285,8 @@ button.swal2-styled.swal2-confirm {
     display: flex;
     flex-direction: column;
     gap: 0.4em;
-  }  
+  }
+  
   .contenedor-anterior-siguiente {
     display: flex;
     flex-direction: column;
