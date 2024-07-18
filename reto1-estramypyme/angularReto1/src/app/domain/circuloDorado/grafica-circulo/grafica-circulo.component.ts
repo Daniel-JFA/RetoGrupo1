@@ -42,7 +42,6 @@ export class GraficaCirculoComponent implements AfterViewInit {
   /*Actualiza el progreso en la gráfica circular según el índice de la pregunta actual,
   modificando los valores de las series y las opciones de la gráfica.*/
   actualizarProgreso(index: number) {
-
     //Lógica para actualizar el progreso en la gráfica
     if (this.indexPregunta == 0) {
       this.porQue = 5;

@@ -12,11 +12,12 @@ import { PreguntasService } from '../services/preguntas.service';
 import { FormsModule } from '@angular/forms';
 import * as echarts from 'echarts';
 import Swal from 'sweetalert2';
+import { ResultadosCirculoComponent } from '../../resultados/resultados-circulo/resultados-circulo.component';
 
 @Component({
   selector: 'app-formulario-preguntas',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ResultadosCirculoComponent],
   templateUrl: './formulario-preguntas.component.html',
   styleUrl: './formulario-preguntas.component.css',
 })
@@ -36,13 +37,13 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   pocoPorque: number = 0;
   muchoPorue: number = 0;
   contenedorGrafica: any;
-  respuestasSeleccionadas: number[] = [];
   nada: number = 0;
   poco: number = 0;
   mucho: number = 0;
 
   //Comunica cambios en el estado del componente a otros componentes
   @Output() cambioPregunta = new EventEmitter<number>();
+  @Output() respuestaGuardada = new EventEmitter<void>();
 
   /*"Inyecta el servicio PreguntasService en la clase y crea una propiedad privada preguntaService
   para acceder a sus métodos y propiedades."*/
@@ -166,7 +167,9 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   }
 
   //Método para validar que alguna opción sea seleccionada y así avanzar a la siguiente pregunta
-  manejarSiguiente() {
+  manejarSiguiente(respuesta: number) {
+    // Guardar la respuesta seleccionada en el servicio
+
     if (!this.seleccionada) {
       Swal.fire({
         icon: 'error',
@@ -175,7 +178,11 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    // this.respuestasCirculo()
+    console.log(
+      this.preguntaService.guardarRespuesta(this.indexPregunta, respuesta),
+      this.respuestaGuardada.emit()
+    );
+
     this.indexPregunta++;
 
     // Incrementa el índice de la pregunta para avanzar a la siguiente.
@@ -218,27 +225,7 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
     if (this.indexPregunta > 0) {
       this.indexPregunta--; // Disminuye el índice de la pregunta para retroceder a la anterior.
     }
-
     this.cargarPregunta(this.indexPregunta); // Carga la nueva pregunta.
     this.actualizarProgreso(this.indexPregunta); // Actualiza el progreso.
   }
-
-  // respuestasCirculo(index: number) {
-  //   //Guardando respuestas
-  //   if (this.indexPregunta == opciones.opcion1) {
-  //     alert('Seleccionaste nada');
-  //     this.nada ++;
-  //     console.log(this.nada);
-  //   } 
-  //   // else if(this.opciones.opcion2){
-  //   //   alert('Seleccionaste poco');
-  //   //   this.poco ++;
-  //   //   console.log(this.poco);
-  //   // }
-  //   // else if(this.opciones.opcion3){
-  //   //   alert('Seleccionaste poco');
-  //   //   this.mucho ++;
-  //   //   console.log(this.mucho);
-  //   // }
-  // }
 }
