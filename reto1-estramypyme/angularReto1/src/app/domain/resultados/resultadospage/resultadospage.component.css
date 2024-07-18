@@ -73,3 +73,207 @@
   align-items: center;
 
 }
+
+@media (max-width: 786px){
+  .color1 {
+    width: 10px;
+    height: 10px;
+    background-color: #155fe7;
+    border-radius: 100%;
+  }
+  
+  .color2 {
+    width: 10px;
+    height: 10px;
+    background-color: #F8D203;
+    border-radius: 100%;
+  }
+  .item1 {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+  }
+  .indicadoresRadar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    justify-content: start;
+  }
+
+  .indicadoresCirculo {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 0.5em;
+  }
+  .seccion__resultados {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+    margin-top: 50px;
+    justify-content: space-around;
+    gap: 2em;
+  }
+  .contenedor__resultado {
+    width: 100%;
+    background-color: white;
+    border-radius: 0.5em;
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1);
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+  }
+  .resultados__circulo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .resultados__radar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+
+@media (min-width: 600px) and (max-width: 1280px){
+  .seccion__resultados {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+    margin-top: 50px;
+    justify-content: center;
+    gap: 2em;
+  }
+  .resultados__circulo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .resultados__radar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .contenedor__resultado {
+    width: auto;
+    background-color: white;
+    border-radius: 0.5em;
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1);
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .indicadoresCirculo {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 0.5em;
+  }
+  .indicadoresRadar {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.5em;
+    justify-content: start;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1430px){
+  .seccion__resultados {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+    margin-top: 50px;
+    justify-content: space-around;
+    gap: 1em;
+  }
+  .resultados__circulo {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .resultados__radar {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+  }
+  .contenedor__resultado {
+    width: auto;
+    background-color: white;
+    border-radius: 0.5em;
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1);
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .indicadoresCirculo {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 0.5em;
+  }
+  .indicadoresRadar {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.5em;
+    justify-content: start;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1620px) {
+  .seccion__resultados {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+    margin-top: 50px;
+    justify-content: space-around;
+    gap: 2em;
+  }
+  .resultados__circulo {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .resultados__radar {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+  }
+  .contenedor__resultado {
+    width: auto;
+    background-color: white;
+    border-radius: 0.5em;
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.1);
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+  }
+  .indicadoresCirculo {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 0.5em;
+  }
+  .indicadoresRadar {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.5em;
+    justify-content: start;
+  }
+}

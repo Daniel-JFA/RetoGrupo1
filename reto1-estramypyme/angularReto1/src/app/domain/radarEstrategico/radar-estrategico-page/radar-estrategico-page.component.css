@@ -67,3 +67,25 @@
     justify-content: center;
   }
 }
+
+@media (min-width: 786px) and (max-width: 1280px)  {
+  .seccion__preguntas {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+  }
+  .contenedor__grafica {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .contenedor__preguntas {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+

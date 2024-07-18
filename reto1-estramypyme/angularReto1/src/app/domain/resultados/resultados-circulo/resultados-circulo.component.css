@@ -1,0 +1,24 @@
+.resultadosCirculo {
+    width: 500px;
+    height: 500px;
+  }
+  
+  @media (max-width: 786px) {
+    .resultadosCirculo {
+      width: 100%;
+    }
+  }
+  
+  @media (min-width: 1280px) and (max-width: 1430px) {
+      .resultadosCirculo {
+        width: 300px;
+      }
+    }
+
+
+    @media (min-width: 1440px) and (max-width: 1620px) {
+      .resultadosCirculo {
+        width: 400px;
+        height: 400px;
+      }
+    }
