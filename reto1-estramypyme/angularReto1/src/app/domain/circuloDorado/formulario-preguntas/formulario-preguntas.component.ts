@@ -168,8 +168,7 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
 
   //Método para validar que alguna opción sea seleccionada y así avanzar a la siguiente pregunta
   manejarSiguiente(respuesta: number) {
-    // Guardar la respuesta seleccionada en el servicio
-
+    
     if (!this.seleccionada) {
       Swal.fire({
         icon: 'error',
@@ -177,15 +176,16 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
       });
       return;
     }
-
+    
+    // Guardar la respuesta seleccionada en el servicio
     console.log(
       this.preguntaService.guardarRespuesta(this.indexPregunta, respuesta),
       this.respuestaGuardada.emit()
     );
 
+    // Incrementa el índice de la pregunta para avanzar a la siguiente.
     this.indexPregunta++;
 
-    // Incrementa el índice de la pregunta para avanzar a la siguiente.
 
     //emite un evento cambioPregunta con el valor actual de this.indexPregunta como parámetro.
     this.cambioPregunta.emit(this.indexPregunta);

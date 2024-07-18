@@ -65,7 +65,6 @@ export class GraficaCirculoComponent implements AfterViewInit {
     const opciones = {
       title: [
         {
-          text: '', // aca va el titulo lo quite porque no se veia bien
           left: 'center',
           top: 0,
         },

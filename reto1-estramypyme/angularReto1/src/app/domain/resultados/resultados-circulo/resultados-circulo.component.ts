@@ -36,19 +36,6 @@ export class ResultadosCirculoComponent implements AfterViewInit {
     const poco = [0, 0, 0];
     const mucho = [0, 0, 0];
 
-
-    // for (let index = 0; index < respuestas.length; index++) {
-    //   const sectionIndex = Math.floor(index / 5);
-    //   if (respuestas[index] === 0) {
-    //     nada[sectionIndex] += 1;
-    //   } else if (respuestas[index] === 1) {
-    //     poco[sectionIndex] += 1;
-    //   } else if (respuestas[index] === 2) {
-    //     mucho[sectionIndex] += 1;
-    //   }
-    // }
-    
-
     respuestas.forEach((respuesta, index) => {
       const sectionIndex = Math.floor(index / 5);
       if (index === 0) {
