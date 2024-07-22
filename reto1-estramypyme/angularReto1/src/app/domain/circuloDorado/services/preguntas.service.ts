@@ -4,8 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class PreguntasService {
+  private readonly storageKey = 'respuestas';
+
   // Array para almacenar las respuestas seleccionadas
-  private respuestas: number[] = [];
+  private respuestas: any[] = [];
 
   //Array de objetos que contiene cada pregunta y opciones
   basePreguntas = [
@@ -167,20 +169,56 @@ export class PreguntasService {
   ];
 
   //El constructor de la clase no hace nada en este caso, pero se utiliza para inicializar la clase.
-  constructor() {}
+  constructor() {
+    this.cargarRespuestas();
+  }
 
   //Este método devuelve el array basePreguntas que contiene todas las preguntas y opciones del cuestionario.
   getPreguntas(): any {
     return this.basePreguntas;
   }
 
-  // Método para guardar una respuesta
-  guardarRespuesta(index: number, respuesta: number): void {
-    this.respuestas[index] = respuesta;
+  //Método para guardar una respuesta
+  guardarRespuesta(indexPregunta: number, respuesta: number): void {
+    this.respuestas[indexPregunta] = respuesta;
+    this.guardarRespuestas();
+  }
+
+  // guardarRespuesta(index: number, respuesta: string) {
+  //   this.respuestas[index] = {
+  //     seccion: this.getSeccion(index),
+  //     opcion: respuesta,
+  //   };
+  //   localStorage.setItem('respuestas', JSON.stringify(this.respuestas));
+  // }
+
+  getSeccion(index: number) {
+    if (index < 5) return '¿Por qué?';
+    if (index < 10) return '¿Cómo?';
+    return '¿Qué?';
   }
 
   // Método para obtener las respuestas seleccionadas
   getRespuestas(): number[] {
     return this.respuestas;
-}
+  }
+
+  // Método para guardar las respuestas en localStorage
+  private guardarRespuestas(): void {
+    console.log(
+      localStorage.setItem(this.storageKey, JSON.stringify(this.respuestas))
+    );
+  }
+
+  // Método para cargar las respuestas desde localStorage
+  private cargarRespuestas(): void {
+    const guardarRespuestas = localStorage.getItem(this.storageKey);
+    if (guardarRespuestas) {
+      this.respuestas = JSON.parse(guardarRespuestas);
+    }
+  }
+
+  reiniciarRespuestas(): void {
+    localStorage.removeItem('respuestas');
+  }
 }

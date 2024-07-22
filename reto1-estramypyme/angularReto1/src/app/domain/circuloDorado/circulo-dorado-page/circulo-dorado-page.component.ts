@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 import { FormularioPreguntasComponent } from '../formulario-preguntas/formulario-preguntas.component';
 import { GraficaCirculoComponent } from '../grafica-circulo/grafica-circulo.component';
 import { HeaderComponent } from '../../header/header.component';
@@ -16,4 +16,7 @@ export class CirculoDoradoPageComponent {
   actualizarProgreso(nuevoProgreso: number) {
     this.indexPregunta = nuevoProgreso;
   }
+
+  // @Input() reinicioFormulario: EventEmitter<void> = new EventEmitter<void>();
+
 }
