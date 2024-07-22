@@ -15,7 +15,7 @@
       </div>
       <p class="contenedor__parrafo__preguntas" id="contenedor-parrafo">
         <span>En una escala del 1 al 3</span><br />
-        {{ objetoPregunta?.pregunta }}
+        {{ preguntaService.objetoPregunta.pregunta}}
       </p>
       <div class="contenedor-respuestas" id="contenedor-respuestas">
         <div>
@@ -23,30 +23,30 @@
             type="radio"
             id="opcion1"
             name="respuesta"
-            [(ngModel)]="seleccionada"
+            [(ngModel)]="preguntaService.seleccionada"
             value="opcion1"
           />
-          <label for="opcion1" id="opcion1">{{ opciones[0].texto }}</label>
+          <label for="opcion1" id="opcion1">{{ preguntaService.opciones[0].texto }}</label>
         </div>
         <div>
           <input
             type="radio"
             id="opcion2"
             name="respuesta"
-            [(ngModel)]="seleccionada"
+            [(ngModel)]="preguntaService.seleccionada"
             value="opcion2"
           />
-          <label for="opcion2" id="opcion2">{{ opciones[1].texto}}</label>
+          <label for="opcion2" id="opcion2">{{ preguntaService.opciones[1].texto}}</label>
         </div>
         <div>
           <input
             type="radio"
             id="opcion3"
             name="respuesta"
-            [(ngModel)]="seleccionada"
+            [(ngModel)]="preguntaService.seleccionada"
             value="opcion3"
           />
-          <label for="opcion3" id="opcion3">{{ opciones[2].texto }}</label>
+          <label for="opcion3" id="opcion3">{{ preguntaService.opciones[2].texto }}</label>
         </div>
       </div>
       <div
@@ -66,7 +66,7 @@
         <div class="contenedor__paginador">
           <div>
             <p class="progreso" id="progreso">
-              Pregunta {{ indexPregunta }} de {{ preguntas.length }}
+              Pregunta {{ preguntaService.indexPregunta }} de {{ preguntaService.basePreguntas.length }}
             </p>
           </div>
         </div>
@@ -83,7 +83,7 @@
       <button
           class="botonPrimario"
           id="botonPrimario"
-          (click)="reiniciarRespuestas()"
+          (click)="preguntaService.reiniciarRespuestas()"
         >
           Reiniciar
         </button>

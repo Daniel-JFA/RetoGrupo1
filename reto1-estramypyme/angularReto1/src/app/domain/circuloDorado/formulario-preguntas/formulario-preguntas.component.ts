@@ -6,7 +6,6 @@ import {
   ViewChild,
   Output,
   EventEmitter,
-  ChangeDetectorRef,
 } from '@angular/core';
 import { PreguntasService } from '../services/preguntas.service';
 import { FormsModule } from '@angular/forms';
@@ -24,12 +23,11 @@ import { ResultadosCirculoComponent } from '../../resultados/resultados-circulo/
 export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   //Propiedades de la clase o variables que se declaran dentro de una clase)
   preguntas: any[] = [];
-  respuestas: any = {};
-  indexPregunta: number = 0;
+  // indexPregunta: number = 0;
   valorProgreso: number = 0;
-  objetoPregunta: any;
-  opciones: any;
-  seleccionada: boolean = true;
+  // objetoPregunta: any;
+  // opciones: any;
+  // seleccionada: boolean = true;
   isPorQueChecked: boolean = true;
   isComoChecked: boolean = false;
   isQueChecked: boolean = false;
@@ -49,47 +47,38 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
 
   /*"Inyecta el servicio PreguntasService en la clase y crea una propiedad privada preguntaService
   para acceder a sus métodos y propiedades."*/
-  constructor(
-    private preguntaService: PreguntasService,
-    private cdRef: ChangeDetectorRef
-  ) {
+  constructor(public preguntaService: PreguntasService) {
     this.cargarRespuestas();
   }
 
   //Cuando el componente se inicializa
   ngOnInit(): void {
-    this.preguntas = this.preguntaService.getPreguntas();
-    this.cargarPregunta(this.indexPregunta);
+    // this.preguntaService.getPreguntas();
+    this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
+    // this.preguntaService.cargarPregunta();
   }
 
   @ViewChild('graficaProgreso') contenedor!: ElementRef;
 
   guardarRespuesta(preguntaId: number, respuesta: any): void {
-    this.respuestas[preguntaId] = respuesta;
-    localStorage.setItem('respuestas', JSON.stringify(this.respuestas));
+    this.preguntaService.respuestas[preguntaId] = respuesta;
+    localStorage.setItem('respuestas', JSON.stringify(this.preguntaService.respuestas));
   }
 
   cargarRespuestas(): void {
     const respuestasGuardadas = localStorage.getItem('respuestas');
     if (respuestasGuardadas) {
-      this.respuestas = JSON.parse(respuestasGuardadas);
+      this.preguntaService.respuestas = JSON.parse(respuestasGuardadas);
     }
-  }
-
-  reiniciarRespuestas(): void {
-    this.preguntaService.reiniciarRespuestas();
-    this.respuestas = {};
-    this.preguntas = this.preguntaService.getPreguntas();
-    this.cdRef.detectChanges();
   }
 
   ngAfterViewInit(): void {
     this.contenedorGrafica = echarts.init(this.contenedor.nativeElement);
-    this.actualizarProgreso(this.indexPregunta);
+    this.actualizarProgreso(this.preguntaService.indexPregunta);
   }
 
   actualizarProgreso(value: number) {
-    this.valorProgreso = this.indexPregunta * 7;
+    this.valorProgreso = this.preguntaService.indexPregunta * 7;
 
     if (this.valorProgreso > 100) {
       this.valorProgreso = 100;
@@ -180,21 +169,9 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
     }
   }
 
-  //Cargar cada pregunta del servicio
-  cargarPregunta(index: number) {
-    if (index < this.preguntas.length) {
-      this.seleccionada = false;
-      this.objetoPregunta = this.preguntas[index];
-      this.opciones = this.objetoPregunta.opciones;
-      console.log(`Cargando pregunta con índice: ${index}`);
-    } else {
-      console.log('No hay más preguntas.');
-    }
-  }
-
   //Método para validar que alguna opción sea seleccionada y así avanzar a la siguiente pregunta
   manejarSiguiente(respuesta: number) {
-    if (!this.seleccionada) {
+    if (!this.preguntaService.seleccionada) {
       Swal.fire({
         icon: 'error',
         title: 'Selecciona una opción 😒',
@@ -204,53 +181,56 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
 
     // Guardar la respuesta seleccionada en el servicio
     console.log(
-      this.preguntaService.guardarRespuesta(this.indexPregunta, respuesta),
+      this.preguntaService.guardarRespuesta(
+        this.preguntaService.indexPregunta,
+        respuesta
+      ),
       this.respuestaGuardada.emit()
     );
 
     // Incrementa el índice de la pregunta para avanzar a la siguiente.
-    this.indexPregunta++;
+    this.preguntaService.indexPregunta++;
 
     //emite un evento cambioPregunta con el valor actual de this.indexPregunta como parámetro.
-    this.cambioPregunta.emit(this.indexPregunta);
+    this.cambioPregunta.emit(this.preguntaService.indexPregunta);
 
-    if (this.indexPregunta == 15) {
+    if (this.preguntaService.indexPregunta == 15) {
       Swal.fire({
         title: "¡Bien hecho, has finalizado todas las secciones' 👏",
         text: '¡Modelo Círculo Dorado completado!🎉',
         // customClass: 'my-custom-class',
       });
-      this.indexPregunta = 0;
-      this.cargarPregunta(this.indexPregunta);
+      this.preguntaService.indexPregunta = 0;
+      this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
     }
 
-    if (this.indexPregunta == 5) {
+    if (this.preguntaService.indexPregunta == 5) {
       Swal.fire({
         title: "¡Bien hecho, has terminado la sección '¿Por qué?'! 👏",
         // customClass: 'my-custom-class',
       }).then(() => {
         this.isComoChecked = true;
-        this.cargarPregunta(this.indexPregunta);
+        this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
       });
-    } else if (this.indexPregunta == 10) {
+    } else if (this.preguntaService.indexPregunta == 10) {
       Swal.fire({
         title: "¡Bien hecho, has terminado la sección '¿Cómo?!' 👏",
         // customClass: 'my-custom-class',
       }).then(() => {
         this.isQueChecked = true;
-        this.cargarPregunta(this.indexPregunta);
+        this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
       });
     }
-    this.cargarPregunta(this.indexPregunta); // Carga la nueva pregunta.
-    this.actualizarProgreso(this.indexPregunta); // Actualiza el progreso.
+    this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta); // Carga la nueva pregunta.
+    this.actualizarProgreso(this.preguntaService.indexPregunta); // Actualiza el progreso.
   }
 
   manejarAnterior() {
     console.log(this.cargarRespuestas());
-    if (this.indexPregunta > 0) {
-      this.indexPregunta--; // Disminuye el índice de la pregunta para retroceder a la anterior.
+    if (this.preguntaService.indexPregunta > 0) {
+      this.preguntaService.indexPregunta--; // Disminuye el índice de la pregunta para retroceder a la anterior.
     }
-    this.cargarPregunta(this.indexPregunta); // Carga la nueva pregunta.
-    this.actualizarProgreso(this.indexPregunta); // Actualiza el progreso.
+    this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta); // Carga la nueva pregunta.
+    this.actualizarProgreso(this.preguntaService.indexPregunta); // Actualiza el progreso.
   }
 }
