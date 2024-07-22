@@ -204,6 +204,7 @@ button.swal2-styled.swal2-confirm {
 }
 
 .botonPrimario {
+  margin-bottom: 1em;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

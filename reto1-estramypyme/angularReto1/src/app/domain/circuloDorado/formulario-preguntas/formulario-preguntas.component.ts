@@ -6,7 +6,7 @@ import {
   ViewChild,
   Output,
   EventEmitter,
-  SimpleChanges,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { PreguntasService } from '../services/preguntas.service';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +24,7 @@ import { ResultadosCirculoComponent } from '../../resultados/resultados-circulo/
 export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   //Propiedades de la clase o variables que se declaran dentro de una clase)
   preguntas: any[] = [];
+  respuestas: any = {};
   indexPregunta: number = 0;
   valorProgreso: number = 0;
   objetoPregunta: any;
@@ -44,10 +45,16 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   //Comunica cambios en el estado del componente a otros componentes
   @Output() cambioPregunta = new EventEmitter<number>();
   @Output() respuestaGuardada = new EventEmitter<void>();
+  // @Output() reinicioFormulario = new EventEmitter<void>();
 
   /*"Inyecta el servicio PreguntasService en la clase y crea una propiedad privada preguntaService
   para acceder a sus métodos y propiedades."*/
-  constructor(private preguntaService: PreguntasService) {}
+  constructor(
+    private preguntaService: PreguntasService,
+    private cdRef: ChangeDetectorRef
+  ) {
+    this.cargarRespuestas();
+  }
 
   //Cuando el componente se inicializa
   ngOnInit(): void {
@@ -56,6 +63,25 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   }
 
   @ViewChild('graficaProgreso') contenedor!: ElementRef;
+
+  guardarRespuesta(preguntaId: number, respuesta: any): void {
+    this.respuestas[preguntaId] = respuesta;
+    localStorage.setItem('respuestas', JSON.stringify(this.respuestas));
+  }
+
+  cargarRespuestas(): void {
+    const respuestasGuardadas = localStorage.getItem('respuestas');
+    if (respuestasGuardadas) {
+      this.respuestas = JSON.parse(respuestasGuardadas);
+    }
+  }
+
+  reiniciarRespuestas(): void {
+    this.preguntaService.reiniciarRespuestas();
+    this.respuestas = {};
+    this.preguntas = this.preguntaService.getPreguntas();
+    this.cdRef.detectChanges();
+  }
 
   ngAfterViewInit(): void {
     this.contenedorGrafica = echarts.init(this.contenedor.nativeElement);
@@ -168,8 +194,6 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
 
   //Método para validar que alguna opción sea seleccionada y así avanzar a la siguiente pregunta
   manejarSiguiente(respuesta: number) {
-    // Guardar la respuesta seleccionada en el servicio
-
     if (!this.seleccionada) {
       Swal.fire({
         icon: 'error',
@@ -178,14 +202,14 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
       return;
     }
 
+    // Guardar la respuesta seleccionada en el servicio
     console.log(
       this.preguntaService.guardarRespuesta(this.indexPregunta, respuesta),
       this.respuestaGuardada.emit()
     );
 
-    this.indexPregunta++;
-
     // Incrementa el índice de la pregunta para avanzar a la siguiente.
+    this.indexPregunta++;
 
     //emite un evento cambioPregunta con el valor actual de this.indexPregunta como parámetro.
     this.cambioPregunta.emit(this.indexPregunta);
@@ -222,6 +246,7 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   }
 
   manejarAnterior() {
+    console.log(this.cargarRespuestas());
     if (this.indexPregunta > 0) {
       this.indexPregunta--; // Disminuye el índice de la pregunta para retroceder a la anterior.
     }

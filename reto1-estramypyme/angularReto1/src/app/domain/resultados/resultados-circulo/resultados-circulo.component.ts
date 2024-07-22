@@ -1,6 +1,14 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import * as echarts from 'echarts';
 import { PreguntasService } from '../../circuloDorado/services/preguntas.service';
+import { style } from '@angular/animations';
 
 @Component({
   selector: 'app-resultados-circulo',
@@ -10,17 +18,36 @@ import { PreguntasService } from '../../circuloDorado/services/preguntas.service
   styleUrl: './resultados-circulo.component.css',
 })
 export class ResultadosCirculoComponent implements AfterViewInit {
+  preguntas: any[] = [];
+  opciones: any;
+  respuestas: any = {};
+  objetoPregunta: any;
   contenedorGrafica: any;
 
   @ViewChild('resultadosCirculo') contenedor!: ElementRef;
   @Input() respuestaGuardada: EventEmitter<void> = new EventEmitter<void>();
+  // @Input() reinicioFormulario: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private preguntaService: PreguntasService) {}
 
   ngOnInit() {
+    this.preguntas = this.preguntaService.getPreguntas();
+    this.cargarRespuestas();
     this.respuestaGuardada.subscribe(() => {
       this.iniciarGrafica();
     });
+  }
+
+  cargarPregunta(index: number) {
+    this.objetoPregunta = this.preguntas[index];
+    this.opciones = this.objetoPregunta.opciones;
+  }
+
+  cargarRespuestas(): void {
+    const respuestasGuardadas = localStorage.getItem('respuestas');
+    if (respuestasGuardadas) {
+      this.respuestas = JSON.parse(respuestasGuardadas);
+    }
   }
 
   ngAfterViewInit() {
@@ -29,7 +56,7 @@ export class ResultadosCirculoComponent implements AfterViewInit {
   }
 
   iniciarGrafica() {
-    const respuestas = this.preguntaService.getRespuestas();
+    const seccion = this.preguntaService.getRespuestas();
 
     const categorias = ['¿Por qué?', '¿Cómo?', '¿Qué?'];
     const nada = [0, 0, 0];
@@ -37,26 +64,15 @@ export class ResultadosCirculoComponent implements AfterViewInit {
     const mucho = [0, 0, 0];
 
 
-    // for (let index = 0; index < respuestas.length; index++) {
-    //   const sectionIndex = Math.floor(index / 5);
-    //   if (respuestas[index] === 0) {
-    //     nada[sectionIndex] += 1;
-    //   } else if (respuestas[index] === 1) {
-    //     poco[sectionIndex] += 1;
-    //   } else if (respuestas[index] === 2) {
-    //     mucho[sectionIndex] += 1;
-    //   }
-    // }
-    
+    seccion.forEach((seccion, indexPregunta) => {
+      const seccionIndex = Math.floor(indexPregunta / 5);
 
-    respuestas.forEach((respuesta, index) => {
-      const sectionIndex = Math.floor(index / 5);
-      if (index === 0) {
-        nada[sectionIndex] += 1;
-      } else if (index === 1) {
-        poco[sectionIndex] += 1;
-      } else if (index === 2) {
-        mucho[sectionIndex] += 1;
+      if (seccion === 0) {
+        nada[seccionIndex] += 1;
+      } else if (seccion === 1) {
+        poco[seccionIndex] += 1;
+      } else if (seccion === 2) {
+        mucho[seccionIndex] += 1;
       }
     });
 
@@ -68,7 +84,7 @@ export class ResultadosCirculoComponent implements AfterViewInit {
         },
       },
       legend: {
-        data: ['Nada', 'Poco', 'Mucho'],
+        data: ['Nada' , 'Poco', 'Mucho'],
       },
       grid: {
         left: '3%',
@@ -79,6 +95,9 @@ export class ResultadosCirculoComponent implements AfterViewInit {
       xAxis: {
         type: 'category',
         data: categorias,
+        itemStyle: {
+          color: '#a90000',
+        },
       },
       yAxis: {
         type: 'value',
@@ -92,6 +111,7 @@ export class ResultadosCirculoComponent implements AfterViewInit {
             show: true,
           },
           data: nada,
+          
         },
         {
           name: 'Poco',
@@ -115,5 +135,4 @@ export class ResultadosCirculoComponent implements AfterViewInit {
     };
     this.contenedorGrafica.setOption(opciones);
   }
-
 }
