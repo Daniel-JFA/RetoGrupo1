@@ -9,6 +9,7 @@ import {
 import * as echarts from 'echarts';
 import { PreguntasService } from '../../circuloDorado/services/preguntas.service';
 import { style } from '@angular/animations';
+import { log } from 'echarts/types/src/util/log.js';
 
 @Component({
   selector: 'app-resultados-circulo',
@@ -18,7 +19,6 @@ import { style } from '@angular/animations';
   styleUrl: './resultados-circulo.component.css',
 })
 export class ResultadosCirculoComponent implements AfterViewInit {
-  preguntas: any[] = [];
   opciones: any;
   respuestas: any = {};
   objetoPregunta: any;
@@ -28,20 +28,20 @@ export class ResultadosCirculoComponent implements AfterViewInit {
   @Input() respuestaGuardada: EventEmitter<void> = new EventEmitter<void>();
   // @Input() reinicioFormulario: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private preguntaService: PreguntasService) {}
+  constructor(public preguntaService: PreguntasService) {}
 
   ngOnInit() {
-    this.preguntas = this.preguntaService.getPreguntas();
-    this.cargarRespuestas();
+    this.preguntaService.getPreguntas();
+    this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
     this.respuestaGuardada.subscribe(() => {
       this.iniciarGrafica();
     });
   }
 
-  cargarPregunta(index: number) {
-    this.objetoPregunta = this.preguntas[index];
-    this.opciones = this.objetoPregunta.opciones;
-  }
+  // cargarPregunta(index: number) {
+  //   this.objetoPregunta = this.preguntas[index];
+  //   this.opciones = this.objetoPregunta.opciones;
+  // }
 
   cargarRespuestas(): void {
     const respuestasGuardadas = localStorage.getItem('respuestas');
@@ -56,25 +56,55 @@ export class ResultadosCirculoComponent implements AfterViewInit {
   }
 
   iniciarGrafica() {
-    const seccion = this.preguntaService.getRespuestas();
+    console.log(     this.preguntaService.getRespuestas()
+  );
 
     const categorias = ['¿Por qué?', '¿Cómo?', '¿Qué?'];
-    const nada = [0, 0, 0];
-    const poco = [0, 0, 0];
-    const mucho = [0, 0, 0];
+    let nadaPorque = 0,
+      pocoPorque = 0,
+      muchoPorque = 0;
+    let nadaComo = 0,
+      pocoComo = 0,
+      muchoComo = 0;
+    let nadaQue = 0,
+      pocoQue = 0,
+      muchoQue = 0;
 
-
-    seccion.forEach((seccion, indexPregunta) => {
-      const seccionIndex = Math.floor(indexPregunta / 5);
-
-      if (seccion === 0) {
-        nada[seccionIndex] += 1;
-      } else if (seccion === 1) {
-        poco[seccionIndex] += 1;
-      } else if (seccion === 2) {
-        mucho[seccionIndex] += 1;
+     
+      if (this.preguntaService.indexPregunta <= 5) {
+        // if (respuestas === this.preguntaService.opciones[0]) nadaPorque ++;
+        if (this.preguntaService.opciones[1].texto === 'Poco') pocoPorque++;
+        if (this.preguntaService.opciones[2].texto === 'Mucho') muchoPorque++;
+        console.log(nadaPorque);
+        
       }
-    });
+      // } else if (respuesta.seccion === '¿Cómo?') {
+      //   if (respuesta.opcion === 'Nada') nadaComo++;
+      //   else if (respuesta.opcion === 'Poco') pocoComo++;
+      //   else if (respuesta.opcion === 'Mucho') muchoComo++;
+      // } else if (respuesta.seccion === '¿Qué?') {
+      //   if (respuesta.opcion === 'Nada') nadaQue++;
+      //   else if (respuesta.opcion === 'Poco') pocoQue++;
+      //   else if (respuesta.opcion === 'Mucho') muchoQue++;
+      // }
+    
+
+    // const nada = [0, 0, 0];
+    // const poco = [0, 0, 0];
+    // const mucho = [0, 0, 0];
+
+
+    // seccion.forEach(seccion, indexPregunta) => {
+    //   const seccionIndex = Math.floor(indexPregunta / 5);
+
+    //   if (seccion === 0) {
+    //     nada[seccionIndex] += 1;
+    //   } else if (seccion === 1) {
+    //     poco[seccionIndex] += 1;
+    //   } else if (seccion === 2) {
+    //     mucho[seccionIndex] += 1;
+    //   }
+    // };
 
     const opciones = {
       tooltip: {
@@ -84,7 +114,7 @@ export class ResultadosCirculoComponent implements AfterViewInit {
         },
       },
       legend: {
-        data: ['Nada' , 'Poco', 'Mucho'],
+        data: ['Nada', 'Poco', 'Mucho'],
       },
       grid: {
         left: '3%',
@@ -110,8 +140,7 @@ export class ResultadosCirculoComponent implements AfterViewInit {
           label: {
             show: true,
           },
-          data: nada,
-          
+          data: [nadaPorque, nadaComo, nadaQue],
         },
         {
           name: 'Poco',
@@ -120,7 +149,7 @@ export class ResultadosCirculoComponent implements AfterViewInit {
           label: {
             show: true,
           },
-          data: poco,
+          data: [pocoPorque, pocoComo, pocoQue]
         },
         {
           name: 'Mucho',
@@ -129,10 +158,10 @@ export class ResultadosCirculoComponent implements AfterViewInit {
           label: {
             show: true,
           },
-          data: mucho,
+          data: [muchoPorque, muchoComo, muchoQue],
         },
       ],
     };
     this.contenedorGrafica.setOption(opciones);
-  }
-}
+  
+}};

@@ -4,10 +4,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class PreguntasService {
+  // public preguntas: any[] = [];
+  public seleccionada: boolean = true;
+  public objetoPregunta: any;
+  public opciones: any;
+  public indexPregunta: number = 0;
+  public respuestas: any = {};
+
   private readonly storageKey = 'respuestas';
 
   // Array para almacenar las respuestas seleccionadas
-  private respuestas: any[] = [];
+  // private respuestas: any[] = [];
 
   //Array de objetos que contiene cada pregunta y opciones
   basePreguntas = [
@@ -173,34 +180,32 @@ export class PreguntasService {
     this.cargarRespuestas();
   }
 
+  cargarPregunta(index: number) {
+    if (index < this.basePreguntas.length) {
+      this.seleccionada = false;
+      this.objetoPregunta = this.basePreguntas[index];
+      this.opciones = this.objetoPregunta.opciones;
+      console.log(`Cargando pregunta con índice: ${index}`);
+    } else {
+      console.log('No hay más preguntas.');
+    }
+  }
+
   //Este método devuelve el array basePreguntas que contiene todas las preguntas y opciones del cuestionario.
   getPreguntas(): any {
     return this.basePreguntas;
+  }
+
+
+  // Método para obtener las respuestas seleccionadas
+  getRespuestas(): number[] {
+    return this.respuestas;
   }
 
   //Método para guardar una respuesta
   guardarRespuesta(indexPregunta: number, respuesta: number): void {
     this.respuestas[indexPregunta] = respuesta;
     this.guardarRespuestas();
-  }
-
-  // guardarRespuesta(index: number, respuesta: string) {
-  //   this.respuestas[index] = {
-  //     seccion: this.getSeccion(index),
-  //     opcion: respuesta,
-  //   };
-  //   localStorage.setItem('respuestas', JSON.stringify(this.respuestas));
-  // }
-
-  getSeccion(index: number) {
-    if (index < 5) return '¿Por qué?';
-    if (index < 10) return '¿Cómo?';
-    return '¿Qué?';
-  }
-
-  // Método para obtener las respuestas seleccionadas
-  getRespuestas(): number[] {
-    return this.respuestas;
   }
 
   // Método para guardar las respuestas en localStorage
@@ -220,5 +225,8 @@ export class PreguntasService {
 
   reiniciarRespuestas(): void {
     localStorage.removeItem('respuestas');
+    this.reiniciarRespuestas();
+    this.respuestas = {};
+    this.getPreguntas();
   }
 }
