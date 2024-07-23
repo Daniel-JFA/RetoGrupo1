@@ -15,79 +15,108 @@
       </div>
       <p class="contenedor__parrafo__preguntas" id="contenedor-parrafo">
         <span>En una escala del 1 al 3</span><br />
-        {{ preguntaService.objetoPregunta.pregunta}}
+        {{ preguntaService.objetoPregunta.pregunta }}
       </p>
       <div class="contenedor-respuestas" id="contenedor-respuestas">
         <div>
           <input
             type="radio"
-            id="opcion1"
+            id="nada"
             name="respuesta"
+            value="nada"
             [(ngModel)]="preguntaService.seleccionada"
-            value="opcion1"
+            (click)="
+              seleccionarOpcion(
+                this.preguntaService.indexPregunta,
+                this.preguntaService.opciones[0].texto
+              )
+            "
           />
-          <label for="opcion1" id="opcion1">{{ preguntaService.opciones[0].texto }}</label>
+          <label for="nada" id="nada">{{
+            preguntaService.opciones[0].texto
+          }}</label>
         </div>
         <div>
           <input
             type="radio"
-            id="opcion2"
+            id="poco"
             name="respuesta"
             [(ngModel)]="preguntaService.seleccionada"
-            value="opcion2"
+            value="poco"
+            (click)="
+              seleccionarOpcion(
+                this.preguntaService.indexPregunta,
+                this.preguntaService.opciones[1].texto
+              )
+            "
           />
-          <label for="opcion2" id="opcion2">{{ preguntaService.opciones[1].texto}}</label>
+          <label for="poco" id="poco">{{
+            preguntaService.opciones[1].texto
+          }}</label>
         </div>
         <div>
           <input
             type="radio"
-            id="opcion3"
+            id="mucho"
             name="respuesta"
             [(ngModel)]="preguntaService.seleccionada"
             value="opcion3"
+            (click)="
+              seleccionarOpcion(
+                this.preguntaService.indexPregunta,
+                this.preguntaService.opciones[2].texto
+              )
+            "
           />
-          <label for="opcion3" id="opcion3">{{ preguntaService.opciones[2].texto }}</label>
+          <label for="mucho" id="opcion3">{{
+            preguntaService.opciones[2].texto
+          }}</label>
         </div>
       </div>
       <div
         class="contenedor-anterior-siguiente"
         id="contenedor-anterior-siguiente"
       >
-      <div>
-        <button
-          class="botonPrimario"
-          id="botonPrimario"
-          (click)="manejarAnterior()"
-        >
-          Anterior
-        </button>
-      </div>
+        <div>
+          <button
+            class="botonPrimario"
+            id="botonPrimario"
+            (click)="manejarAnterior()"
+          >
+            Anterior
+          </button>
+        </div>
 
         <div class="contenedor__paginador">
           <div>
             <p class="progreso" id="progreso">
-              Pregunta {{ preguntaService.indexPregunta }} de {{ preguntaService.basePreguntas.length }}
+              Pregunta {{ preguntaService.indexPregunta }} de
+              {{ preguntaService.basePreguntas.length }}
             </p>
           </div>
         </div>
-<div>
-        <button
-          class="botonPrimario"
-          id="botonPrimario"
-          (click)="manejarSiguiente(0)"
-        >
-          Siguiente
-        </button>
+        <div>
+          <button
+            class="botonPrimario"
+            id="botonPrimario"
+            (click)="manejarSiguiente()"
+          >
+            Siguiente
+          </button>
+        </div>
       </div>
-      </div>
-      <button
-          class="botonPrimario"
-          id="botonPrimario"
-          (click)="preguntaService.reiniciarRespuestas()"
-        >
-          Reiniciar
-        </button>
+
     </div>
-    <app-resultados-circulo [respuestaGuardada]="respuestaGuardada"></app-resultados-circulo>
+    <div>
+      <button
+        class="botonSecundario"
+        id="botonPrimario"
+        (click)="preguntaService.reiniciarRespuestas()"
+      >
+        Borrar respuestas
+      </button>
+    </div>
+    <app-resultados-circulo></app-resultados-circulo>
   </section>
+
 </div>

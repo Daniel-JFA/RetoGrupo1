@@ -12,22 +12,18 @@ import { FormsModule } from '@angular/forms';
 import * as echarts from 'echarts';
 import Swal from 'sweetalert2';
 import { ResultadosCirculoComponent } from '../../resultados/resultados-circulo/resultados-circulo.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-formulario-preguntas',
   standalone: true,
-  imports: [FormsModule, ResultadosCirculoComponent],
+  imports: [FormsModule, ResultadosCirculoComponent, CommonModule],
   templateUrl: './formulario-preguntas.component.html',
   styleUrl: './formulario-preguntas.component.css',
 })
 export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   //Propiedades de la clase o variables que se declaran dentro de una clase)
-  preguntas: any[] = [];
-  // indexPregunta: number = 0;
   valorProgreso: number = 0;
-  // objetoPregunta: any;
-  // opciones: any;
-  // seleccionada: boolean = true;
   isPorQueChecked: boolean = true;
   isComoChecked: boolean = false;
   isQueChecked: boolean = false;
@@ -47,30 +43,14 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
 
   /*"Inyecta el servicio PreguntasService en la clase y crea una propiedad privada preguntaService
   para acceder a sus métodos y propiedades."*/
-  constructor(public preguntaService: PreguntasService) {
-    this.cargarRespuestas();
-  }
+  constructor(public preguntaService: PreguntasService) {}
 
   //Cuando el componente se inicializa
   ngOnInit(): void {
-    // this.preguntaService.getPreguntas();
     this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
-    // this.preguntaService.cargarPregunta();
   }
 
   @ViewChild('graficaProgreso') contenedor!: ElementRef;
-
-  guardarRespuesta(preguntaId: number, respuesta: any): void {
-    this.preguntaService.respuestas[preguntaId] = respuesta;
-    localStorage.setItem('respuestas', JSON.stringify(this.preguntaService.respuestas));
-  }
-
-  cargarRespuestas(): void {
-    const respuestasGuardadas = localStorage.getItem('respuestas');
-    if (respuestasGuardadas) {
-      this.preguntaService.respuestas = JSON.parse(respuestasGuardadas);
-    }
-  }
 
   ngAfterViewInit(): void {
     this.contenedorGrafica = echarts.init(this.contenedor.nativeElement);
@@ -170,7 +150,7 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   }
 
   //Método para validar que alguna opción sea seleccionada y así avanzar a la siguiente pregunta
-  manejarSiguiente(respuesta: number) {
+  manejarSiguiente() {
     if (!this.preguntaService.seleccionada) {
       Swal.fire({
         icon: 'error',
@@ -178,15 +158,7 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
       });
       return;
     }
-
-    // Guardar la respuesta seleccionada en el servicio
-    console.log(
-      this.preguntaService.guardarRespuesta(
-        this.preguntaService.indexPregunta,
-        respuesta
-      ),
-      this.respuestaGuardada.emit()
-    );
+    this.respuestaGuardada.emit();
 
     // Incrementa el índice de la pregunta para avanzar a la siguiente.
     this.preguntaService.indexPregunta++;
@@ -226,11 +198,15 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   }
 
   manejarAnterior() {
-    console.log(this.cargarRespuestas());
     if (this.preguntaService.indexPregunta > 0) {
       this.preguntaService.indexPregunta--; // Disminuye el índice de la pregunta para retroceder a la anterior.
     }
     this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta); // Carga la nueva pregunta.
     this.actualizarProgreso(this.preguntaService.indexPregunta); // Actualiza el progreso.
+  }
+
+  // Guardar la respuesta seleccionada en el servicio
+  seleccionarOpcion(indexPregunta: number, respuesta: number) {
+    this.preguntaService.guardarRespuesta(indexPregunta, respuesta);
   }
 }
