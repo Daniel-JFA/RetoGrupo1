@@ -175,6 +175,11 @@ export class PreguntasService {
     },
   ];
 
+  //Este método devuelve el array basePreguntas que contiene todas las preguntas y opciones del cuestionario.
+  getPreguntas(): any {
+    return this.basePreguntas;
+  }
+
   //El constructor de la clase no hace nada en este caso, pero se utiliza para inicializar la clase.
   constructor() {
     this.cargarRespuestas();
@@ -185,48 +190,31 @@ export class PreguntasService {
       this.seleccionada = false;
       this.objetoPregunta = this.basePreguntas[index];
       this.opciones = this.objetoPregunta.opciones;
-      console.log(`Cargando pregunta con índice: ${index}`);
-    } else {
-      console.log('No hay más preguntas.');
     }
   }
 
-  //Este método devuelve el array basePreguntas que contiene todas las preguntas y opciones del cuestionario.
-  getPreguntas(): any {
-    return this.basePreguntas;
-  }
-
-
   // Método para obtener las respuestas seleccionadas
-  getRespuestas(): number[] {
+  getRespuestas() {
     return this.respuestas;
   }
 
-  //Método para guardar una respuesta
+  // Método para guardar las respuestas en localStorage
   guardarRespuesta(indexPregunta: number, respuesta: number): void {
     this.respuestas[indexPregunta] = respuesta;
-    this.guardarRespuestas();
-  }
-
-  // Método para guardar las respuestas en localStorage
-  private guardarRespuestas(): void {
-    console.log(
-      localStorage.setItem(this.storageKey, JSON.stringify(this.respuestas))
-    );
+    console.log(`Pregunta ${indexPregunta} respondida con: ${respuesta}`);
+    localStorage.setItem(this.storageKey, JSON.stringify(this.respuestas));
   }
 
   // Método para cargar las respuestas desde localStorage
   private cargarRespuestas(): void {
     const guardarRespuestas = localStorage.getItem(this.storageKey);
     if (guardarRespuestas) {
-      this.respuestas = JSON.parse(guardarRespuestas);
+       this.respuestas = JSON.parse(guardarRespuestas);
     }
   }
 
   reiniciarRespuestas(): void {
     localStorage.removeItem('respuestas');
-    this.reiniciarRespuestas();
-    this.respuestas = {};
     this.getPreguntas();
   }
 }
