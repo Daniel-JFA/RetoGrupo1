@@ -48,7 +48,13 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   //Cuando el componente se inicializa
   ngOnInit(): void {
     this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
+    this.preguntaService.cargarRespuestas()
   }
+
+  resetearRadioInputs() {
+    this.preguntaService.radioValue = '';
+  }
+
 
   @ViewChild('graficaProgreso') contenedor!: ElementRef;
 
@@ -151,7 +157,7 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
 
   //Método para validar que alguna opción sea seleccionada y así avanzar a la siguiente pregunta
   manejarSiguiente() {
-    if (!this.preguntaService.seleccionada) {
+    if (!this.preguntaService.radioValue) {
       Swal.fire({
         icon: 'error',
         title: 'Selecciona una opción 😒',
@@ -162,6 +168,8 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
 
     // Incrementa el índice de la pregunta para avanzar a la siguiente.
     this.preguntaService.indexPregunta++;
+    this.resetearRadioInputs();
+
 
     //emite un evento cambioPregunta con el valor actual de this.indexPregunta como parámetro.
     this.cambioPregunta.emit(this.preguntaService.indexPregunta);
@@ -206,7 +214,7 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   }
 
   // Guardar la respuesta seleccionada en el servicio
-  seleccionarOpcion(indexPregunta: number, respuesta: number) {
+  seleccionarOpcion(indexPregunta: number, respuesta: string) {
     this.preguntaService.guardarRespuesta(indexPregunta, respuesta);
   }
 }

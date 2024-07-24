@@ -5,11 +5,13 @@ import { Injectable } from '@angular/core';
 })
 export class PreguntasService {
   // public preguntas: any[] = [];
-  public seleccionada: boolean = true;
+  public seleccionada2!: any;
   public objetoPregunta: any;
   public opciones: any;
   public indexPregunta: number = 0;
   public respuestas: any = {};
+  radioValue = ''
+
 
   private readonly storageKey = 'respuestas';
 
@@ -187,7 +189,6 @@ export class PreguntasService {
 
   cargarPregunta(index: number) {
     if (index < this.basePreguntas.length) {
-      this.seleccionada = false;
       this.objetoPregunta = this.basePreguntas[index];
       this.opciones = this.objetoPregunta.opciones;
     }
@@ -199,17 +200,18 @@ export class PreguntasService {
   }
 
   // Método para guardar las respuestas en localStorage
-  guardarRespuesta(indexPregunta: number, respuesta: number): void {
+  guardarRespuesta(indexPregunta: number, respuesta: string): void {
     this.respuestas[indexPregunta] = respuesta;
+    console.log(this.radioValue);
     console.log(`Pregunta ${indexPregunta} respondida con: ${respuesta}`);
     localStorage.setItem(this.storageKey, JSON.stringify(this.respuestas));
   }
 
   // Método para cargar las respuestas desde localStorage
-  private cargarRespuestas(): void {
+   cargarRespuestas() {
     const guardarRespuestas = localStorage.getItem(this.storageKey);
     if (guardarRespuestas) {
-       this.respuestas = JSON.parse(guardarRespuestas);
+      this.respuestas = JSON.parse(guardarRespuestas);
     }
   }
 

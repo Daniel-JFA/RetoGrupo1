@@ -1,3 +1,11 @@
+.page__resultados {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+}
+
 .seccion__resultados {
   width: 100%;
   display: flex;
@@ -7,6 +15,11 @@
   justify-content: space-around;
 }
 
+.contenedor__borrar {
+  display: flex;
+  justify-content: center;
+}
+
 .contenedor__resultado {
   background-color: white;
   border-radius: 0.5em;
@@ -14,6 +27,7 @@
   padding: 1.5em;
   display: flex;
   flex-direction: column;
+  gap: 1em;
 }
 
 .resultados__circulo {
@@ -26,11 +40,6 @@
   width: 40%;
   display: flex;
   justify-content: center;
-}
-
-.indicadoresCirculo {
-  display: flex;
-  gap: 2em;;
 }
 
 .headerCirculo {
@@ -63,7 +72,7 @@
 .color2 {
   width: 15px;
   height: 15px;
-  background-color: #F8D203;
+  background-color: #f8d203;
   border-radius: 100%;
 }
 
@@ -71,21 +80,20 @@
   display: flex;
   gap: 1em;
   align-items: center;
-
 }
 
-@media (max-width: 786px){
+@media (max-width: 786px) {
   .color1 {
     width: 10px;
     height: 10px;
     background-color: #155fe7;
     border-radius: 100%;
   }
-  
+
   .color2 {
     width: 10px;
     height: 10px;
-    background-color: #F8D203;
+    background-color: #f8d203;
     border-radius: 100%;
   }
   .item1 {
@@ -130,7 +138,7 @@
     display: flex;
     justify-content: center;
   }
-  
+
   .resultados__radar {
     width: 100%;
     display: flex;
@@ -138,8 +146,7 @@
   }
 }
 
-
-@media (min-width: 600px) and (max-width: 1280px){
+@media (min-width: 600px) and (max-width: 1280px) {
   .seccion__resultados {
     width: 100%;
     display: flex;
@@ -155,7 +162,7 @@
     display: flex;
     justify-content: center;
   }
-  
+
   .resultados__radar {
     width: 100%;
     display: flex;
@@ -186,7 +193,7 @@
   }
 }
 
-@media (min-width: 1280px) and (max-width: 1430px){
+@media (min-width: 1280px) and (max-width: 1430px) {
   .seccion__resultados {
     width: 100%;
     display: flex;
@@ -202,7 +209,7 @@
     display: flex;
     justify-content: center;
   }
-  
+
   .resultados__radar {
     width: 45%;
     display: flex;
@@ -231,6 +238,28 @@
     gap: 0.5em;
     justify-content: start;
   }
+}
+
+.botonSecundario {
+  margin-bottom: 2em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 2px solid #4c80e2;
+  padding: 0.5em 1em;
+  border-radius: 0.8em;
+  cursor: pointer;
+  color: #333333;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 49px 0px rgba(0, 0, 0, 0.15);
+  font-size: 14px;
+}
+
+.botonSecundario:hover {
+  background-color: #155fe7;
+  color: white;
+  box-shadow: 0px 4px 49px 0px rgba(0, 0, 0, 0.15);
 }
 
 @media (min-width: 1440px) and (max-width: 1620px) {
@@ -248,7 +277,7 @@
     display: flex;
     justify-content: center;
   }
-  
+
   .resultados__radar {
     width: 40%;
     display: flex;

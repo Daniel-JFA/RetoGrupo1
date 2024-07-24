@@ -5,6 +5,7 @@ import {
   ViewChild,
   Input,
   SimpleChanges,
+  OnInit,
 } from '@angular/core';
 import * as echarts from 'echarts';
 
@@ -18,13 +19,15 @@ import * as echarts from 'echarts';
 export class GraficaCirculoComponent implements AfterViewInit {
   //Recibe el índice de la pregunta actual desde el componente padre.
   @Input() indexPregunta!: number;
-
+  progress = 0;
   contenedorGrafica: any;
-  porQue: number = 5;
-  como: number = 5;
-  que: number = 5;
+  porQue: number = 0;
+  como: number = 0;
+  que: number = 0;
 
   @ViewChild('graficaCirculo') contenedor!: ElementRef;
+
+  constructor() {}
 
   //Actualiza el progreso cuando cambia el índice de la pregunta actual
   ngOnChanges(changes: SimpleChanges) {

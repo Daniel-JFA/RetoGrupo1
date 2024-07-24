@@ -1,33 +1,64 @@
 <app-header></app-header>
-<section class="seccion__resultados">
-  <div class="resultados__circulo">
-    <div class="contenedor__resultado">
-      <div class="headerCirculo">
-        <h2>Círculo Dorado</h2>
-        <div class="indicadoresCirculo">
-            <div class="item1"><div class="color1"></div>¿Por qué?</div>
-            <div class="item1"><div class="color2"></div>¿Cómo?</div>
-            <div class="item1"><div class="color1"></div>¿Qué?</div>
+<section class="page__resultados">
+  <section class="seccion__resultados">
+    <div class="resultados__circulo">
+      <div class="contenedor__resultado">
+        <div class="headerCirculo">
+          <h2>Círculo Dorado</h2>
+        </div>
+        <app-resultados-circulo></app-resultados-circulo>
+        <div>
+          <span style="font-weight: 700">Conclusiones:</span> Lorem ipsum dolor
+          sit amet consectetur adipisicing elit. Voluptates repellendus
+          blanditiis eos incidunt doloribus, delectus repudiandae. Quae dolores
+          id repudiandae.
         </div>
       </div>
-      <app-resultados-circulo></app-resultados-circulo>
-      <div><span style="font-weight: 700;">Conclusiones:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates repellendus blanditiis eos incidunt doloribus, delectus repudiandae. Quae dolores id repudiandae.</div>
     </div>
-  </div>
-  <div class="resultados__radar">
-    <div class="contenedor__resultado">
-      <div class="headerRadar">
-        <h2>Radar Estratégico</h2>
-        <div class="indicadoresRadar">
-          <div class="item1"><div class="color1"></div>Conocimiento del cliente</div>
-          <div class="item1"><div class="color2"></div>Conocimiento del negocio</div>
-          <div class="item1"><div class="color1"></div>Coherencia del modelo de negocio</div>
-          <div class="item1"><div class="color2"></div>Alineación en la comunicación interna</div>
-          <div class="item1"><div class="color1"></div>Salud financiera</div>
+    <div class="resultados__radar">
+      <div class="contenedor__resultado">
+        <div class="headerRadar">
+          <h2>Radar Estratégico</h2>
+          <div class="indicadoresRadar">
+            <div class="item1">
+              <div class="color1"></div>
+              Conocimiento del cliente
+            </div>
+            <div class="item1">
+              <div class="color2"></div>
+              Conocimiento del negocio
+            </div>
+            <div class="item1">
+              <div class="color1"></div>
+              Coherencia del modelo de negocio
+            </div>
+            <div class="item1">
+              <div class="color2"></div>
+              Alineación en la comunicación interna
+            </div>
+            <div class="item1">
+              <div class="color1"></div>
+              Salud financiera
+            </div>
+          </div>
+        </div>
+        <app-resultados-radar></app-resultados-radar>
+        <div>
+          <span style="font-weight: 700">Conclusiones:</span> Lorem ipsum dolor
+          sit amet consectetur adipisicing elit. Voluptates repellendus
+          blanditiis eos incidunt doloribus, delectus repudiandae. Quae dolores
+          id repudiandae.
         </div>
       </div>
-      <app-resultados-radar></app-resultados-radar>
-      <div><span style="font-weight: 700;">Conclusiones:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates repellendus blanditiis eos incidunt doloribus, delectus repudiandae. Quae dolores id repudiandae.</div>
     </div>
+  </section>
+  <div class="contenedor__borrar">
+    <button
+      class="botonSecundario"
+      id="botonPrimario"
+      (click)="preguntaService.reiniciarRespuestas()"
+    >
+      Borrar respuestas
+    </button>
   </div>
 </section>

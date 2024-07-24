@@ -17,16 +17,9 @@ import { PreguntasService } from '../../circuloDorado/services/preguntas.service
   styleUrl: './resultados-circulo.component.css',
 })
 export class ResultadosCirculoComponent implements AfterViewInit {
-  opciones: any;
-  respuestas: any = {};
-  objetoPregunta: any;
   contenedorGrafica: any;
-  nada: number[] = [0, 0, 0];
-  poco: number[] = [0, 0, 0];
-  mucho: number[] = [0, 0, 0];
 
   @ViewChild('resultadosCirculo') contenedor!: ElementRef;
-  // @Input() reinicioFormulario: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(public preguntaService: PreguntasService) {}
 
@@ -37,17 +30,64 @@ export class ResultadosCirculoComponent implements AfterViewInit {
     this.iniciarGrafica();
   }
 
-  iniciarGrafica() {
+  obtenerRespuestasSeleccionadas() {
     const respuestasSeleccionadas = this.preguntaService.getRespuestas();
+    console.log('Respuestas seleccionadas:', respuestasSeleccionadas);
+    return respuestasSeleccionadas;
+  }
 
-    const categorias = ['¿Por qué?', '¿Cómo?', '¿Qué?'];
-    this.nada = [0, 0, 0];
-    this.poco = [0, 0, 0];
-    this.mucho = [0, 0, 0];
+  procesarRespuestas(respuestasSeleccionadas: any) {
+    const nada = [
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+    ]; // ¿Por qué?, ¿Cómo?, ¿Qué?
+    const poco = [
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+    ]; // ¿Por qué?, ¿Cómo?, ¿Qué?
+    const mucho = [
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+    ]; // ¿Por qué?, ¿Cómo?, ¿Qué?
 
-    if (respuestasSeleccionadas[0] === 'Nada') {
-      this.nada[0]++;
+    for (const clave in respuestasSeleccionadas) {
+      const respuesta = respuestasSeleccionadas[clave];
+      const seccion = Math.floor(parseInt(clave) / 5); // Calcular la sección (0, 1 o 2)
+      const pregunta = parseInt(clave) % 5; // Calcular la pregunta dentro de la sección (0, 1, 2, 3 o 4)
+      switch (respuesta) {
+        case 'Nada':
+          nada[seccion][pregunta]++; // Incrementar la cuenta correspondiente en nada
+          break;
+        case 'Poco':
+          poco[seccion][pregunta]++; // Incrementar la cuenta correspondiente en poco
+          break;
+        case 'Mucho':
+          mucho[seccion][pregunta]++; // Incrementar la cuenta correspondiente en mucho
+          break;
+      }
+      console.log('Datos procesados:', { nada, poco, mucho });
     }
+    return { nada, poco, mucho };
+  }
+
+  iniciarGrafica() {
+    const respuestasSeleccionadas = this.obtenerRespuestasSeleccionadas();
+    const respuestasProcesadas = this.procesarRespuestas(
+      respuestasSeleccionadas
+    );
+    const opcionesGrafica = this.crearOpcionesGrafica(
+      respuestasProcesadas['nada'],
+      respuestasProcesadas['poco'],
+      respuestasProcesadas['mucho']
+    );
+    this.configurarGrafica(opcionesGrafica);
+  }
+
+  crearOpcionesGrafica(nada: number[][], poco: number[][], mucho: number[][]) {
+    const categorias = ['¿Por qué?', '¿Cómo?', '¿Qué?'];
 
     const opciones = {
       tooltip: {
@@ -83,7 +123,11 @@ export class ResultadosCirculoComponent implements AfterViewInit {
           label: {
             show: true,
           },
-          data: this.nada,
+          data: [
+            nada[0].reduce((a, b) => a + b, 0),
+            nada[1].reduce((a, b) => a + b, 0),
+            nada[2].reduce((a, b) => a + b, 0),
+          ],
         },
         {
           name: 'Poco',
@@ -92,7 +136,11 @@ export class ResultadosCirculoComponent implements AfterViewInit {
           label: {
             show: true,
           },
-          data: this.poco,
+          data: [
+            poco[0].reduce((a, b) => a + b, 0),
+            poco[1].reduce((a, b) => a + b, 0),
+            poco[2].reduce((a, b) => a + b, 0),
+          ],
         },
         {
           name: 'Mucho',
@@ -101,10 +149,19 @@ export class ResultadosCirculoComponent implements AfterViewInit {
           label: {
             show: true,
           },
-          data: this.mucho,
+          data: [
+            mucho[0].reduce((a, b) => a + b, 0),
+            mucho[1].reduce((a, b) => a + b, 0),
+            mucho[2].reduce((a, b) => a + b, 0),
+          ],
         },
       ],
     };
-    this.contenedorGrafica.setOption(opciones);
+    console.log('Opciones de gráfica:', opciones);
+    return opciones;
+  }
+  configurarGrafica(opcionesGrafica: any) {
+    this.contenedorGrafica.setOption(opcionesGrafica);
+    console.log('Gráfica configurada correctamente');
   }
 }
