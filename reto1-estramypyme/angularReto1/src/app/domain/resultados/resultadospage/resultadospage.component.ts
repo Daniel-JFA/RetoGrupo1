@@ -13,27 +13,24 @@ import { PreguntasService } from '../../circuloDorado/services/preguntas.service
   styleUrl: './resultadospage.component.css'
 })
 export class ResultadospageComponent implements OnInit {
-  @Input() indexPregunta!: number;
-  preguntas: any[] = [];
-
 
   @Output() cambioPregunta = new EventEmitter<number>();
   @Output() respuestaGuardada = new EventEmitter<void>();
 
-  private preguntaService = inject(PreguntasService);
+  preguntaService = inject(PreguntasService);
 
   ngOnInit(): void {
-    this.preguntas = this.preguntaService.getPreguntas();
+    this.preguntaService.getPreguntas();
   }
 
-    manejarSiguiente(respuesta: number) {
+    // manejarSiguiente(respuesta: number) {
 
-      console.log(
-        this.preguntaService.guardarRespuesta(this.indexPregunta, respuesta),
-        this.respuestaGuardada.emit(),
-        this.cambioPregunta.emit(this.indexPregunta)
-      );
-    }
+    //   console.log(
+    //     this.preguntaService.guardarRespuesta(this.indexPregunta, respuesta),
+    //     this.respuestaGuardada.emit(),
+    //     this.cambioPregunta.emit(this.indexPregunta)
+    //   );
+    // }
     
   }
 
