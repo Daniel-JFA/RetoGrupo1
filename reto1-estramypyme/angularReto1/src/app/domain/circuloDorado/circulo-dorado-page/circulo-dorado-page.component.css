@@ -109,7 +109,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  background-color: #155FE7;
+  background-color: #155fe7;
   padding: 1em 2.3em;
   border-radius: 0.8em;
   border: none;
@@ -123,6 +123,33 @@
 
 .botonPrimario:hover {
   background-color: #1a6fde;
+  color: white;
+  box-shadow: 0px 4px 49px 0px rgba(0, 0, 0, 0.15);
+}
+
+.contenedor__borrar {
+  display: flex;
+  justify-content: center;
+}
+
+.botonSecundario {
+  margin-bottom: 2em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 2px solid #4c80e2;
+  padding: 0.5em 1em;
+  border-radius: 0.8em;
+  cursor: pointer;
+  color: #333333;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 49px 0px rgba(0, 0, 0, 0.15);
+  font-size: 14px;
+}
+
+.botonSecundario:hover {
+  background-color: #155fe7;
   color: white;
   box-shadow: 0px 4px 49px 0px rgba(0, 0, 0, 0.15);
 }
@@ -159,7 +186,7 @@
   }
 }
 
-@media (min-width: 786px) and (max-width: 1024px)  {
+@media (min-width: 786px) and (max-width: 1024px) {
   .informacion__cards {
     display: flex;
     flex-wrap: wrap;
@@ -222,7 +249,7 @@
     justify-content: center;
     align-items: center;
   }
-  
+
   .contenedor__preguntas {
     width: 50%;
     display: flex;
@@ -230,5 +257,4 @@
     flex-wrap: wrap;
     gap: 1em;
   }
-  
 }

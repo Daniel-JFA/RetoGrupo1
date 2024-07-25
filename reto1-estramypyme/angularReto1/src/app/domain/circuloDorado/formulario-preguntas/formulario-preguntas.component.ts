@@ -23,10 +23,10 @@ import { CommonModule } from '@angular/common';
 })
 export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   //Propiedades de la clase o variables que se declaran dentro de una clase)
-  valorProgreso: number = 0;
   isPorQueChecked: boolean = true;
   isComoChecked: boolean = false;
   isQueChecked: boolean = false;
+  valorProgreso: number = 0;
   isActive: boolean = true;
   nadaporque: number = 0;
   pocoPorque: number = 0;
@@ -43,18 +43,26 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
 
   /*"Inyecta el servicio PreguntasService en la clase y crea una propiedad privada preguntaService
   para acceder a sus métodos y propiedades."*/
-  constructor(public preguntaService: PreguntasService) {}
+  constructor(public preguntaService: PreguntasService) {
+    this.preguntaService.radioValue = '';
+  }
 
   //Cuando el componente se inicializa
   ngOnInit(): void {
+    this.preguntaService.cargarEstadoFormulario();
     this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
-    this.preguntaService.cargarRespuestas()
+    this.preguntaService.cargarRespuestas();
   }
 
   resetearRadioInputs() {
     this.preguntaService.radioValue = '';
   }
 
+  // reiniciarFormulario() {
+  //   this.isPorQueChecked = true;
+  //   this.isComoChecked = false;
+  //   this.isQueChecked = false;
+  // }
 
   @ViewChild('graficaProgreso') contenedor!: ElementRef;
 
@@ -167,22 +175,12 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
     this.respuestaGuardada.emit();
 
     // Incrementa el índice de la pregunta para avanzar a la siguiente.
+    this.preguntaService.guardarEstadoFormulario();
     this.preguntaService.indexPregunta++;
     this.resetearRadioInputs();
 
-
     //emite un evento cambioPregunta con el valor actual de this.indexPregunta como parámetro.
     this.cambioPregunta.emit(this.preguntaService.indexPregunta);
-
-    if (this.preguntaService.indexPregunta == 15) {
-      Swal.fire({
-        title: "¡Bien hecho, has finalizado todas las secciones' 👏",
-        text: '¡Modelo Círculo Dorado completado!🎉',
-        // customClass: 'my-custom-class',
-      });
-      this.preguntaService.indexPregunta = 0;
-      this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
-    }
 
     if (this.preguntaService.indexPregunta == 5) {
       Swal.fire({
@@ -201,6 +199,17 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
         this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
       });
     }
+    if (this.preguntaService.indexPregunta == 15) {
+      Swal.fire({
+        title: "¡Bien hecho, has finalizado todas las secciones' 👏",
+        text: '¡Modelo Círculo Dorado completado!🎉',
+        // customClass: 'my-custom-class',
+      });
+      this.preguntaService.indexPregunta = 0;
+      this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
+
+      // this.reiniciarFormulario();
+    }
     this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta); // Carga la nueva pregunta.
     this.actualizarProgreso(this.preguntaService.indexPregunta); // Actualiza el progreso.
   }
@@ -216,5 +225,6 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   // Guardar la respuesta seleccionada en el servicio
   seleccionarOpcion(indexPregunta: number, respuesta: string) {
     this.preguntaService.guardarRespuesta(indexPregunta, respuesta);
+    this.preguntaService.radioValue = respuesta;
   }
 }

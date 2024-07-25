@@ -10,8 +10,7 @@ export class PreguntasService {
   public opciones: any;
   public indexPregunta: number = 0;
   public respuestas: any = {};
-  radioValue = ''
-
+  radioValue!: string;
 
   private readonly storageKey = 'respuestas';
 
@@ -194,6 +193,24 @@ export class PreguntasService {
     }
   }
 
+  guardarEstadoFormulario(): void {
+    const estadoFormulario = {
+      indexPregunta: this.indexPregunta,
+      respuestas: this.respuestas,
+    };
+    localStorage.setItem('estadoFormulario', JSON.stringify(estadoFormulario));
+  }
+
+  cargarEstadoFormulario(): void {
+    const estadoFormularioString = localStorage.getItem('estadoFormulario');
+    if (estadoFormularioString) {
+      const estadoFormulario = JSON.parse(estadoFormularioString);
+      this.indexPregunta = estadoFormulario.indexPregunta;
+      this.respuestas = estadoFormulario.respuestas;
+      this.radioValue = this.respuestas[this.indexPregunta]
+    }
+  }
+
   // Método para obtener las respuestas seleccionadas
   getRespuestas() {
     return this.respuestas;
@@ -208,7 +225,7 @@ export class PreguntasService {
   }
 
   // Método para cargar las respuestas desde localStorage
-   cargarRespuestas() {
+  cargarRespuestas() {
     const guardarRespuestas = localStorage.getItem(this.storageKey);
     if (guardarRespuestas) {
       this.respuestas = JSON.parse(guardarRespuestas);
@@ -217,6 +234,7 @@ export class PreguntasService {
 
   reiniciarRespuestas(): void {
     localStorage.removeItem('respuestas');
+    localStorage.removeItem('estadoFormulario');
     this.getPreguntas();
   }
 }
