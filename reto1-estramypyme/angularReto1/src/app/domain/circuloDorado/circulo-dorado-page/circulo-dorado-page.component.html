@@ -47,7 +47,7 @@
   <div class="contenedor__grafica">
     <!-- Paso el índice de la pregunta actual como entrada al componente
      `app-grafica-circulo` para que pueda actualizar la gráfica según la pregunta actual -->
-    <app-grafica-circulo [indexPregunta]="indexPregunta"></app-grafica-circulo>
+    <app-grafica-circulo></app-grafica-circulo>
   </div>
   <section class="contenedor__preguntas">
     <div class="contenedor__seccion__preguntas__descripcion">
@@ -59,17 +59,19 @@
         >
       </p>
     </div>
-
-    <!-- Cuando el formulario de preguntas cambia, llama a la función `actualizarProgreso`
-     para reflejar el progreso actual -->
-    <app-formulario-preguntas (cambioPregunta)="actualizarProgreso($event)"></app-formulario-preguntas>
+    <app-formulario-preguntas></app-formulario-preguntas>
+    <div class="contenedor__borrar">
+      <button
+        class="botonSecundario"
+        id="botonPrimario"
+        (click)="this.preguntaService.reiniciarRespuestas()"
+      >
+        Reiniciar formulario
+      </button>
+    </div>
   </section>
   <div class="contenedor__boton__ver__resultados">
-    <a
-    href="/resultados"
-      class="botonPrimario"
-      id="botonPrimario"
-    >
+    <a href="/resultados" class="botonPrimario" id="botonPrimario">
       Ver resultados
     </a>
   </div>
