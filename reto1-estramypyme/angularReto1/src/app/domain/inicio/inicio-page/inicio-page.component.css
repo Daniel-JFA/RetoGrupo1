@@ -43,6 +43,16 @@
   cursor: pointer;
 }
 
+.btn--text {
+  position: relative;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  top: 12px;
+  left: 42px
+}
+
 .img {
   height: 700px;
   width: 800px;
