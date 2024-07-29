@@ -72,7 +72,7 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   }
 
   actualizarProgreso(value: number) {
-    this.valorProgreso = this.preguntaService.indexPregunta * 7;
+    this.valorProgreso = this.preguntaService.indexPregunta * 8;
 
     if (this.valorProgreso > 100) {
       this.valorProgreso = 100;
@@ -163,6 +163,21 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // actualizarRadioValue(): void {
+  //   const radioInputs = document.querySelectorAll('input[type="radio"]');
+  //   radioInputs.forEach((input: Element) => {
+  //     const inputHtml = input as HTMLInputElement;
+  //     const value = inputHtml.value;
+  //     let checked: boolean = inputHtml.checked;
+  //      if (value === this.preguntaService.respuestas[this.preguntaService.indexPregunta]) {
+  //       checked = true;
+  //     } else {
+  //       checked = false;
+  //     }
+  //     console.log(value);
+
+  //   });
+  // }
   //Método para validar que alguna opción sea seleccionada y así avanzar a la siguiente pregunta
   manejarSiguiente() {
     if (!this.preguntaService.radioValue) {

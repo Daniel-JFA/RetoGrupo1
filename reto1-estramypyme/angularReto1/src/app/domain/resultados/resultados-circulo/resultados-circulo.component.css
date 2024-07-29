@@ -2,6 +2,23 @@
     width: 500px;
     height: 500px;
   }
+
+  .titulo__conclusiones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contenedor__conclusiones {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+  }
+
+  .contenedor__conclusiones img {
+    width: 1.5em;
+  }
   
   @media (max-width: 786px) {
     .resultadosCirculo {

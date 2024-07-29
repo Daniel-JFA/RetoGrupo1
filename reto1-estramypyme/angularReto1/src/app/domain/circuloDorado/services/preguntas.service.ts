@@ -190,6 +190,7 @@ export class PreguntasService {
     if (index < this.basePreguntas.length) {
       this.objetoPregunta = this.basePreguntas[index];
       this.opciones = this.objetoPregunta.opciones;
+      this.radioValue = this.respuestas[this.indexPregunta]
     }
   }
 
@@ -207,7 +208,7 @@ export class PreguntasService {
       const estadoFormulario = JSON.parse(estadoFormularioString);
       this.indexPregunta = estadoFormulario.indexPregunta;
       this.respuestas = estadoFormulario.respuestas;
-      this.radioValue = this.respuestas[this.indexPregunta]
+      this.radioValue = this.respuestas[this.indexPregunta]      
     }
   }
 

@@ -18,6 +18,7 @@ import { PreguntasService } from '../../circuloDorado/services/preguntas.service
 })
 export class ResultadosCirculoComponent implements AfterViewInit {
   contenedorGrafica: any;
+  conclusiones: any = [];
 
   @ViewChild('resultadosCirculo') contenedor!: ElementRef;
 
@@ -32,8 +33,38 @@ export class ResultadosCirculoComponent implements AfterViewInit {
 
   obtenerRespuestasSeleccionadas() {
     const respuestasSeleccionadas = this.preguntaService.getRespuestas();
-    console.log('Respuestas seleccionadas:', respuestasSeleccionadas);
     return respuestasSeleccionadas;
+  }
+
+  generarConclusión(respuestasProcesadas: any) {
+    const nada = respuestasProcesadas['nada'];
+    const poco = respuestasProcesadas['poco'];
+    const mucho = respuestasProcesadas['mucho'];
+
+    // Analizar las respuestas por sección
+    for (let i = 0; i < 3; i++) {
+      const nadaCount = nada[i].reduce((a: any, b: any) => a + b, 0);
+      const pocoCount = poco[i].reduce((a: any, b: any) => a + b, 0);
+      const muchoCount = mucho[i].reduce((a: any, b: any) => a + b, 0);
+
+      if (nadaCount >= 2) {
+        this.conclusiones.push(
+          `Es importante crear una estrategia para mejorar el propósito de su empresa`
+        );
+      } else if (pocoCount >= 2) {
+        this.conclusiones.push(
+          `Es importante crear una estrategia para mejorar la propuesta de valor de su empresa`
+        );
+      } else if (muchoCount >= 3) {
+        this.conclusiones.push(
+          `Las respuestas reflejan que los productos y servicios de su empresa están perfectamente estructurados y cumplen con los objetivos ¡Felicitaciones! 👏`
+        );
+      }
+      // if (i < 2) {
+      //   this.conclusion += '\n';
+      // }
+    }
+    return this.conclusiones;
   }
 
   procesarRespuestas(respuestasSeleccionadas: any) {
@@ -68,7 +99,6 @@ export class ResultadosCirculoComponent implements AfterViewInit {
           mucho[seccion][pregunta]++; // Incrementar la cuenta correspondiente en mucho
           break;
       }
-      console.log('Datos procesados:', { nada, poco, mucho });
     }
     return { nada, poco, mucho };
   }
@@ -84,6 +114,8 @@ export class ResultadosCirculoComponent implements AfterViewInit {
       respuestasProcesadas['mucho']
     );
     this.configurarGrafica(opcionesGrafica);
+    const conclusion = this.generarConclusión(respuestasProcesadas);
+    this.conclusiones = conclusion; // Asigna el mensaje a una variable que se muestre en el HTML
   }
 
   crearOpcionesGrafica(nada: number[][], poco: number[][], mucho: number[][]) {
@@ -157,11 +189,9 @@ export class ResultadosCirculoComponent implements AfterViewInit {
         },
       ],
     };
-    console.log('Opciones de gráfica:', opciones);
     return opciones;
   }
   configurarGrafica(opcionesGrafica: any) {
     this.contenedorGrafica.setOption(opcionesGrafica);
-    console.log('Gráfica configurada correctamente');
   }
 }

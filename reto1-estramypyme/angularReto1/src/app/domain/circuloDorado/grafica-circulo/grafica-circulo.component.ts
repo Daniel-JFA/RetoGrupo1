@@ -19,7 +19,6 @@ import { PreguntasService } from '../services/preguntas.service';
 })
 export class GraficaCirculoComponent implements AfterViewInit {
   //Recibe el índice de la pregunta actual desde el componente padre.
-  progress = 0;
   contenedorGrafica: any;
   porQue: number = 0;
   como: number = 0;
@@ -29,31 +28,27 @@ export class GraficaCirculoComponent implements AfterViewInit {
 
   constructor(public preguntaService: PreguntasService) {}
 
-  //Actualiza el progreso cuando cambia el índice de la pregunta actual
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['indexPregunta']) {
-      this.actualizarProgreso(changes['indexPregunta'].currentValue);
-    }
-  }
   /* Inicializa la gráfica de ECharts después de que el componente ha sido renderizado
   y establece las opciones de la gráfica y actualiza el progreso con el índice de la pregunta actual. */
   ngAfterViewInit() {
     this.contenedorGrafica = echarts.init(this.contenedor.nativeElement);
-    this.actualizarProgreso(this.preguntaService.indexPregunta);
-
-    const progresoAlmacenado = localStorage.getItem('progresoGrafica');
-    if (progresoAlmacenado) {
-      const progreso = JSON.parse(progresoAlmacenado);
-      this.porQue = progreso.porQue;
-      this.como = progreso.como;
-      this.que = progreso.que;
-      this.actualizarProgreso(this.preguntaService.indexPregunta);
-    }
+    this.calcularProgreso(
+      this.preguntaService.indexPregunta,
+      this.progresoAlmacenado()
+    );
+    this.iniciarGrafica();
   }
 
-  /*Actualiza el progreso en la gráfica circular según el índice de la pregunta actual,
-  modificando los valores de las series y las opciones de la gráfica.*/
-  actualizarProgreso(index: number) {
+  actualizarProgreso() {
+    const progresoAlmacenado = this.progresoAlmacenado();
+    const progreso = this.calcularProgreso(
+      this.preguntaService.indexPregunta,
+      progresoAlmacenado
+    );
+    this.guardarProgreso(progreso);
+  }
+
+  guardarProgreso(progreso: any) {
     localStorage.setItem(
       'progresoGrafica',
       JSON.stringify({
@@ -62,8 +57,21 @@ export class GraficaCirculoComponent implements AfterViewInit {
         que: this.que,
       })
     );
+  }
 
-    //Lógica para actualizar el progreso en la gráfica
+  progresoAlmacenado() {
+    const progresoAlmacenado = localStorage.getItem('progresoGrafica');
+    if (progresoAlmacenado) {
+      const progreso = JSON.parse(progresoAlmacenado);
+      this.porQue = progreso.porQue;
+      this.como = progreso.como;
+      this.que = progreso.que;
+    }
+  }
+
+  /*Actualiza el progreso en la gráfica circular según el índice de la pregunta actual,
+  modificando los valores de las series y las opciones de la gráfica.*/
+  calcularProgreso(index: number, progresoAlmacenado: any) {
     if (this.preguntaService.indexPregunta == 0) {
       this.porQue = 5;
       this.como = 5;
@@ -84,8 +92,9 @@ export class GraficaCirculoComponent implements AfterViewInit {
       this.porQue = 5;
       this.como = 5;
     }
+  }
 
-    //Gráfica círculo
+  iniciarGrafica() {
     const opciones = {
       title: [
         {
