@@ -1,3 +1,11 @@
+/*background-color: #155fe7;*/
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+
+}
 .contenedor__inicio {
     width: 100%;
     height: 90vh;
@@ -6,3 +14,48 @@
     justify-content: center;
     align-items: center;
 }
+
+.contenedor__inicio--title{
+  font-weight: bolder;
+  font-size: 60px;
+}
+
+.contenedor__inicio--subtitle {
+  font-weight: 25px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.contenedor__btn {
+  display: flex;
+  gap: 40px;
+}
+
+.btn--item {
+  border: transparent;
+  background-color: #155fe7;
+  height: 50px;
+  border-radius: 25px;
+  width: 200px;
+  color: white;
+  font-weight: 400;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.btn--text {
+  position: relative;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  top: 12px;
+  left: 42px
+}
+
+.img {
+  height: 700px;
+  width: 800px;
+}
+
+

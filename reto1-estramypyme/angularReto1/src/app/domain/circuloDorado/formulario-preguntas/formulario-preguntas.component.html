@@ -23,7 +23,7 @@
             type="radio"
             id="nada"
             name="respuesta"
-            value="nada"
+            value="{{ this.preguntaService.opciones[0].texto }}"
             [(ngModel)]="this.preguntaService.radioValue"
             (click)="
               seleccionarOpcion(
@@ -42,7 +42,7 @@
             id="poco"
             name="respuesta"
             [(ngModel)]="this.preguntaService.radioValue"
-            value="poco"
+            value="{{ this.preguntaService.opciones[1].texto }}"
             (click)="
               seleccionarOpcion(
                 this.preguntaService.indexPregunta,
@@ -60,7 +60,7 @@
             id="mucho"
             name="respuesta"
             [(ngModel)]="this.preguntaService.radioValue"
-            value="opcion3"
+            value="{{ this.preguntaService.opciones[2].texto }}"
             (click)="
               seleccionarOpcion(
                 this.preguntaService.indexPregunta,
@@ -90,7 +90,7 @@
         <div class="contenedor__paginador">
           <div>
             <p class="progreso" id="progreso">
-              Pregunta {{ preguntaService.indexPregunta }} de
+              Pregunta {{ preguntaService.indexPregunta + 1 }} de
               {{ preguntaService.basePreguntas.length }}
             </p>
           </div>
