@@ -23,9 +23,9 @@ import { CommonModule } from '@angular/common';
 })
 export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   //Propiedades de la clase o variables que se declaran dentro de una clase)
-  isPorQueChecked: boolean = true;
-  isComoChecked: boolean = false;
-  isQueChecked: boolean = false;
+  isPorQueChecked!: boolean;
+  isComoChecked!: boolean;
+  isQueChecked!: boolean;
   valorProgreso: number = 0;
   isActive: boolean = true;
   nadaporque: number = 0;
@@ -52,17 +52,33 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
     this.preguntaService.cargarEstadoFormulario();
     this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
     this.preguntaService.cargarRespuestas();
+    this.recuperarEstadoCheckboxes();
   }
 
   resetearRadioInputs() {
     this.preguntaService.radioValue = '';
   }
 
-  // reiniciarFormulario() {
-  //   this.isPorQueChecked = true;
-  //   this.isComoChecked = false;
-  //   this.isQueChecked = false;
-  // }
+  // Función para guardar el estado de los checkboxes en LocalStorage
+  guardarEstadoCheckboxes() {
+    const estadoCheckboxes = {
+      isPorQueChecked: this.isPorQueChecked,
+      isComoChecked: this.isComoChecked,
+      isQueChecked: this.isQueChecked,
+    };
+    localStorage.setItem('estadoCheckboxes', JSON.stringify(estadoCheckboxes));
+  }
+
+  // Función para recuperar el estado de los checkboxes desde LocalStorage
+  recuperarEstadoCheckboxes() {
+    const estadoCheckboxes = localStorage.getItem('estadoCheckboxes');
+    if (estadoCheckboxes) {
+      const estado = JSON.parse(estadoCheckboxes);
+      this.isPorQueChecked = estado.isPorQueChecked;
+      this.isComoChecked = estado.isComoChecked;
+      this.isQueChecked = estado.isQueChecked;
+    }
+  }
 
   @ViewChild('graficaProgreso') contenedor!: ElementRef;
 
@@ -163,21 +179,6 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // actualizarRadioValue(): void {
-  //   const radioInputs = document.querySelectorAll('input[type="radio"]');
-  //   radioInputs.forEach((input: Element) => {
-  //     const inputHtml = input as HTMLInputElement;
-  //     const value = inputHtml.value;
-  //     let checked: boolean = inputHtml.checked;
-  //      if (value === this.preguntaService.respuestas[this.preguntaService.indexPregunta]) {
-  //       checked = true;
-  //     } else {
-  //       checked = false;
-  //     }
-  //     console.log(value);
-
-  //   });
-  // }
   //Método para validar que alguna opción sea seleccionada y así avanzar a la siguiente pregunta
   manejarSiguiente() {
     if (!this.preguntaService.radioValue) {
@@ -213,18 +214,18 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
         this.isQueChecked = true;
         this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
       });
-    }
-    if (this.preguntaService.indexPregunta == 15) {
+    } else if (this.preguntaService.indexPregunta == 15) {
       Swal.fire({
         title: "¡Bien hecho, has finalizado todas las secciones' 👏",
         text: '¡Modelo Círculo Dorado completado!🎉',
         // customClass: 'my-custom-class',
+      }).then(() => {
+        this.preguntaService.indexPregunta = 0;
+        this.isPorQueChecked = true;
+        this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
       });
-      this.preguntaService.indexPregunta = 0;
-      this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
-
-      // this.reiniciarFormulario();
     }
+
     this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta); // Carga la nueva pregunta.
     this.actualizarProgreso(this.preguntaService.indexPregunta); // Actualiza el progreso.
   }
@@ -241,5 +242,6 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   seleccionarOpcion(indexPregunta: number, respuesta: string) {
     this.preguntaService.guardarRespuesta(indexPregunta, respuesta);
     this.preguntaService.radioValue = respuesta;
+    this.guardarEstadoCheckboxes();
   }
 }
