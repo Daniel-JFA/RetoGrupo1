@@ -230,7 +230,6 @@ export class PreguntasService {
   // Método para guardar las respuestas en localStorage
   guardarRespuesta(indexPregunta: number, respuesta: string): void {
     this.respuestas[indexPregunta] = respuesta;
-    console.log(this.radioValue);
     console.log(`Pregunta ${indexPregunta} respondida con: ${respuesta}`);
     localStorage.setItem(this.storageKey, JSON.stringify(this.respuestas));
   }

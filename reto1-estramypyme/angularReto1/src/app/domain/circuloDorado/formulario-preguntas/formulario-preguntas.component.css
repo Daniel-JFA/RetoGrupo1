@@ -147,9 +147,9 @@ input[name="respuesta"]:checked + label:before {
   font-weight: 500;
 }
 
-#porque:checked ~ .contenedor-preguntas .contenedor-tabs,
-#como:checked ~ .contenedor-preguntas .contenedor-tabs,
-#que:checked ~ .contenedor-preguntas .contenedor-tabs {
+#porque ~ .contenedor-preguntas .contenedor-tabs,
+#como ~ .contenedor-preguntas .contenedor-tabs,
+#que ~ .contenedor-preguntas .contenedor-tabs {
   display: block;
 }
 
