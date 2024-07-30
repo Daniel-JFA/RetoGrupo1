@@ -10,6 +10,8 @@ import { ResultadosRadarComponent } from '../resultados-radar/resultados-radar.c
 import { ResultadosCirculoComponent } from '../resultados-circulo/resultados-circulo.component';
 import { HeaderComponent } from '../../header/header.component';
 import { PreguntasService } from '../../circuloDorado/services/preguntas.service';
+import { GraficaCirculoComponent } from '../../circuloDorado/grafica-circulo/grafica-circulo.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-resultadospage',
@@ -18,32 +20,12 @@ import { PreguntasService } from '../../circuloDorado/services/preguntas.service
     ResultadosRadarComponent,
     ResultadosCirculoComponent,
     HeaderComponent,
+    GraficaCirculoComponent,
   ],
   templateUrl: './resultadospage.component.html',
   styleUrl: './resultadospage.component.css',
 })
-export class ResultadospageComponent implements OnInit {
-  respuestasSeleccionadas: any;
+export class ResultadospageComponent {
 
-  @Output() cambioPregunta = new EventEmitter<number>();
-  @Output() respuestaGuardada = new EventEmitter<void>();
-
-  preguntaService = inject(PreguntasService);
-
-  ngOnInit(): void {
-    this.preguntaService.getPreguntas();
-  }
-
-  obtenerRespuestasSeleccionadas() {
-    this.respuestasSeleccionadas = this.preguntaService.getRespuestas();
-  }
-
-  // manejarSiguiente(respuesta: number) {
-
-  //   console.log(
-  //     this.preguntaService.guardarRespuesta(this.indexPregunta, respuesta),
-  //     this.respuestaGuardada.emit(),
-  //     this.cambioPregunta.emit(this.indexPregunta)
-  //   );
-  // }
+  constructor(public preguntaService: PreguntasService) {}
 }

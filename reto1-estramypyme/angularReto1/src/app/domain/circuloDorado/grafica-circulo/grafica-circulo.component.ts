@@ -3,12 +3,13 @@ import {
   ElementRef,
   Component,
   ViewChild,
-  Input,
   SimpleChanges,
-  OnInit,
+  OnChanges,
+  OnDestroy,
 } from '@angular/core';
 import * as echarts from 'echarts';
 import { PreguntasService } from '../services/preguntas.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-grafica-circulo',
@@ -17,16 +18,27 @@ import { PreguntasService } from '../services/preguntas.service';
   templateUrl: './grafica-circulo.component.html',
   styleUrl: './grafica-circulo.component.css',
 })
-export class GraficaCirculoComponent implements AfterViewInit {
+export class GraficaCirculoComponent implements OnDestroy, AfterViewInit {
   //Recibe el índice de la pregunta actual desde el componente padre.
   contenedorGrafica: any;
   porQue: number = 0;
   como: number = 0;
   que: number = 0;
+  private subscription: Subscription;
 
   @ViewChild('graficaCirculo') contenedor!: ElementRef;
 
-  constructor(public preguntaService: PreguntasService) {}
+  constructor(public preguntaService: PreguntasService) {
+    this.subscription = this.preguntaService.indexPregunta$.subscribe(
+      (index) => {
+        this.actualizarProgreso(); // Actualizar gráfica cuando cambie indexPregunta
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
   /* Inicializa la gráfica de ECharts después de que el componente ha sido renderizado
   y establece las opciones de la gráfica y actualiza el progreso con el índice de la pregunta actual. */
@@ -46,6 +58,7 @@ export class GraficaCirculoComponent implements AfterViewInit {
       progresoAlmacenado
     );
     this.guardarProgreso(progreso);
+    this.iniciarGrafica();
   }
 
   guardarProgreso(progreso: any) {
