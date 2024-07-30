@@ -3,6 +3,7 @@ import { FormularioPreguntasComponent } from '../formulario-preguntas/formulario
 import { GraficaCirculoComponent } from '../grafica-circulo/grafica-circulo.component';
 import { HeaderComponent } from '../../header/header.component';
 import { PreguntasService } from '../services/preguntas.service';
+import { ResultadosCirculoComponent } from '../../resultados/resultados-circulo/resultados-circulo.component';
 
 @Component({
   selector: 'app-circulo-dorado-page',
@@ -11,14 +12,11 @@ import { PreguntasService } from '../services/preguntas.service';
     FormularioPreguntasComponent,
     GraficaCirculoComponent,
     HeaderComponent,
+    ResultadosCirculoComponent,
   ],
   templateUrl: './circulo-dorado-page.component.html',
   styleUrl: './circulo-dorado-page.component.css',
 })
 export class CirculoDoradoPageComponent {
   constructor(public preguntaService: PreguntasService) {}
-
-  actualizarProgreso(nuevoProgreso: number) {
-    this.preguntaService.indexPregunta = nuevoProgreso;
-  }
 }

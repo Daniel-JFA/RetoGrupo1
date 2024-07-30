@@ -4,10 +4,12 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnDestroy,
   ViewChild,
 } from '@angular/core';
 import * as echarts from 'echarts';
 import { PreguntasService } from '../../circuloDorado/services/preguntas.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-resultados-circulo',
@@ -16,19 +18,30 @@ import { PreguntasService } from '../../circuloDorado/services/preguntas.service
   templateUrl: './resultados-circulo.component.html',
   styleUrl: './resultados-circulo.component.css',
 })
-export class ResultadosCirculoComponent implements AfterViewInit {
+export class ResultadosCirculoComponent implements AfterViewInit, OnDestroy {
   contenedorGrafica: any;
   conclusiones: any = [];
+  private subscription: Subscription;
 
   @ViewChild('resultadosCirculo') contenedor!: ElementRef;
 
-  constructor(public preguntaService: PreguntasService) {}
+  constructor(public preguntaService: PreguntasService) {
+    this.subscription = this.preguntaService.indexPregunta$.subscribe(
+      (index) => {
+        this.iniciarGrafica();
+      }
+    );
+  }
 
   ngOnInit() {}
 
   ngAfterViewInit() {
     this.contenedorGrafica = echarts.init(this.contenedor.nativeElement);
     this.iniciarGrafica();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   obtenerRespuestasSeleccionadas() {
@@ -47,23 +60,17 @@ export class ResultadosCirculoComponent implements AfterViewInit {
       const pocoCount = poco[i].reduce((a: any, b: any) => a + b, 0);
       const muchoCount = mucho[i].reduce((a: any, b: any) => a + b, 0);
 
-      if (nadaCount >= 2) {
+      if ((nadaCount >= 2 || pocoCount >= 2) && muchoCount < 3) {
         this.conclusiones.push(
-          `Es importante crear una estrategia para mejorar el propósito de su empresa`
-        );
-      } else if (pocoCount >= 2) {
-        this.conclusiones.push(
-          `Es importante crear una estrategia para mejorar la propuesta de valor de su empresa`
+          `Es importante crear una estrategia para mejorar su empresa`
         );
       } else if (muchoCount >= 3) {
         this.conclusiones.push(
-          `Las respuestas reflejan que los productos y servicios de su empresa están perfectamente estructurados y cumplen con los objetivos ¡Felicitaciones! 👏`
+          `Las respuestas reflejan que todo está perfectamente estructurado y cumple con los objetivos ¡Felicitaciones! 👏`
         );
       }
-      // if (i < 2) {
-      //   this.conclusion += '\n';
-      // }
     }
+    // Filtra las conclusiones vacías y devuelve un array con las conclusiones
     return this.conclusiones;
   }
 

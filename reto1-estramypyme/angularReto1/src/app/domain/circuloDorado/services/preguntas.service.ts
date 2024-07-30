@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -176,6 +177,14 @@ export class PreguntasService {
     },
   ];
 
+  private indexPreguntaSubject = new BehaviorSubject<number>(0);
+  public indexPregunta$ = this.indexPreguntaSubject.asObservable();
+  private readonly respuestasReiniciadasSubject = new BehaviorSubject<boolean>(
+    false
+  );
+  public respuestasReiniciadas$ =
+    this.respuestasReiniciadasSubject.asObservable();
+
   //Este método devuelve el array basePreguntas que contiene todas las preguntas y opciones del cuestionario.
   getPreguntas(): any {
     return this.basePreguntas;
@@ -190,7 +199,8 @@ export class PreguntasService {
     if (index < this.basePreguntas.length) {
       this.objetoPregunta = this.basePreguntas[index];
       this.opciones = this.objetoPregunta.opciones;
-      this.radioValue = this.respuestas[this.indexPregunta]
+      this.radioValue = this.respuestas[this.indexPregunta];
+      this.indexPreguntaSubject.next(index);
     }
   }
 
@@ -208,7 +218,7 @@ export class PreguntasService {
       const estadoFormulario = JSON.parse(estadoFormularioString);
       this.indexPregunta = estadoFormulario.indexPregunta;
       this.respuestas = estadoFormulario.respuestas;
-      this.radioValue = this.respuestas[this.indexPregunta]      
+      this.radioValue = this.respuestas[this.indexPregunta];
     }
   }
 
@@ -237,5 +247,10 @@ export class PreguntasService {
     localStorage.removeItem('respuestas');
     localStorage.removeItem('estadoFormulario');
     this.getPreguntas();
+    this.indexPregunta = 0;
+    this.radioValue = ' ';
+    this.respuestasReiniciadasSubject.next(true);
+    this.indexPreguntaSubject.next(0);
+
   }
 }
