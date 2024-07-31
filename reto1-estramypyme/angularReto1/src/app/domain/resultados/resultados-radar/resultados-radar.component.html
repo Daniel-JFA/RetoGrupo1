@@ -1,1 +1,45 @@
-<div class="resultadosRadar" #resultadosRadar></div>
+<div class="resultadosRadar" #resultadosRadar>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Elementos claves del negocio</th>
+                <th scope="col">Ideal</th>
+                <th scope="col">Calificación</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-primary">
+                <th scope="row">Conocimiento del cliente</th>
+                <td>4</td>
+                <td id="nivel1" readonly>{{ nivel1 }}</td>
+            </tr>
+            <tr class="table-primary">
+                <th scope="row">Conocimiento del negocio</th>
+                <td>4</td>
+                <td id="nivel2" readonly>{{ nivel2 }}</td>
+            </tr>
+            <tr class="table-primary">
+                <th scope="row">Coherencia del modelo de negocio</th>
+                <td>4</td>
+                <td id="nivel3" readonly>{{ nivel3 }}</td>
+            </tr>
+            <tr class="table-primary">
+                <th scope="row">Alineación en la comunicación interna</th>
+                <td>4</td>
+                <td id="nivel4" readonly>{{ nivel4 }}</td>
+            </tr>
+            <tr class="table-primary">
+                <th scope="row">Salud financiera</th>
+                <td>4</td>
+                <td id="nivel5" readonly>{{ nivel5 }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <H4>Conclusiones</H4>
+    <p>El Conocimiento del cliente: {{ conocimientoCliente }}</p>
+    <p>El Conocimiento del negocio: {{ conocimientoNegocio }}</p>
+    <p>La Coherencia del modelo de negocio: {{ CoherenciaModeloNegocio }}</p>
+    <p>La Alineación en la comunicación interna: {{ AlineacionComunicacionInterna }}</p>
+    <p>La Salud financiera: {{ saludFinanciera }}</p>
+</div>
+        

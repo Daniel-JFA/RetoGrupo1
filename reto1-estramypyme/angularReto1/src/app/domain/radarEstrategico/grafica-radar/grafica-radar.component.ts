@@ -1,11 +1,9 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import * as echarts from 'echarts';
-import { FormularioPreguntasRadarComponent } from '../formulario-preguntas-radar/formulario-preguntas-radar.component';
 
 @Component({
   selector: 'app-grafica-radar',
   standalone: true,
-  imports: [FormularioPreguntasRadarComponent],
   templateUrl: './grafica-radar.component.html',
   styleUrls: ['./grafica-radar.component.css'],
 })
@@ -24,19 +22,12 @@ export class GraficaRadarComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['nivel1'] && !changes['nivel1'].isFirstChange()) {
+    if (changes['nivel1'] || changes['nivel2'] || changes['nivel3'] || changes['nivel4'] || changes['nivel5']) {
       this.updateGrafica();
-    }else if (changes['nivel2'] && !changes['nivel2'].isFirstChange()) {
-      this.updateGrafica();
-    }else if (changes['nivel3'] && !changes['nivel3'].isFirstChange()) {
-        this.updateGrafica();
-    }else if (changes['nivel4'] && !changes['nivel4'].isFirstChange()) {
-        this.updateGrafica();
-    }else if (changes['nivel5'] && !changes['nivel5'].isFirstChange()) { 
-          this.updateGrafica();
+      this.guardarDatos();
     }
   }
-  
+
   initGrafica() {
     this.contenedorGrafica = echarts.init(this.contenedor.nativeElement);
     this.setOptions();
@@ -61,17 +52,26 @@ export class GraficaRadarComponent implements AfterViewInit, OnChanges {
       },
       series: [
         {
-          name: 'Budget vs spending',
+          name: 'Resultados',
           type: 'radar',
           data: [
             {
               value: [this.nivel1, this.nivel2, this.nivel3, this.nivel4, this.nivel5],
-              name: 'Actual Spending',
+              name: 'Resultados',
             },
           ],
         },
       ],
     };
     this.contenedorGrafica.setOption(opciones);
+  }
+
+  guardarDatos() {
+    // Guardar los datos en localStorage
+    localStorage.setItem('nivel1', String(this.nivel1));
+    localStorage.setItem('nivel2', String(this.nivel2));
+    localStorage.setItem('nivel3', String(this.nivel3));
+    localStorage.setItem('nivel4', String(this.nivel4));
+    localStorage.setItem('nivel5', String(this.nivel5));
   }
 }
