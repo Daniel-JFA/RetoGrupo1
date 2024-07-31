@@ -6,7 +6,7 @@ import { ResultadospageComponent } from './domain/resultados/resultadospage/resu
 import { InicioPageComponent } from './domain/inicio/inicio-page/inicio-page.component';
 
 export const routes: Routes = [
-  { path: '', component: CirculoDoradoPageComponent },
+  { path: '', component: InicioPageComponent },
   { path: 'inicio', component: InicioPageComponent },
   { path: 'circulo-dorado', component: CirculoDoradoPageComponent },
   { path: 'radar-estrategico', component: RadarEstrategicoPageComponent },
