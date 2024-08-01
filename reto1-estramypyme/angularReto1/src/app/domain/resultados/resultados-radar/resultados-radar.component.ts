@@ -34,7 +34,7 @@ export class ResultadosRadarComponent implements OnInit {
     }
     this.nivel2 = Number(localStorage.getItem('nivel2')) || 0;
     if (this.nivel2 == 1) {
-      this.conocimientoNegocio = 'Se le dificulta definir el negocio en el que está (quién es el clientem que tarea resuelve y cuáles son los productos o servicios que ofrece).';
+      this.conocimientoNegocio = 'Se le dificulta definir a su cliente, que tarea resuelve y cuáles son los productos o servicios que ofrece.';
     }else if (this.nivel2 == 2) {
       this.conocimientoNegocio = 'Identifica en qué negocio está pero no cómo se diferencia de sus competidores.';
     }else if (this.nivel2 == 3) {
