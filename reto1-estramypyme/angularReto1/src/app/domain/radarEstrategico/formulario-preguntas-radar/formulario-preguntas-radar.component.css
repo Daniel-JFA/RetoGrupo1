@@ -1,6 +1,32 @@
+.contenedor__borrar {
+  display: flex;
+  justify-content: center;
+}
+
+.botonSecundario {
+  margin-bottom: 2em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 2px solid #4c80e2;
+  padding: 0.5em 1em;
+  border-radius: 0.8em;
+  cursor: pointer;
+  color: #333333;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 49px 0px rgba(0, 0, 0, 0.15);
+  font-size: 14px;
+}
+
+.botonSecundario:hover {
+  background-color: #155fe7;
+  color: white;
+  box-shadow: 0px 4px 49px 0px rgba(0, 0, 0, 0.15);
+}
 
 .contenedor__tabla {
-  border: solid 1px #155FE7;
+  border: solid 1px #155fe7;
   border-radius: 5px 5px 0 0;
 }
 
@@ -13,7 +39,7 @@ table {
 }
 
 thead {
-  background-color: #155FE7;
+  background-color: #155fe7;
   color: #fff;
 }
 
@@ -36,13 +62,13 @@ th {
   padding: 20px 25px;
   font-weight: 700;
   text-transform: uppercase;
-  border-left: solid 1px #155FE7;
+  border-left: solid 1px #155fe7;
   text-align: center;
 }
 
 td {
   padding: 15px;
-  border-left: solid 1px #155FE7;
+  border-left: solid 1px #155fe7;
   color: #333333;
   height: 50px;
 }
@@ -50,7 +76,7 @@ td {
 tbody tr {
   background: #f4f4f4;
   cursor: pointer;
-  border-bottom: solid 1px #155FE7;
+  border-bottom: solid 1px #155fe7;
 }
 
 tbody tr:hover {
@@ -76,7 +102,7 @@ tbody tr:active {
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  background-color: #155FE7;
+  background-color: #155fe7;
   padding: 1em 2.3em;
   border-radius: 0.8em;
   border: none;
@@ -103,6 +129,4 @@ tbody tr:active {
     margin-top: 3em;
     gap: 0.5em;
   }
-
 }
-
