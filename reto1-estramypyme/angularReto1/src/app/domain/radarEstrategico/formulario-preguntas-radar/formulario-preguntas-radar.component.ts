@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PreguntasRadarService } from '../services/preguntas-radar.service';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
+import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'app-formulario-preguntas-radar',
   standalone: true,
@@ -10,7 +11,10 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./formulario-preguntas-radar.component.css'],
 })
 export class FormularioPreguntasRadarComponent implements OnInit {
-  @Output() nivelSeleccionado = new EventEmitter<{ nivel: number, index: number }>();
+  @Output() nivelSeleccionado = new EventEmitter<{
+    nivel: number;
+    index: number;
+  }>();
   //Propiedades de la clase o variables que se declaran dentro de una clase)
   preguntasRadar: any[] = [];
   niveles: any;
@@ -23,10 +27,30 @@ export class FormularioPreguntasRadarComponent implements OnInit {
   para acceder a sus métodos y propiedades."*/
   constructor(private preguntaRadarService: PreguntasRadarService) {}
 
+  private readonly respuestasReiniciadasSubject = new BehaviorSubject<boolean>(
+    false
+  );
+  public respuestasReiniciadas$ =
+    this.respuestasReiniciadasSubject.asObservable();
+  private indexPreguntaSubject = new BehaviorSubject<number>(0);
+  public indexPregunta$ = this.indexPreguntaSubject.asObservable();
+
   //Cuando el componente se inicializa
   ngOnInit(): void {
+    this.recuperarIndicePregunta();
     this.preguntasRadar = this.preguntaRadarService.getPreguntasRadar();
     console.log(this.cargarPreguntaRadar(this.indexPregunta));
+  }
+
+  guardarIndicePregunta() {
+    localStorage.setItem('indicePregunta', this.indexPregunta.toString());
+  }
+
+  recuperarIndicePregunta() {
+    const indicePregunta = localStorage.getItem('indicePregunta');
+    if (indicePregunta) {
+      this.indexPregunta = parseInt(indicePregunta, 10);
+    }
   }
 
   //Cargar cada pregunta del servicio preguntas radar
@@ -48,6 +72,7 @@ export class FormularioPreguntasRadarComponent implements OnInit {
         // this.graficoRespuestas(this.indexPregunta);
       });
     }
+    this.indexPreguntaSubject.next(index);
   }
 
   /*"Establece la opción seleccionada en la propiedad preguntaSeleccionada y la muestra en la consola.*/
@@ -68,6 +93,7 @@ export class FormularioPreguntasRadarComponent implements OnInit {
     }
 
     this.indexPregunta++;
+    this.guardarIndicePregunta();
     this.cargarPreguntaRadar(this.indexPregunta);
   }
 
@@ -75,7 +101,17 @@ export class FormularioPreguntasRadarComponent implements OnInit {
     if (this.indexPregunta > 0) {
       this.indexPregunta--; // Disminuye el índice de la pregunta para retroceder a la anterior.
     }
+    this.guardarIndicePregunta();
 
     this.cargarPreguntaRadar(this.indexPregunta); // Carga la nueva pregunta.
+  }
+
+  reiniciarRespuestas(): void {
+    localStorage.removeItem('indicePregunta');
+    this.respuestasReiniciadasSubject.next(true);
+    this.indexPreguntaSubject.next(0);
+    this.indexPregunta = 0; // Agrega esta línea
+    this.preguntaSeleccionada = null; // Agrega esta línea
+    this.cargarPreguntaRadar(this.indexPregunta); // Agrega esta línea
   }
 }
