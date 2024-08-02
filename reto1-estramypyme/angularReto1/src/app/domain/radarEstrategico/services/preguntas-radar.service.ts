@@ -17,7 +17,7 @@ export class PreguntasRadarService {
         descripcion3:
           'Conoce su cliente, lo describe desde su estilo de vida, hábitos de consumo, comportamient, tareas por hace, dolores, alegrías.',
         descripcion4:
-          'Identifica, además, si su negoci atiende solo uno o varios tipos de clientes. Diferencia en su negocio al cosumidor, el comprador y/o el cliente.',
+          'Identifica, además, si su negocio atiende solo uno o varios tipos de clientes. Diferencia en su negocio al cosumidor, el comprador y/o el cliente.',
       },
     },
     {
@@ -26,7 +26,7 @@ export class PreguntasRadarService {
       niveles: { nivel1: 1, nivel2: 2, nivel3: 3, nivel4: 4 },
       descripciones: {
         descripcion1:
-          'Se le dificulta definir el negocio en el que está (quién es el clientem que tarea resuelve y cuáles son los productos o servicios que ofrece).',
+          'Se le dificulta definir el negocio en el que está (quién es el cliente que tarea resuelve y cuáles son los productos o servicios que ofrece).',
         descripcion2:
           'Identifica en qué negocio está pero no cómo se diferencia de sus competidores.',
         descripcion3:

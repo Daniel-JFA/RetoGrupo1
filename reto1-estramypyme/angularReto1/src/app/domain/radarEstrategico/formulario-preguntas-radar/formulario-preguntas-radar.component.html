@@ -67,7 +67,7 @@
 >
   <button class="botonPrimario" id="botonPrimario" (click)="manejarAnterior()"
   >Anterior</button>
-  <div>Sección {{ indexPregunta }} de {{ preguntasRadar.length }}</div>
+  <div>Sección {{ indexPregunta + 1 }} de {{ preguntasRadar.length }}</div>
 
   <button
     class="botonPrimario"
@@ -75,5 +75,15 @@
     (click)="manejarSiguiente()"
   >
     Siguiente
+  </button>
+</div>
+<div class="contenedor__borrar">
+  <button
+    class="botonSecundario"
+    id="botonSecundario"
+    (click)="reiniciarRespuestas()"
+
+  >
+    Reiniciar formulario
   </button>
 </div>

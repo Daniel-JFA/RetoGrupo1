@@ -1,4 +1,12 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import * as echarts from 'echarts';
 
 @Component({
@@ -22,7 +30,13 @@ export class GraficaRadarComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['nivel1'] || changes['nivel2'] || changes['nivel3'] || changes['nivel4'] || changes['nivel5']) {
+    if (
+      changes['nivel1'] ||
+      changes['nivel2'] ||
+      changes['nivel3'] ||
+      changes['nivel4'] ||
+      changes['nivel5']
+    ) {
       this.updateGrafica();
       this.guardarDatos();
     }
@@ -56,7 +70,13 @@ export class GraficaRadarComponent implements AfterViewInit, OnChanges {
           type: 'radar',
           data: [
             {
-              value: [this.nivel1, this.nivel2, this.nivel3, this.nivel4, this.nivel5],
+              value: [
+                this.nivel1,
+                this.nivel2,
+                this.nivel3,
+                this.nivel4,
+                this.nivel5,
+              ],
               name: 'Resultados',
             },
           ],
