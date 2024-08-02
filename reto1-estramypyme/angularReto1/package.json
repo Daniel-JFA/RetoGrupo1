@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "postbuild": "copy _redirects dist\\browser\\"
+    "postbuild": "copy _redirects dist\\browser\\_redirects"
   },
   "private": true,
   "dependencies": {
