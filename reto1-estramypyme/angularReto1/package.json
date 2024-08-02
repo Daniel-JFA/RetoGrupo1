@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "postbuild": "copy _redirects dist\\browser\\"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +21,7 @@
     "@angular/router": "^18.0.0",
     "@ngx-pwa/local-storage": "^18.0.0",
     "boxicons": "^2.1.4",
+    "copyfiles": "^2.4.1",
     "echarts": "^5.5.1",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.12.2",
