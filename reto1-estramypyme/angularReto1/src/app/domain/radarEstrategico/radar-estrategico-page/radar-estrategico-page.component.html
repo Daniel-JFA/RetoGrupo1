@@ -18,13 +18,7 @@
 </section>
 <section class="seccion__preguntas">
   <div class="contenedor__grafica">
-    <app-grafica-radar
-      [nivel1]="nivel1"
-      [nivel2]="nivel2"
-      [nivel3]="nivel3"
-      [nivel4]="nivel4"
-      [nivel5]="nivel5"
-    ></app-grafica-radar>
+    <app-grafica-radar></app-grafica-radar>
   </div>
   <div class="contenedor__preguntas">
     <app-formulario-preguntas-radar (nivelSeleccionado)="actualizarNivel($event)"></app-formulario-preguntas-radar>

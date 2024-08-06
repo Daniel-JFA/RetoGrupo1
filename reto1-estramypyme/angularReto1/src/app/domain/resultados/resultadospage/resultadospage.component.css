@@ -28,7 +28,6 @@
   display: flex;
   flex-direction: column;
   gap: 1em;
-  height: 800px;
 }
 
 .resultados__circulo {

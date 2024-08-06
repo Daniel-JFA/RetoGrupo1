@@ -1,13 +1,7 @@
-import {
-  Component,
-  ElementRef,
-  ViewChild,
-  AfterViewInit,
-  Input,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import * as echarts from 'echarts';
+import { PreguntasRadarService } from '../services/preguntas-radar.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-grafica-radar',
@@ -15,28 +9,41 @@ import * as echarts from 'echarts';
   templateUrl: './grafica-radar.component.html',
   styleUrls: ['./grafica-radar.component.css'],
 })
-export class GraficaRadarComponent implements AfterViewInit, OnChanges {
-  @Input() nivel1: number = 1;
-  @Input() nivel2: number = 1;
-  @Input() nivel3: number = 1;
-  @Input() nivel4: number = 1;
-  @Input() nivel5: number = 1;
+export class GraficaRadarComponent implements AfterViewInit, OnDestroy {
+  contenedorGrafica: any;
+  private subscription: Subscription;
 
   @ViewChild('graficaRadar', { static: true }) contenedor!: ElementRef;
-  contenedorGrafica: any;
+
+  constructor(public preguntaRadarService: PreguntasRadarService) {
+    this.subscription = new Subscription();
+    this.subscription.add(
+      this.preguntaRadarService.indexPregunta$.subscribe((index) => {
+        this.updateGrafica();
+      })
+    );
+
+    this.subscription =
+      this.preguntaRadarService.respuestasReiniciadas$.subscribe(
+        (reiniciadas) => {
+          if (reiniciadas) {
+            this.updateGrafica();
+          }
+        }
+      );
+  }
+
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   ngAfterViewInit() {
     this.initGrafica();
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (
-      changes['nivel1'] ||
-      changes['nivel2'] ||
-      changes['nivel3'] ||
-      changes['nivel4'] ||
-      changes['nivel5']
-    ) {
+    if (changes['nivel1'] || changes['nivel2'] || changes['nivel3'] || changes['nivel4'] || changes['nivel5']) {
       this.updateGrafica();
       this.guardarDatos();
     }
@@ -71,11 +78,11 @@ export class GraficaRadarComponent implements AfterViewInit, OnChanges {
           data: [
             {
               value: [
-                this.nivel1,
-                this.nivel2,
-                this.nivel3,
-                this.nivel4,
-                this.nivel5,
+                this.preguntaRadarService.seccion1,
+                this.preguntaRadarService.seccion2,
+                this.preguntaRadarService.seccion3,
+                this.preguntaRadarService.seccion4,
+                this.preguntaRadarService.seccion5,
               ],
               name: 'Resultados',
             },
@@ -88,10 +95,6 @@ export class GraficaRadarComponent implements AfterViewInit, OnChanges {
 
   guardarDatos() {
     // Guardar los datos en localStorage
-    localStorage.setItem('nivel1', String(this.nivel1));
-    localStorage.setItem('nivel2', String(this.nivel2));
-    localStorage.setItem('nivel3', String(this.nivel3));
-    localStorage.setItem('nivel4', String(this.nivel4));
-    localStorage.setItem('nivel5', String(this.nivel5));
+    this.preguntaRadarService.guardarDatos();
   }
 }
