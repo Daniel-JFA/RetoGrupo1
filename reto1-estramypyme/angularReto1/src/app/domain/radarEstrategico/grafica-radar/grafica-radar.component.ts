@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, Input, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import * as echarts from 'echarts';
 import { PreguntasRadarService } from '../services/preguntas-radar.service';
 import { Subscription } from 'rxjs';
