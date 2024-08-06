@@ -1,0 +1,22 @@
+ul,
+li {
+  text-decoration: none;
+}
+.contenedor__redes__sociales {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.text {
+  text-align: center;
+  color: white;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80px;
+  background: #155fe7;
+}

@@ -4,6 +4,7 @@ import { GraficaCirculoComponent } from '../grafica-circulo/grafica-circulo.comp
 import { HeaderComponent } from '../../header/header.component';
 import { PreguntasService } from '../services/preguntas.service';
 import { ResultadosCirculoComponent } from '../../resultados/resultados-circulo/resultados-circulo.component';
+import { FooterComponent } from "../../footer/footer.component";
 
 @Component({
   selector: 'app-circulo-dorado-page',
@@ -13,7 +14,8 @@ import { ResultadosCirculoComponent } from '../../resultados/resultados-circulo/
     GraficaCirculoComponent,
     HeaderComponent,
     ResultadosCirculoComponent,
-  ],
+    FooterComponent
+],
   templateUrl: './circulo-dorado-page.component.html',
   styleUrl: './circulo-dorado-page.component.css',
 })
