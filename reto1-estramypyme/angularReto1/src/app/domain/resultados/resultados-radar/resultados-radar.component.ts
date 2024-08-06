@@ -36,7 +36,6 @@ export class ResultadosRadarComponent implements OnInit {
       this.conocimientoCliente =
         'Identifica, además, si su negocio atiende solo uno o varios tipos de clientes. Diferencia en su negocio al cosumidor, el comprador y/o el cliente.';
     }
-    // this.preguntaRadarService.seccion2 = Number(localStorage.getItem('nivel2'));
     if (this.preguntaRadarService.seccion2 == 0) {
       this.conocimientoNegocio = ' ';
     }
@@ -53,7 +52,6 @@ export class ResultadosRadarComponent implements OnInit {
       this.conocimientoNegocio =
         'Identifica el negocio en el que está y lo que sabe hacer mejor que sus competidores (capacidades distintivas). Además mantiene relaciones sanas con sus aliados claves.';
     }
-    // this.preguntaRadarService.seccion3 = Number(localStorage.getItem('nivel3'));
     if (this.preguntaRadarService.seccion3 == 0) {
       this.CoherenciaModeloNegocio = ' ';
     }
@@ -70,7 +68,6 @@ export class ResultadosRadarComponent implements OnInit {
       this.CoherenciaModeloNegocio =
         'Existe coherencia entre la definición del cliente, la propuesta de valor y los demás elementos del modelo de negocio.';
     }
-    // this.preguntaRadarService.seccion4 = Number(localStorage.getItem('nivel4'));
     if (this.preguntaRadarService.seccion4 == 0) {
       this.AlineacionComunicacionInterna = ' ';
     }
@@ -87,7 +84,6 @@ export class ResultadosRadarComponent implements OnInit {
       this.AlineacionComunicacionInterna =
         'El área administrativa y operativa le apuntan a un propósito común';
     }
-    // this.preguntaRadarService.seccion5 = Number(localStorage.getItem('nivel5'));
     if (this.preguntaRadarService.seccion5 == 0) {
       this.saludFinanciera = ' ';
     }
