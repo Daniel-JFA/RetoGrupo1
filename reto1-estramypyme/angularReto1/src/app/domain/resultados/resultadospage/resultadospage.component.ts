@@ -5,6 +5,8 @@ import { HeaderComponent } from '../../header/header.component';
 import { PreguntasService } from '../../circuloDorado/services/preguntas.service';
 import { GraficaCirculoComponent } from '../../circuloDorado/grafica-circulo/grafica-circulo.component';
 import { Subscription } from 'rxjs';
+import { FooterComponent } from "../../footer/footer.component";
+
 
 @Component({
   selector: 'app-resultadospage',
@@ -14,6 +16,7 @@ import { Subscription } from 'rxjs';
     ResultadosCirculoComponent,
     HeaderComponent,
     GraficaCirculoComponent,
+    FooterComponent
   ],
   templateUrl: './resultadospage.component.html',
   styleUrl: './resultadospage.component.css',
