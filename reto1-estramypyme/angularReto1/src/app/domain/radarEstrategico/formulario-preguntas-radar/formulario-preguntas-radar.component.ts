@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./formulario-preguntas-radar.component.css'],
 })
 export class FormularioPreguntasRadarComponent implements OnInit {
+  // Emite un evento cuando se selecciona un nivel.
   @Output() nivelSeleccionado = new EventEmitter<{
     index: number;
     nivel: number;
@@ -20,27 +21,25 @@ export class FormularioPreguntasRadarComponent implements OnInit {
   para acceder a sus métodos y propiedades."*/
   constructor(public preguntaRadarService: PreguntasRadarService) {}
 
-  //Cuando el componente se inicializa
+  // Se ejecuta cuando el componente se inicializa.
   ngOnInit(): void {
-    this.preguntaRadarService.recuperarIndicePregunta();
+    this.preguntaRadarService.recuperarIndicePregunta(); // Recupera el índice de la pregunta actual.
     this.preguntaRadarService.BasepreguntasRadar =
-      this.preguntaRadarService.getPreguntasRadar();
-    console.log(
-      this.preguntaRadarService.cargarPreguntaRadar(
-        this.preguntaRadarService.indexPregunta
-      )
-    );
+      this.preguntaRadarService.getPreguntasRadar(); // Obtiene las preguntas radar.
+    this.preguntaRadarService.cargarPreguntaRadar(
+      this.preguntaRadarService.indexPregunta
+    ); // Carga la pregunta radar actual.
   }
 
-  /*"Establece la opción seleccionada en la propiedad preguntaSeleccionada y la muestra en la consola.*/
+  /* Método para establecer la opción seleccionada en la propiedad preguntaSeleccionada y la muestra en la consola.*/
   seleccionarOpcion(nivel: any, descripcion: any) {
     this.preguntaRadarService.preguntaSeleccionada = { nivel, descripcion };
+    // Emite el evento nivelSeleccionado con el índice y nivel seleccionados.
     this.nivelSeleccionado.emit({
       index: this.preguntaRadarService.indexPregunta,
       nivel,
     });
-
-    console.log(this.preguntaRadarService.preguntaSeleccionada);
+    this.preguntaRadarService.preguntaSeleccionada;
   }
 
   //Método para validar que alguna opción sea seleccionada y así avanzar a la siguiente pregunta
@@ -60,6 +59,7 @@ export class FormularioPreguntasRadarComponent implements OnInit {
     );
   }
 
+  //Método para volver a la pregunta anterior
   manejarAnterior() {
     if (this.preguntaRadarService.indexPregunta > 0) {
       this.preguntaRadarService.indexPregunta--; // Disminuye el índice de la pregunta para retroceder a la anterior.

@@ -26,14 +26,11 @@ td {
   text-align: center;
 }
 
-
-
 tbody tr {
   background: #f4f4f4;
   cursor: pointer;
   border-bottom: solid 1px #9d9ea1;
 }
-
 
 .titulo__conclusiones {
   display: flex;
@@ -44,4 +41,3 @@ tbody tr {
 .titulo__conclusiones img {
   width: 1.5em;
 }
-

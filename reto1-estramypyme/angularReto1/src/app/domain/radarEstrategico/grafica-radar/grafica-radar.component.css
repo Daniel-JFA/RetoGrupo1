@@ -1,23 +1,23 @@
 .graficaRadar {
-    width: 500px;
-    height: 500px;
-  }
-  
-  @media (max-width: 786px) {
-    .graficaRadar {
-      width: 300px;
-      height: 300px;
-    }
-  }
-  
-  @media (min-width: 1024px) and (max-width: 1440px) {
-    .graficaRadar{
-      width: 800px;
-    }
-  }
+  width: 500px;
+  height: 500px;
+}
 
-  @media (min-width: 1440px) and (max-width: 1620px) {
-    .graficaRadar{
-      width: 400px;
-    }
+@media (max-width: 786px) {
+  .graficaRadar {
+    width: 300px;
+    height: 300px;
   }
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .graficaRadar {
+    width: 800px;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1620px) {
+  .graficaRadar {
+    width: 400px;
+  }
+}
