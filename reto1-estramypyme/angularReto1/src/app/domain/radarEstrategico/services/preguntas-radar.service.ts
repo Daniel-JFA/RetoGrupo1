@@ -17,11 +17,18 @@ export class PreguntasRadarService {
   seccion5!: number;
   indexPregunta: number = 0;
 
+  //El constructor de la clase no hace nada en este caso, pero se utiliza para inicializar la clase.
+  constructor() {}
+
+  // Subject que notifica cuando se reinician las respuestas.
+
   private readonly respuestasReiniciadasSubject = new BehaviorSubject<boolean>(
     false
   );
   public respuestasReiniciadas$ =
     this.respuestasReiniciadasSubject.asObservable();
+
+  //Subject que notifica cuando se cambia el índice de la pregunta
   private indexPreguntaSubject = new BehaviorSubject<number>(0);
   public indexPregunta$ = this.indexPreguntaSubject.asObservable();
 
@@ -102,10 +109,12 @@ export class PreguntasRadarService {
     },
   ];
 
+  //Método para guardar el índice de la pregunta actual en localStorage
   guardarIndicePregunta() {
     localStorage.setItem('indicePregunta', this.indexPregunta.toString());
   }
 
+  //Método para recuperar el índice de la pregunta actual desde localStorage
   recuperarIndicePregunta() {
     const indicePregunta = localStorage.getItem('indicePregunta');
     if (indicePregunta) {
@@ -113,7 +122,7 @@ export class PreguntasRadarService {
     }
   }
 
-  //Cargar cada pregunta del servicio preguntas radar
+  //Método para cargar la pregunta del radar estratégico según el índice proporcionado
   cargarPreguntaRadar(index: number) {
     if (index < this.BasepreguntasRadar.length) {
       this.preguntaSeleccionada = false;
@@ -134,8 +143,8 @@ export class PreguntasRadarService {
     }
   }
 
+  //Método para guardar los datos de las secciones en localStorage
   guardarDatos() {
-    // Guardar los datos en localStorage
     localStorage.setItem('seccion1', String(this.seccion1));
     localStorage.setItem('seccion2', String(this.seccion2));
     localStorage.setItem('seccion3', String(this.seccion3));
@@ -143,6 +152,7 @@ export class PreguntasRadarService {
     localStorage.setItem('seccion5', String(this.seccion5));
   }
 
+  //Método para cargar los datos de las secciones desde localStorage
   cargarDatosGuardados() {
     this.seccion1 = parseInt(localStorage.getItem('seccion1') || '0', 10);
     this.seccion2 = parseInt(localStorage.getItem('seccion2') || '0', 10);
@@ -151,14 +161,12 @@ export class PreguntasRadarService {
     this.seccion5 = parseInt(localStorage.getItem('seccion5') || '0', 10);
   }
 
-  //El constructor de la clase no hace nada en este caso, pero se utiliza para inicializar la clase.
-  constructor() {}
-
-  //Este método devuelve el array preguntasRadar que contiene todas las preguntas y opciones del cuestionario.
+  //Este método devuelve el array BasepreguntasRadar que contiene todas las preguntas y opciones del cuestionario.
   getPreguntasRadar() {
     return this.BasepreguntasRadar;
   }
 
+  //Método para reiniciar  las respuestas del cuestionario
   reiniciarRespuestas(): void {
     localStorage.removeItem('seccion1');
     localStorage.removeItem('seccion2');

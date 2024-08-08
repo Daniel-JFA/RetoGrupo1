@@ -3,8 +3,7 @@ import { FormularioPreguntasRadarComponent } from '../formulario-preguntas-radar
 import { GraficaRadarComponent } from '../grafica-radar/grafica-radar.component';
 import { HeaderComponent } from '../../header/header.component';
 import { PreguntasRadarService } from '../services/preguntas-radar.service';
-import { FooterComponent } from "../../footer/footer.component";
-
+import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
   selector: 'app-radar-estrategico-page',
@@ -13,18 +12,18 @@ import { FooterComponent } from "../../footer/footer.component";
     FormularioPreguntasRadarComponent,
     GraficaRadarComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   templateUrl: './radar-estrategico-page.component.html',
   styleUrl: './radar-estrategico-page.component.css',
 })
 export class RadarEstrategicoPageComponent {
-  // graficaRadarComponent: any;
-
+  // Inyecta el servicio preguntasRadarService en este componente
   constructor(private preguntaRadarService: PreguntasRadarService) {
     this.cargarDatosGuardados();
   }
 
+  //Actualiza el nivel de una sección en el servicio de preguntas de radar
   actualizarNivel({ index, nivel }: { index: number; nivel: number }) {
     switch (index) {
       case 0:
@@ -48,10 +47,12 @@ export class RadarEstrategicoPageComponent {
     this.guardarDatos();
   }
 
+  //Guarda los datos actuales en el servicio de preguntas de radar
   guardarDatos() {
     this.preguntaRadarService.guardarDatos();
   }
 
+  //Carga los datos guardados en el servicio de preguntas de radar
   cargarDatosGuardados() {
     this.preguntaRadarService.cargarDatosGuardados();
   }
