@@ -122,7 +122,6 @@ export class PreguntasRadarService {
       this.descripciones = this.objetoPregunta.descripciones;
       console.log(`Cargando pregunta con índice: ${index}`);
       this.indexPreguntaSubject.next(index);
-
     } else {
       Swal.fire({
         title: "¡Bien hecho, has finalizado todas las preguntas' 👏",

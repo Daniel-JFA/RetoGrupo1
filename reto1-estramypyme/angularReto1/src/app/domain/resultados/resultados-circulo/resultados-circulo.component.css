@@ -25,10 +25,16 @@
       width: 100%;
     }
   }
+
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    .resultadosCirculo {
+      width: 500px;
+    }
+  }
   
   @media (min-width: 1280px) and (max-width: 1430px) {
       .resultadosCirculo {
-        width: 300px;
+        width: 400px;
       }
     }
 

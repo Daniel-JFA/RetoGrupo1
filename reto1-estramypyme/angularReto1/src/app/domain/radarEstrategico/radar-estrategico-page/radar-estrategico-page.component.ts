@@ -16,7 +16,7 @@ import { PreguntasRadarService } from '../services/preguntas-radar.service';
   styleUrl: './radar-estrategico-page.component.css',
 })
 export class RadarEstrategicoPageComponent {
-  graficaRadarComponent: any;
+  // graficaRadarComponent: any;
 
   constructor(private preguntaRadarService: PreguntasRadarService) {
     this.cargarDatosGuardados();
