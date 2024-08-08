@@ -1,0 +1,47 @@
+ul,
+li {
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+}
+.contenedor__redes__sociales {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1em;
+}
+
+.contenedor__logo {
+  display: flex;
+  justify-content: center;
+}
+.logo__eafit {
+  width: 130px;
+}
+
+.text {
+  text-align: center;
+  color: white;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #155fe7;
+  gap: 0.5em;
+  padding: 1em;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.bx {
+  font-size: 32px;
+  color: white;
+  display: flex;
+  gap: 3em;
+}

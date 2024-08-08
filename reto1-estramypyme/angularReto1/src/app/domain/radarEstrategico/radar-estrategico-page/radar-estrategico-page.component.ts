@@ -3,6 +3,8 @@ import { FormularioPreguntasRadarComponent } from '../formulario-preguntas-radar
 import { GraficaRadarComponent } from '../grafica-radar/grafica-radar.component';
 import { HeaderComponent } from '../../header/header.component';
 import { PreguntasRadarService } from '../services/preguntas-radar.service';
+import { FooterComponent } from "../../footer/footer.component";
+
 
 @Component({
   selector: 'app-radar-estrategico-page',
@@ -11,6 +13,7 @@ import { PreguntasRadarService } from '../services/preguntas-radar.service';
     FormularioPreguntasRadarComponent,
     GraficaRadarComponent,
     HeaderComponent,
+    FooterComponent
   ],
   templateUrl: './radar-estrategico-page.component.html',
   styleUrl: './radar-estrategico-page.component.css',
