@@ -35,11 +35,6 @@ tbody tr {
 }
 
 
-.resultadosRadar {
-  width: 500px;
-  height: 500px;
-}
-
 .titulo__conclusiones {
   display: flex;
   align-items: center;
@@ -50,20 +45,3 @@ tbody tr {
   width: 1.5em;
 }
 
-@media (max-width: 786px) {
-  .resultadosRadar {
-    width: 100%;
-  }
-}
-
-@media (min-width: 1280px) and (max-width: 1430px) {
-  .resultadosRadar {
-    width: 300px;
-  }
-}
-
-@media (min-width: 1440px) and (max-width: 1620px) {
-  .resultadosRadar {
-    width: 400px;
-  }
-}

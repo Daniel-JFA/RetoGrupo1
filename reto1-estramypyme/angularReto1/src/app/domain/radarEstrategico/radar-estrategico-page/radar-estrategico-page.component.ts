@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormularioPreguntasRadarComponent } from '../formulario-preguntas-radar/formulario-preguntas-radar.component';
 import { GraficaRadarComponent } from '../grafica-radar/grafica-radar.component';
 import { HeaderComponent } from '../../header/header.component';
+import { PreguntasRadarService } from '../services/preguntas-radar.service';
 
 @Component({
   selector: 'app-radar-estrategico-page',
@@ -9,37 +10,46 @@ import { HeaderComponent } from '../../header/header.component';
   imports: [
     FormularioPreguntasRadarComponent,
     GraficaRadarComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   templateUrl: './radar-estrategico-page.component.html',
   styleUrl: './radar-estrategico-page.component.css',
 })
 export class RadarEstrategicoPageComponent {
-  nivel1: number = 1;
-  nivel2: number = 1;
-  nivel3: number = 1;
-  nivel4: number = 1;
-  nivel5: number = 1;
+  // graficaRadarComponent: any;
 
-  actualizarNivel({ nivel, index }: { nivel: number, index: number }) {
+  constructor(private preguntaRadarService: PreguntasRadarService) {
+    this.cargarDatosGuardados();
+  }
+
+  actualizarNivel({ index, nivel }: { index: number; nivel: number }) {
     switch (index) {
       case 0:
-        this.nivel1 = nivel;
+        this.preguntaRadarService.seccion1 = nivel;
         break;
       case 1:
-        this.nivel2 = nivel;
+        this.preguntaRadarService.seccion2 = nivel;
         break;
       case 2:
-        this.nivel3 = nivel;
+        this.preguntaRadarService.seccion3 = nivel;
         break;
       case 3:
-        this.nivel4 = nivel;
+        this.preguntaRadarService.seccion4 = nivel;
         break;
       case 4:
-        this.nivel5 = nivel;
+        this.preguntaRadarService.seccion5 = nivel;
         break;
       default:
         break;
     }
+    this.guardarDatos();
+  }
+
+  guardarDatos() {
+    this.preguntaRadarService.guardarDatos();
+  }
+
+  cargarDatosGuardados() {
+    this.preguntaRadarService.cargarDatosGuardados();
   }
 }

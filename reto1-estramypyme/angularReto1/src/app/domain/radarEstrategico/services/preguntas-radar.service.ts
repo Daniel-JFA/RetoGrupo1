@@ -1,11 +1,32 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PreguntasRadarService {
+  niveles: any;
+  descripciones: any;
+  preguntaSeleccionada: any;
+  objetoPregunta: any;
+  seccion1!: number;
+  seccion2!: number;
+  seccion3!: number;
+  seccion4!: number;
+  seccion5!: number;
+  indexPregunta: number = 0;
+
+  private readonly respuestasReiniciadasSubject = new BehaviorSubject<boolean>(
+    false
+  );
+  public respuestasReiniciadas$ =
+    this.respuestasReiniciadasSubject.asObservable();
+  private indexPreguntaSubject = new BehaviorSubject<number>(0);
+  public indexPregunta$ = this.indexPreguntaSubject.asObservable();
+
   //Array de objetos que contiene cada pregunta y opciones
-  preguntasRadar = [
+  BasepreguntasRadar = [
     {
       id: 0,
       titulo: 'Conocimiento del cliente',
@@ -17,7 +38,7 @@ export class PreguntasRadarService {
         descripcion3:
           'Conoce su cliente, lo describe desde su estilo de vida, hábitos de consumo, comportamient, tareas por hace, dolores, alegrías.',
         descripcion4:
-          'Identifica, además, si su negoci atiende solo uno o varios tipos de clientes. Diferencia en su negocio al cosumidor, el comprador y/o el cliente.',
+          'Identifica, además, si su negocio atiende solo uno o varios tipos de clientes. Diferencia en su negocio al cosumidor, el comprador y/o el cliente.',
       },
     },
     {
@@ -26,7 +47,7 @@ export class PreguntasRadarService {
       niveles: { nivel1: 1, nivel2: 2, nivel3: 3, nivel4: 4 },
       descripciones: {
         descripcion1:
-          'Se le dificulta definir el negocio en el que está (quién es el clientem que tarea resuelve y cuáles son los productos o servicios que ofrece).',
+          'Se le dificulta definir el negocio en el que está (quién es el cliente que tarea resuelve y cuáles son los productos o servicios que ofrece).',
         descripcion2:
           'Identifica en qué negocio está pero no cómo se diferencia de sus competidores.',
         descripcion3:
@@ -81,11 +102,79 @@ export class PreguntasRadarService {
     },
   ];
 
+  guardarIndicePregunta() {
+    localStorage.setItem('indicePregunta', this.indexPregunta.toString());
+  }
+
+  recuperarIndicePregunta() {
+    const indicePregunta = localStorage.getItem('indicePregunta');
+    if (indicePregunta) {
+      this.indexPregunta = parseInt(indicePregunta, 10);
+    }
+  }
+
+  //Cargar cada pregunta del servicio preguntas radar
+  cargarPreguntaRadar(index: number) {
+    if (index < this.BasepreguntasRadar.length) {
+      this.preguntaSeleccionada = false;
+      this.objetoPregunta = this.BasepreguntasRadar[index];
+      this.niveles = this.objetoPregunta.niveles;
+      this.descripciones = this.objetoPregunta.descripciones;
+      console.log(`Cargando pregunta con índice: ${index}`);
+      this.indexPreguntaSubject.next(index);
+    } else {
+      Swal.fire({
+        title: "¡Bien hecho, has finalizado todas las preguntas' 👏",
+        text: '¡Radar estratégico completado!🎉',
+        // customClass: 'my-custom-class',
+      }).then(() => {
+        this.indexPregunta = 0;
+        this.cargarPreguntaRadar(this.indexPregunta);
+      });
+    }
+  }
+
+  guardarDatos() {
+    // Guardar los datos en localStorage
+    localStorage.setItem('seccion1', String(this.seccion1));
+    localStorage.setItem('seccion2', String(this.seccion2));
+    localStorage.setItem('seccion3', String(this.seccion3));
+    localStorage.setItem('seccion4', String(this.seccion4));
+    localStorage.setItem('seccion5', String(this.seccion5));
+  }
+
+  cargarDatosGuardados() {
+    this.seccion1 = parseInt(localStorage.getItem('seccion1') || '0', 10);
+    this.seccion2 = parseInt(localStorage.getItem('seccion2') || '0', 10);
+    this.seccion3 = parseInt(localStorage.getItem('seccion3') || '0', 10);
+    this.seccion4 = parseInt(localStorage.getItem('seccion4') || '0', 10);
+    this.seccion5 = parseInt(localStorage.getItem('seccion5') || '0', 10);
+  }
+
   //El constructor de la clase no hace nada en este caso, pero se utiliza para inicializar la clase.
   constructor() {}
 
   //Este método devuelve el array preguntasRadar que contiene todas las preguntas y opciones del cuestionario.
   getPreguntasRadar() {
-    return this.preguntasRadar;
+    return this.BasepreguntasRadar;
+  }
+
+  reiniciarRespuestas(): void {
+    localStorage.removeItem('seccion1');
+    localStorage.removeItem('seccion2');
+    localStorage.removeItem('seccion3');
+    localStorage.removeItem('seccion4');
+    localStorage.removeItem('seccion5');
+    localStorage.removeItem('indicePregunta');
+    this.indexPregunta = 0;
+    this.seccion1 = 0;
+    this.seccion2 = 0;
+    this.seccion3 = 0;
+    this.seccion4 = 0;
+    this.seccion5 = 0;
+    this.preguntaSeleccionada = null;
+    this.respuestasReiniciadasSubject.next(true);
+    this.indexPreguntaSubject.next(0);
+    this.cargarPreguntaRadar(this.indexPregunta);
   }
 }

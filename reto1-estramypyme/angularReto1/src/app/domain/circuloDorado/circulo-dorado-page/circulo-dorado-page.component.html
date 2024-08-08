@@ -1,4 +1,5 @@
 <app-header></app-header>
+<div class="contenedor__padre">
 <section class="informacion">
   <div class="contenedor__descripcion">
     <h2>Círculo Dorado</h2>
@@ -37,16 +38,15 @@
       </div>
       <p class="parrafo">
         Es el resultado de todo el proceso anterior en un producto o servicio.
-        <br />Básicamente es lo que vendemos, a lo que nos dedicamos o el
-        servicio que ofrecemos.
+        <br />
+        Básicamente es lo que vendemos, a lo que nos dedicamos o el servicio que
+        ofrecemos.
       </p>
     </div>
   </div>
 </section>
 <div class="seccion__preguntas">
   <div class="contenedor__grafica">
-    <!-- Paso el índice de la pregunta actual como entrada al componente
-     `app-grafica-circulo` para que pueda actualizar la gráfica según la pregunta actual -->
     <app-grafica-circulo></app-grafica-circulo>
   </div>
   <section class="contenedor__preguntas">
@@ -75,5 +75,6 @@
       Ver resultados
     </a>
   </div>
+</div>
 </div>
 <app-footer></app-footer>

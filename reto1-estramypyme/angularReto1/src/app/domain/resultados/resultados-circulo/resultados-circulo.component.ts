@@ -70,7 +70,6 @@ export class ResultadosCirculoComponent implements AfterViewInit, OnDestroy {
         );
       }
     }
-    // Filtra las conclusiones vacías y devuelve un array con las conclusiones
     return this.conclusiones;
   }
 
@@ -79,17 +78,17 @@ export class ResultadosCirculoComponent implements AfterViewInit, OnDestroy {
       [0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0],
-    ]; // ¿Por qué?, ¿Cómo?, ¿Qué?
+    ];
     const poco = [
       [0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0],
-    ]; // ¿Por qué?, ¿Cómo?, ¿Qué?
+    ];
     const mucho = [
       [0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0],
-    ]; // ¿Por qué?, ¿Cómo?, ¿Qué?
+    ];
 
     for (const clave in respuestasSeleccionadas) {
       const respuesta = respuestasSeleccionadas[clave];

@@ -2,7 +2,9 @@
   <table>
     <thead>
       <tr>
-        <th colspan="2">{{ objetoPregunta?.titulo }}</th>
+        <th colspan="2">
+          {{ this.preguntaRadarService.objetoPregunta?.titulo }}
+        </th>
       </tr>
     </thead>
     <thead class="head__nivel__dos">
@@ -14,66 +16,87 @@
     <tbody>
       <tr
         class="fila__uno"
-        [class.seleccion]="preguntaSeleccionada === niveles?.nivel1"
+        [class.seleccion]="
+          this.preguntaRadarService.preguntaSeleccionada ===
+          this.preguntaRadarService.niveles?.nivel1
+        "
         (click)="
-          seleccionarOpcion(niveles?.nivel1, descripciones?.descripcion1)
+          seleccionarOpcion(
+            this.preguntaRadarService.niveles?.nivel1,
+            this.preguntaRadarService.descripciones?.descripcion1
+          )
         "
       >
-        <td class="numeros">{{ niveles?.nivel1 }}</td>
-        <td>{{ descripciones?.descripcion1 }}</td>
+        <td class="numeros">{{ this.preguntaRadarService.niveles?.nivel1 }}</td>
+        <td>{{ this.preguntaRadarService.descripciones?.descripcion1 }}</td>
       </tr>
       <tr
         class="fila__dos"
-        [class.seleccion]="preguntaSeleccionada === niveles?.nivel2"
+        [class.seleccion]="
+          this.preguntaRadarService.preguntaSeleccionada ===
+          this.preguntaRadarService.niveles?.nivel2
+        "
         (click)="
-          seleccionarOpcion(niveles?.nivel2, descripciones?.descripcion2)
+          seleccionarOpcion(
+            this.preguntaRadarService.niveles?.nivel2,
+            this.preguntaRadarService.descripciones?.descripcion2
+          )
         "
       >
-        <td class="numeros">{{ niveles?.nivel2 }}</td>
+        <td class="numeros">{{ this.preguntaRadarService.niveles?.nivel2 }}</td>
         <td>
-          {{ descripciones?.descripcion2 }}
+          {{ this.preguntaRadarService.descripciones?.descripcion2 }}
         </td>
       </tr>
       <tr
         class="fila__tres"
-        [class.seleccion]="preguntaSeleccionada === niveles?.nivel3"
+        [class.seleccion]="
+          this.preguntaRadarService.preguntaSeleccionada ===
+          this.preguntaRadarService.niveles?.nivel3
+        "
         (click)="
-          seleccionarOpcion(niveles?.nivel3, descripciones?.descripcion3)
+          seleccionarOpcion(
+            this.preguntaRadarService.niveles?.nivel3,
+            this.preguntaRadarService.descripciones?.descripcion3
+          )
         "
       >
-        <td class="numeros">{{ niveles?.nivel3 }}</td>
+        <td class="numeros">{{ this.preguntaRadarService.niveles?.nivel3 }}</td>
         <td>
-          {{ descripciones?.descripcion3 }}
+          {{ this.preguntaRadarService.descripciones?.descripcion3 }}
         </td>
       </tr>
       <tr
         class="fila_cuatro"
-        [class.seleccion]="preguntaSeleccionada === niveles?.nivel4"
+        [class.seleccion]="
+          this.preguntaRadarService.preguntaSeleccionada ===
+          this.preguntaRadarService.niveles?.nivel4
+        "
         (click)="
-          seleccionarOpcion(niveles?.nivel4, descripciones?.descripcion4)
+          seleccionarOpcion(
+            this.preguntaRadarService.niveles?.nivel4,
+            this.preguntaRadarService.descripciones?.descripcion4
+          )
         "
       >
-        <td class="numeros">{{ niveles?.nivel4 }}</td>
+        <td class="numeros">{{ this.preguntaRadarService.niveles?.nivel4 }}</td>
         <td>
-          {{ descripciones?.descripcion4 }}
+          {{ this.preguntaRadarService.descripciones?.descripcion4 }}
         </td>
       </tr>
     </tbody>
   </table>
 </div>
-<div
-  class="contenedor-anterior-siguiente"
-  id="contenedor-anterior-siguiente"
->
-  <button class="botonPrimario" id="botonPrimario" (click)="manejarAnterior()"
-  >Anterior</button>
-  <div>Sección {{ indexPregunta }} de {{ preguntasRadar.length }}</div>
+<div class="contenedor-anterior-siguiente" id="contenedor-anterior-siguiente">
+  <button class="botonPrimario" id="botonPrimario" (click)="manejarAnterior()">
+    Anterior
+  </button>
+  <div>
+    Sección {{ this.preguntaRadarService.indexPregunta + 1 }} de
+    {{ this.preguntaRadarService.BasepreguntasRadar.length }}
+  </div>
 
-  <button
-    class="botonPrimario"
-    id="botonPrimario"
-    (click)="manejarSiguiente()"
-  >
+  <button class="botonPrimario" id="botonPrimario" (click)="manejarSiguiente()">
     Siguiente
   </button>
 </div>
@@ -81,8 +104,7 @@
   <button
     class="botonSecundario"
     id="botonSecundario"
-    (click)="reiniciarRespuestas()"
-
+    (click)="this.preguntaRadarService.reiniciarRespuestas()"
   >
     Reiniciar formulario
   </button>

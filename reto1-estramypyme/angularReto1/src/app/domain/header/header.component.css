@@ -1,19 +1,19 @@
 .header-nav {
   border-bottom: 2px solid #dfdfdf;
   backdrop-filter: blur(10px);
+  justify-content: center;
+  display: flex;
+  background-color: #F8F9F4;
 }
 
-.contenedor_nav {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 50px;
+
+.contenedor__nav {
+  width: 70%;
 }
 
 .logo {
   font-size: 1.5rem;
-  color: #155FE7;
+  color: #155fe7;
   text-decoration: none;
   font-weight: 700;
 }
@@ -38,7 +38,7 @@
 
 .nav-bar a:hover {
   font-size: 1rem;
-  color: #155FE7;
+  color: #155fe7;
   text-decoration: none;
   font-weight: 500;
 }
@@ -54,11 +54,18 @@
 
 .bxs-user-circle::before {
   font-size: 1.5em;
-  color: #155FE7;
+  color: #155fe7;
 }
-#logo{
+#logo {
   font-size: 1.5rem;
-  color: #155FE7;
+  color: #155fe7;
   text-decoration: none;
   font-weight: 700;
+}
+
+@media (max-width: 786px ) {
+  .contenedor__nav {
+    width: 100%;
+  }
+  
 }

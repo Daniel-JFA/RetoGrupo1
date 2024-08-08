@@ -1,9 +1,18 @@
+.contenedor__padre {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  width: 70%;
+}
+
 .informacion {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 3em;
-  margin: 3em 1em 3em 1em;
+  margin: 2em 0em 3em;
   text-align: center;
 }
 
@@ -19,6 +28,7 @@
   width: 100%;
   height: auto;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 1em;
 }
@@ -43,6 +53,7 @@
   justify-content: center;
   gap: 0.5em;
 }
+
 .contenedor__seccion__preguntas__descripcion {
   display: flex;
   flex-direction: column;
@@ -69,6 +80,7 @@
 }
 
 .informacion__cards {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -99,7 +111,6 @@
 
 .contenedor__boton__ver__resultados {
   width: 100%;
-  margin: 2em;
   display: flex;
   justify-content: center;
 }
@@ -155,6 +166,32 @@
 }
 
 @media (max-width: 786px) {
+  .contenedor__padre {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    margin: auto;
+    width: 100%;
+  }
+
+  .informacion {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+    margin: 2em 0em 3em;
+    text-align: center;
+  }
+
+  .informacion__cards {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+  }
+
   .seccion__preguntas {
     display: flex;
     justify-content: center;
@@ -186,7 +223,15 @@
   }
 }
 
-@media (min-width: 786px) and (max-width: 1024px) {
+@media (min-width: 786px) and (max-width: 1280px) {
+  .contenedor__padre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    width: 90%;
+  }
+
   .informacion__cards {
     display: flex;
     flex-wrap: wrap;
