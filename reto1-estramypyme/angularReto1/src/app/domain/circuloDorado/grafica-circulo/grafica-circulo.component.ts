@@ -3,8 +3,6 @@ import {
   ElementRef,
   Component,
   ViewChild,
-  SimpleChanges,
-  OnChanges,
   OnDestroy,
 } from '@angular/core';
 import * as echarts from 'echarts';
@@ -19,11 +17,12 @@ import { Subscription } from 'rxjs';
   styleUrl: './grafica-circulo.component.css',
 })
 export class GraficaCirculoComponent implements OnDestroy, AfterViewInit {
-  //Recibe el índice de la pregunta actual desde el componente padre.
   contenedorGrafica: any;
   porQue: number = 0;
   como: number = 0;
   que: number = 0;
+
+  //Suscripción al servicio de preguntas para actualizar la gráfica cuando cambie el índice de la pregunta.//
   private subscription: Subscription;
 
   @ViewChild('graficaCirculo') contenedor!: ElementRef;
@@ -40,8 +39,7 @@ export class GraficaCirculoComponent implements OnDestroy, AfterViewInit {
     this.subscription.unsubscribe();
   }
 
-  /* Inicializa la gráfica de ECharts después de que el componente ha sido renderizado
-  y establece las opciones de la gráfica y actualiza el progreso con el índice de la pregunta actual. */
+  // Inicializa la gráfica de ECharts después de que el componente ha sido renderizado.
   ngAfterViewInit() {
     this.contenedorGrafica = echarts.init(this.contenedor.nativeElement);
     this.calcularProgreso(
@@ -51,6 +49,7 @@ export class GraficaCirculoComponent implements OnDestroy, AfterViewInit {
     this.iniciarGrafica();
   }
 
+  //Método para actualizr el progreso en la gráfica circular según el índice de la pregunta actual
   actualizarProgreso() {
     const progresoAlmacenado = this.progresoAlmacenado();
     const progreso = this.calcularProgreso(
@@ -61,6 +60,7 @@ export class GraficaCirculoComponent implements OnDestroy, AfterViewInit {
     this.iniciarGrafica();
   }
 
+  // Método para guardar el progreso actual en localStorage
   guardarProgreso(progreso: any) {
     localStorage.setItem(
       'progresoGrafica',
@@ -72,6 +72,7 @@ export class GraficaCirculoComponent implements OnDestroy, AfterViewInit {
     );
   }
 
+  // Método para obtener el progreso actual de LocalStorage
   progresoAlmacenado() {
     const progresoAlmacenado = localStorage.getItem('progresoGrafica');
     if (progresoAlmacenado) {
@@ -82,8 +83,8 @@ export class GraficaCirculoComponent implements OnDestroy, AfterViewInit {
     }
   }
 
-  /*Actualiza el progreso en la gráfica circular según el índice de la pregunta actual,
-  modificando los valores de las series y las opciones de la gráfica.*/
+  // Método para calcular el progreso en la gráfica circular según el índice de la pregunta actual.
+
   calcularProgreso(index: number, progresoAlmacenado: any) {
     if (this.preguntaService.indexPregunta == 0) {
       this.porQue = 5;
@@ -107,6 +108,7 @@ export class GraficaCirculoComponent implements OnDestroy, AfterViewInit {
     }
   }
 
+  //Método para mostrar gráfica Echarts
   iniciarGrafica() {
     const opciones = {
       title: [

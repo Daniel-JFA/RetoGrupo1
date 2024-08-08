@@ -3,9 +3,8 @@
   backdrop-filter: blur(10px);
   justify-content: center;
   display: flex;
-  background-color: #F8F9F4;
+  background-color: #f8f9f4;
 }
-
 
 .contenedor__nav {
   width: 70%;
@@ -63,9 +62,8 @@
   font-weight: 700;
 }
 
-@media (max-width: 786px ) {
+@media (max-width: 786px) {
   .contenedor__nav {
     width: 100%;
   }
-  
 }

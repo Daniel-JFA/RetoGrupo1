@@ -36,30 +36,30 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
   poco: number = 0;
   mucho: number = 0;
 
-  //Comunica cambios en el estado del componente a otros componentes
+  // Eventos que se emiten hacia otros componentes
   @Output() cambioPregunta = new EventEmitter<number>();
   @Output() respuestaGuardada = new EventEmitter<void>();
-  // @Output() reinicioFormulario = new EventEmitter<void>();
+  @ViewChild('graficaProgreso') contenedor!: ElementRef;
 
-  /*"Inyecta el servicio PreguntasService en la clase y crea una propiedad privada preguntaService
-  para acceder a sus métodos y propiedades."*/
+  // Servicio de preguntas inyectado en el componente
   constructor(public preguntaService: PreguntasService) {
-    this.preguntaService.radioValue = '';
+    this.preguntaService.radioValue = ''; // Inicializa el valor de la respuesta seleccionada
   }
 
-  //Cuando el componente se inicializa
+  // Método que se ejecuta cuando el componente se inicializa
   ngOnInit(): void {
-    this.preguntaService.cargarEstadoFormulario();
-    this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
-    this.preguntaService.cargarRespuestas();
-    this.recuperarEstadoCheckboxes();
+    this.preguntaService.cargarEstadoFormulario(); // Carga el estado del formulario
+    this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta); // Carga la primera pregunta
+    this.preguntaService.cargarRespuestas(); // Carga las respuestas
+    this.recuperarEstadoCheckboxes(); // Recupera el estado de los checkboxes
   }
 
+  // Método que se ejecuta cuando se resetean los radio inputs
   resetearRadioInputs() {
-    this.preguntaService.radioValue = '';
+    this.preguntaService.radioValue = ''; // Resetear el valor de la respuesta seleccionada
   }
 
-  // Función para guardar el estado de los checkboxes en LocalStorage
+  // Método que guarda el estado de los checkboxes en LocalStorage
   guardarEstadoCheckboxes() {
     const estadoCheckboxes = {
       isPorQueChecked: this.isPorQueChecked,
@@ -69,7 +69,7 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
     localStorage.setItem('estadoCheckboxes', JSON.stringify(estadoCheckboxes));
   }
 
-  // Función para recuperar el estado de los checkboxes desde LocalStorage
+  // Método que recupera el estado de los checkboxes desde LocalStorage
   recuperarEstadoCheckboxes() {
     const estadoCheckboxes = localStorage.getItem('estadoCheckboxes');
     if (estadoCheckboxes) {
@@ -80,13 +80,13 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
     }
   }
 
-  @ViewChild('graficaProgreso') contenedor!: ElementRef;
-
+  // Método que se ejecuta después de que el componente se ha inicializado
   ngAfterViewInit(): void {
     this.contenedorGrafica = echarts.init(this.contenedor.nativeElement);
     this.actualizarProgreso(this.preguntaService.indexPregunta);
   }
 
+  // Método que actualiza el progreso de la barra de progreso
   actualizarProgreso(value: number) {
     this.valorProgreso = this.preguntaService.indexPregunta * 8;
 
@@ -179,7 +179,7 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
     }
   }
 
-  //Método para validar que alguna opción sea seleccionada y así avanzar a la siguiente pregunta
+  // Método para validar que alguna opción sea seleccionada y así avanzar a la siguiente pregunta
   manejarSiguiente() {
     if (!this.preguntaService.radioValue) {
       Swal.fire({
@@ -230,6 +230,7 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
     this.actualizarProgreso(this.preguntaService.indexPregunta); // Actualiza el progreso.
   }
 
+  // Método para volver a la pregunta anterior
   manejarAnterior() {
     if (this.preguntaService.indexPregunta > 0) {
       this.preguntaService.indexPregunta--; // Disminuye el índice de la pregunta para retroceder a la anterior.

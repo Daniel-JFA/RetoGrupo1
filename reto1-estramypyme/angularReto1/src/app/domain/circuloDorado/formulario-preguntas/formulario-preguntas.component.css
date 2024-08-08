@@ -78,26 +78,26 @@ input[name="respuesta"] + label:before {
   content: " ";
   height: 1em;
   width: 1em;
-  border: 2px solid #155FE7;
+  border: 2px solid #155fe7;
   border-radius: 50%;
   margin-right: 0.5em;
 }
 
 input[name="respuesta"]:checked + label {
   background-color: white;
-  color: #155FE7;
+  color: #155fe7;
 }
 
 input[name="respuesta"]:checked + label:before {
   height: 0.4em;
   width: 0.4em;
-  border: 6px solid #155FE7;
+  border: 6px solid #155fe7;
 }
 
 .contenedor-tabla nav .slider {
   position: absolute;
   height: 0.2em;
-  background-color: #155FE7;
+  background-color: #155fe7;
   border-radius: 1rem;
   width: 35%;
   z-index: 1;
@@ -121,7 +121,7 @@ input[name="respuesta"]:checked + label:before {
 #porque:checked ~ nav .porque,
 #como:checked ~ nav .como,
 #que:checked ~ nav .que {
-  color: #155FE7;
+  color: #155fe7;
 }
 
 .contenedor-preguntas {
@@ -181,7 +181,7 @@ input[name="respuesta"]:checked + label:before {
 }
 
 button.swal2-styled.swal2-confirm {
-  background-color: #155FE7;
+  background-color: #155fe7;
 }
 
 .grafica__progreso {
@@ -209,7 +209,7 @@ button.swal2-styled.swal2-confirm {
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  background-color: #155FE7;
+  background-color: #155fe7;
   padding: 1em 2.3em;
   border-radius: 0.8em;
   border: none;
@@ -226,8 +226,6 @@ button.swal2-styled.swal2-confirm {
   box-shadow: 0px 4px 49px 0px rgba(0, 0, 0, 0.15);
 }
 
-
-
 .contenedor__paginador,
 .button,
 .links,
@@ -236,7 +234,6 @@ button.swal2-styled.swal2-confirm {
   align-items: center;
   justify-content: center;
 }
-
 
 .links {
   display: flex;
@@ -300,7 +297,7 @@ button.swal2-styled.swal2-confirm {
     flex-direction: column;
     gap: 0.4em;
   }
-  
+
   .contenedor-anterior-siguiente {
     display: flex;
     flex-direction: column;

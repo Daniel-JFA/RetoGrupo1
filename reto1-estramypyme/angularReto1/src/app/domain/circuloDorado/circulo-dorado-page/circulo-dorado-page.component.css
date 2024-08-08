@@ -22,6 +22,7 @@
   width: auto;
   display: flex;
   align-items: center;
+  background-color: #4c80e2;
 }
 
 .seccion__preguntas {

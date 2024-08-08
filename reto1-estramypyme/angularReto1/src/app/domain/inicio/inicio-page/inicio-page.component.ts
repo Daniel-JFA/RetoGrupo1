@@ -6,8 +6,6 @@ import { HeaderComponent } from '../../header/header.component';
   standalone: true,
   imports: [HeaderComponent],
   templateUrl: './inicio-page.component.html',
-  styleUrl: './inicio-page.component.css'
+  styleUrl: './inicio-page.component.css',
 })
-export class InicioPageComponent {
-
-}
+export class InicioPageComponent {}
