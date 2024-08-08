@@ -5,30 +5,18 @@
 body {
   background-color: #f5f5f5;
   font-family: "Inter", sans-serif;
-  font-variation-settings:
-    "slnt" 0;
+  font-variation-settings: "slnt" 0;
   font-optical-sizing: auto;
   font-style: normal;
   line-height: 1.5em;
   color: #333333;
   margin: auto;
-  width: 70%;
-}
-
-.contenedor {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-
 }
 
-header{
+header {
   height: 60px;
 }
-
 
 h2 {
   margin: 0;
@@ -45,7 +33,6 @@ h3 {
 ul {
   padding: 0;
 }
-
 
 @media (max-width: 786px) {
   body {

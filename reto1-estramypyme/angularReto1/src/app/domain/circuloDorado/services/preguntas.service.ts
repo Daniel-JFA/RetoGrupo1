@@ -15,9 +15,6 @@ export class PreguntasService {
 
   private readonly storageKey = 'respuestas';
 
-  // Array para almacenar las respuestas seleccionadas
-  // private respuestas: any[] = [];
-
   //Array de objetos que contiene cada pregunta y opciones
   basePreguntas = [
     // // Sección "¿Por qué?"

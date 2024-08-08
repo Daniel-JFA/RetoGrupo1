@@ -1,3 +1,11 @@
+.contenedor__padre {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  width: 70%;
+}
+
 .radar__estrategico {
   display: flex;
   flex-direction: column;
@@ -9,7 +17,6 @@
 
 .contenedor__boton__ver__resultados {
   width: 100%;
-  margin: 2em;
   display: flex;
   justify-content: center;
 }
@@ -79,6 +86,14 @@
 }
 
 @media (max-width: 786px) {
+  .contenedor__padre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    width: 100%;
+  }
+
   .seccion__preguntas {
     display: flex;
     justify-content: center;
