@@ -10,8 +10,6 @@ import { FooterComponent } from "../../footer/footer.component";
   standalone: true,
   imports: [HeaderComponent, FooterComponent],
   templateUrl: './inicio-page.component.html',
-  styleUrl: './inicio-page.component.css'
+  styleUrl: './inicio-page.component.css',
 })
-export class InicioPageComponent {
-
-}
+export class InicioPageComponent {}

@@ -5,7 +5,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class PreguntasService {
-  // public preguntas: any[] = [];
   public seleccionada2!: any;
   public objetoPregunta: any;
   public opciones: any;
@@ -15,7 +14,7 @@ export class PreguntasService {
 
   private readonly storageKey = 'respuestas';
 
-  //Array de objetos que contiene cada pregunta y opciones
+  // Array de preguntas y opciones del cuestionario.
   basePreguntas = [
     // // Sección "¿Por qué?"
     {
@@ -174,11 +173,16 @@ export class PreguntasService {
     },
   ];
 
+  // Subject que emite el índice de la pregunta actual.
   private indexPreguntaSubject = new BehaviorSubject<number>(0);
+  // Observable que emite el índice de la pregunta actual.
   public indexPregunta$ = this.indexPreguntaSubject.asObservable();
+
+  //subject que emite un booleano que indica si las respuestas han sido reiniciadas
   private readonly respuestasReiniciadasSubject = new BehaviorSubject<boolean>(
     false
   );
+  //Observable que emite un booleano que indica si las respuestas han sido reiniciadas
   public respuestasReiniciadas$ =
     this.respuestasReiniciadasSubject.asObservable();
 
@@ -187,11 +191,12 @@ export class PreguntasService {
     return this.basePreguntas;
   }
 
-  //El constructor de la clase no hace nada en este caso, pero se utiliza para inicializar la clase.
+  //Constructor del servicio.
   constructor() {
     this.cargarRespuestas();
   }
 
+  // Carga la pregunta y opciones en el índice especificado.
   cargarPregunta(index: number) {
     if (index < this.basePreguntas.length) {
       this.objetoPregunta = this.basePreguntas[index];
@@ -201,6 +206,7 @@ export class PreguntasService {
     }
   }
 
+  // Guarda el estado actual del formulario en localStorage
   guardarEstadoFormulario(): void {
     const estadoFormulario = {
       indexPregunta: this.indexPregunta,
@@ -209,6 +215,7 @@ export class PreguntasService {
     localStorage.setItem('estadoFormulario', JSON.stringify(estadoFormulario));
   }
 
+  //Carga el estado del formulario desde localStorage.
   cargarEstadoFormulario(): void {
     const estadoFormularioString = localStorage.getItem('estadoFormulario');
     if (estadoFormularioString) {
@@ -219,12 +226,12 @@ export class PreguntasService {
     }
   }
 
-  // Método para obtener las respuestas seleccionadas
+  // Método para obtener las respuestas seleccionadas por el usuario
   getRespuestas() {
     return this.respuestas;
   }
 
-  // Método para guardar las respuestas en localStorage
+  // Método para guardar las respuestas seleccionadas en localStorage
   guardarRespuesta(indexPregunta: number, respuesta: string): void {
     this.respuestas[indexPregunta] = respuesta;
     console.log(`Pregunta ${indexPregunta} respondida con: ${respuesta}`);
@@ -239,6 +246,7 @@ export class PreguntasService {
     }
   }
 
+  //Reinicia las respuestas y elimina los datos almacenados en localStorage
   reiniciarRespuestas(): void {
     localStorage.removeItem('respuestas');
     localStorage.removeItem('estadoFormulario');
@@ -247,6 +255,5 @@ export class PreguntasService {
     this.radioValue = ' ';
     this.respuestasReiniciadasSubject.next(true);
     this.indexPreguntaSubject.next(0);
-
   }
 }

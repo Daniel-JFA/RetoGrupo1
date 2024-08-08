@@ -3,6 +3,9 @@ import {
   ElementRef,
   ViewChild,
   AfterViewInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
   OnDestroy,
 } from '@angular/core';
 import * as echarts from 'echarts';
@@ -45,6 +48,13 @@ export class GraficaRadarComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.initGrafica();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['nivel1'] || changes['nivel2'] || changes['nivel3'] || changes['nivel4'] || changes['nivel5']) {
+      this.updateGrafica();
+      this.guardarDatos();
+    }
   }
 
   initGrafica() {
