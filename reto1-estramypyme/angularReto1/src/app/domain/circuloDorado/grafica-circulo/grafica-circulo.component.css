@@ -5,23 +5,21 @@
 
 @media (max-width: 786px) {
   .graficaCirculo {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
   }
 }
 
 @media (min-width: 1280px) and (max-width: 1440px) {
-    .graficaCirculo {
-      width: 400px;
-      height: 400px;
-    }
+  .graficaCirculo {
+    width: 450px;
+    height: 450px;
   }
+}
 
-  @media screen and (max-width: 1280px) and (max-height: 720px)  {
-    .graficaCirculo {
-      width: 400px;
-      height: 400px;
-    }
+@media screen and (max-width: 1280px) and (max-height: 720px) {
+  .graficaCirculo {
+    width: 200px;
+    height: 200px;
   }
-    
-
+}

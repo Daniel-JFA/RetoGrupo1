@@ -15,28 +15,31 @@ export class FormularioPreguntasRadarComponent implements OnInit {
     index: number;
     nivel: number;
   }>();
-  //Propiedades de la clase o variables que se declaran dentro de una clase)
-
 
   /*"Inyecta el servicio PreguntasRadarService en la clase y crea una propiedad privada preguntaRadarService
   para acceder a sus métodos y propiedades."*/
   constructor(public preguntaRadarService: PreguntasRadarService) {}
 
-
-
   //Cuando el componente se inicializa
   ngOnInit(): void {
     this.preguntaRadarService.recuperarIndicePregunta();
-    this.preguntaRadarService.BasepreguntasRadar = this.preguntaRadarService.getPreguntasRadar();
-    console.log(this.preguntaRadarService.cargarPreguntaRadar(this.preguntaRadarService.indexPregunta));
+    this.preguntaRadarService.BasepreguntasRadar =
+      this.preguntaRadarService.getPreguntasRadar();
+    console.log(
+      this.preguntaRadarService.cargarPreguntaRadar(
+        this.preguntaRadarService.indexPregunta
+      )
+    );
   }
-
- 
 
   /*"Establece la opción seleccionada en la propiedad preguntaSeleccionada y la muestra en la consola.*/
   seleccionarOpcion(nivel: any, descripcion: any) {
     this.preguntaRadarService.preguntaSeleccionada = { nivel, descripcion };
-    console.log(     this.nivelSeleccionado.emit({ index: this.preguntaRadarService.indexPregunta, nivel }));
+    this.nivelSeleccionado.emit({
+      index: this.preguntaRadarService.indexPregunta,
+      nivel,
+    });
+
     console.log(this.preguntaRadarService.preguntaSeleccionada);
   }
 
@@ -52,7 +55,9 @@ export class FormularioPreguntasRadarComponent implements OnInit {
 
     this.preguntaRadarService.indexPregunta++;
     this.preguntaRadarService.guardarIndicePregunta();
-    this.preguntaRadarService.cargarPreguntaRadar(this.preguntaRadarService.indexPregunta);
+    this.preguntaRadarService.cargarPreguntaRadar(
+      this.preguntaRadarService.indexPregunta
+    );
   }
 
   manejarAnterior() {
@@ -61,8 +66,8 @@ export class FormularioPreguntasRadarComponent implements OnInit {
     }
     this.preguntaRadarService.guardarIndicePregunta();
 
-    this.preguntaRadarService.cargarPreguntaRadar(this.preguntaRadarService.indexPregunta); // Carga la nueva pregunta.
+    this.preguntaRadarService.cargarPreguntaRadar(
+      this.preguntaRadarService.indexPregunta
+    );
   }
-
-
 }
