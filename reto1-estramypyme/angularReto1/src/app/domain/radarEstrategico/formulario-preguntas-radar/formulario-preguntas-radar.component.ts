@@ -48,6 +48,9 @@ export class FormularioPreguntasRadarComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Selecciona una opción 😒',
+        customClass: {
+          confirmButton: 'my-swal-button',
+        },
       });
       return;
     }

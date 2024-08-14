@@ -135,8 +135,9 @@ export class PreguntasRadarService {
       Swal.fire({
         title: "¡Bien hecho, has finalizado todas las preguntas' 👏",
         text: '¡Radar estratégico completado!🎉',
-        // customClass: 'my-custom-class',
-      }).then(() => {
+        customClass: {
+          confirmButton: 'my-swal-button',
+        },      }).then(() => {
         this.indexPregunta = 0;
         this.cargarPreguntaRadar(this.indexPregunta);
       });
