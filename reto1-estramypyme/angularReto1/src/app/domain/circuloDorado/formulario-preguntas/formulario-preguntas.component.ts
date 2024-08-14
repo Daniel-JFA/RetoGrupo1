@@ -185,6 +185,9 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
       Swal.fire({
         icon: 'error',
         title: 'Selecciona una opción 😒',
+        customClass: {
+          confirmButton: 'my-swal-button',
+        },
       });
       return;
     }
@@ -201,7 +204,9 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
     if (this.preguntaService.indexPregunta == 5) {
       Swal.fire({
         title: "¡Bien hecho, has terminado la sección '¿Por qué?'! 👏",
-        // customClass: 'my-custom-class',
+        customClass: {
+          confirmButton: 'my-swal-button',
+        },
       }).then(() => {
         this.isComoChecked = true;
         this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
@@ -209,7 +214,9 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
     } else if (this.preguntaService.indexPregunta == 10) {
       Swal.fire({
         title: "¡Bien hecho, has terminado la sección '¿Cómo?!' 👏",
-        // customClass: 'my-custom-class',
+        customClass: {
+          confirmButton: 'my-swal-button',
+        },
       }).then(() => {
         this.isQueChecked = true;
         this.preguntaService.cargarPregunta(this.preguntaService.indexPregunta);
@@ -218,7 +225,9 @@ export class FormularioPreguntasComponent implements OnInit, AfterViewInit {
       Swal.fire({
         title: "¡Bien hecho, has finalizado todas las secciones' 👏",
         text: '¡Modelo Círculo Dorado completado!🎉',
-        // customClass: 'my-custom-class',
+        customClass: {
+          confirmButton: 'my-swal-button',
+        },
       }).then(() => {
         this.preguntaService.indexPregunta = 0;
         this.isPorQueChecked = true;

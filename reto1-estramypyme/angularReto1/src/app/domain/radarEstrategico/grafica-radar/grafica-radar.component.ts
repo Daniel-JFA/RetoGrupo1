@@ -94,11 +94,11 @@ export class GraficaRadarComponent implements AfterViewInit, OnDestroy {
     const opciones = {
       radar: {
         indicator: [
-          { name: 'CONOCIMIENTO DEL CLIENTE', max: 4 },
-          { name: 'CONOCIMIENTO DEL NEGOCIO', max: 4 },
-          { name: 'COHERENCIA DEL MODELO DEL NEGOCIO', max: 4 },
-          { name: 'ALINEACIÓN EN LA COMUNICACIÓN INTERNA', max: 4 },
-          { name: 'SALUD FINANCIERA', max: 4 },
+          { name: 'C. CLIENTE', max: 4 },
+          { name: 'C. NEGOCIO', max: 4 },
+          { name: 'M. NEGOCIO', max: 4 },
+          { name: 'C. INTERNA', max: 4 },
+          { name: 'S. FINANCIERA', max: 4 },
         ],
       },
       series: [
