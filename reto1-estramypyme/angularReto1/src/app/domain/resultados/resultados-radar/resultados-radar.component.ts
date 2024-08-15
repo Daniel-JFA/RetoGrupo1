@@ -31,10 +31,10 @@ export class ResultadosRadarComponent implements OnInit {
         'Solo describe al cliente desde una segmentación tradicional de mercado (estrato, edad, etc.).';
     } else if (this.preguntaRadarService.seccion1 == 3) {
       this.conocimientoCliente =
-        'Conoce su cliente, lo describe desde su estilo de vida, hábitos de consumo, comportamient, tareas por hace, dolores, alegrías.';
+        'Conoce su cliente, lo describe desde su estilo de vida, hábitos de consumo, comportamiento, tareas por hacer, dolores, alegrías.';
     } else if (this.preguntaRadarService.seccion1 == 4) {
       this.conocimientoCliente =
-        'Identifica, además, si su negocio atiende solo uno o varios tipos de clientes. Diferencia en su negocio al cosumidor, el comprador y/o el cliente.';
+        'Identifica, además, si su negocio atiende solo uno o varios tipos de clientes. Diferencia en su negocio al consumidor, el comprador y/o el cliente.';
     }
     if (this.preguntaRadarService.seccion2 == 0) {
       this.conocimientoNegocio = ' ';
